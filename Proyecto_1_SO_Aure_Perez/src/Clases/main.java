@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package Clases;
-
+import Interfaces.VentanaSimulacion;
 /**
  *
  * @author sebas
@@ -15,7 +15,8 @@ public class main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        VentanaSimulacion simulacion = new VentanaSimulacion();
+        simulacion.setVisible(true);
     }
     
 }
