@@ -96,86 +96,73 @@ public class VentanaParametros extends javax.swing.JFrame {
 
         productoresInicioE2.setBackground(new java.awt.Color(204, 204, 204));
         productoresInicioE2.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
-        productoresInicioE2.setForeground(new java.awt.Color(0, 0, 0));
         productoresInicioE2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         productoresInicioE2.setText("0");
         jPanel1.add(productoresInicioE2, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 370, 40, 40));
 
         capacidadCreditosE2.setBackground(new java.awt.Color(204, 204, 204));
         capacidadCreditosE2.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
-        capacidadCreditosE2.setForeground(new java.awt.Color(0, 0, 0));
         capacidadCreditosE2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         capacidadCreditosE2.setText("0");
         jPanel1.add(capacidadCreditosE2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 300, 40, 40));
 
         jLabel9.setBackground(new java.awt.Color(204, 204, 204));
         jLabel9.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Productores Animadores");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 370, 210, 40));
 
         jLabel4.setBackground(new java.awt.Color(204, 204, 204));
         jLabel4.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Capacidad Diseñadores");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 300, 170, 40));
 
         productoresCierreE2.setBackground(new java.awt.Color(204, 204, 204));
         productoresCierreE2.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
-        productoresCierreE2.setForeground(new java.awt.Color(0, 0, 0));
         productoresCierreE2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         productoresCierreE2.setText("0");
         jPanel1.add(productoresCierreE2, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 440, 40, 40));
 
         capacidadInicioE2.setBackground(new java.awt.Color(204, 204, 204));
         capacidadInicioE2.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
-        capacidadInicioE2.setForeground(new java.awt.Color(0, 0, 0));
         capacidadInicioE2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         capacidadInicioE2.setText("0");
         jPanel1.add(capacidadInicioE2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 370, 40, 40));
 
         jLabel10.setBackground(new java.awt.Color(204, 204, 204));
         jLabel10.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("Productores Actores");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 440, 210, 40));
 
         jLabel5.setBackground(new java.awt.Color(204, 204, 204));
         jLabel5.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Capacidad Animadores");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 370, 170, 40));
 
         ensambladoresE2.setBackground(new java.awt.Color(204, 204, 204));
         ensambladoresE2.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
-        ensambladoresE2.setForeground(new java.awt.Color(0, 0, 0));
         ensambladoresE2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         ensambladoresE2.setText("0");
         jPanel1.add(ensambladoresE2, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 160, 40, 50));
 
         capacidadCierreE2.setBackground(new java.awt.Color(204, 204, 204));
         capacidadCierreE2.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
-        capacidadCierreE2.setForeground(new java.awt.Color(0, 0, 0));
         capacidadCierreE2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         capacidadCierreE2.setText("0");
         jPanel1.add(capacidadCierreE2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 440, 40, 40));
 
         jLabel11.setBackground(new java.awt.Color(204, 204, 204));
         jLabel11.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("2");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 190, 40, 40));
 
         jLabel1.setBackground(new java.awt.Color(204, 204, 204));
         jLabel1.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Duracion dia (seg)");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 150, 50));
 
         jLabel6.setBackground(new java.awt.Color(204, 204, 204));
         jLabel6.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Capacidad Actores");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 440, 180, 40));
 
@@ -192,54 +179,46 @@ public class VentanaParametros extends javax.swing.JFrame {
 
         duracionDia.setBackground(new java.awt.Color(204, 204, 204));
         duracionDia.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
-        duracionDia.setForeground(new java.awt.Color(0, 0, 0));
         duracionDia.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         duracionDia.setText("0");
         jPanel1.add(duracionDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 80, 90, 50));
 
         productoresIntroE2.setBackground(new java.awt.Color(204, 204, 204));
         productoresIntroE2.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
-        productoresIntroE2.setForeground(new java.awt.Color(0, 0, 0));
         productoresIntroE2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         productoresIntroE2.setText("0");
         jPanel1.add(productoresIntroE2, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 230, 40, 40));
 
         diasLanzamiento.setBackground(new java.awt.Color(204, 204, 204));
         diasLanzamiento.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
-        diasLanzamiento.setForeground(new java.awt.Color(0, 0, 0));
         diasLanzamiento.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         diasLanzamiento.setText("0");
         jPanel1.add(diasLanzamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 140, 90, 50));
 
         jLabel7.setBackground(new java.awt.Color(204, 204, 204));
         jLabel7.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Productores Guionistas");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 230, 210, 40));
 
         jLabel2.setBackground(new java.awt.Color(204, 204, 204));
         jLabel2.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Dias lanzamiento");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 140, 150, 50));
 
         productoresCreditosE2.setBackground(new java.awt.Color(204, 204, 204));
         productoresCreditosE2.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
-        productoresCreditosE2.setForeground(new java.awt.Color(0, 0, 0));
         productoresCreditosE2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         productoresCreditosE2.setText("0");
         jPanel1.add(productoresCreditosE2, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 300, 40, 40));
 
         capacidadIntroE2.setBackground(new java.awt.Color(204, 204, 204));
         capacidadIntroE2.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
-        capacidadIntroE2.setForeground(new java.awt.Color(0, 0, 0));
         capacidadIntroE2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         capacidadIntroE2.setText("0");
         jPanel1.add(capacidadIntroE2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 230, 40, 40));
 
         jLabel8.setBackground(new java.awt.Color(204, 204, 204));
         jLabel8.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Productores Diseñadores");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 300, 210, 40));
 
@@ -285,7 +264,7 @@ public class VentanaParametros extends javax.swing.JFrame {
         });
         jPanel3.add(irParametrosButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 140, 130, 40));
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 110, 510));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 110, 520));
 
         jPanel2.setBackground(new java.awt.Color(102, 0, 102));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -294,7 +273,6 @@ public class VentanaParametros extends javax.swing.JFrame {
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel12.setText("ESTUDIOS");
-        jLabel12.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 110, 40));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 40));
@@ -307,148 +285,126 @@ public class VentanaParametros extends javax.swing.JFrame {
 
         capacidadIntroE1.setBackground(new java.awt.Color(204, 204, 204));
         capacidadIntroE1.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
-        capacidadIntroE1.setForeground(new java.awt.Color(0, 0, 0));
         capacidadIntroE1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         capacidadIntroE1.setText("0");
         jPanel1.add(capacidadIntroE1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 230, 40, 40));
 
         capacidadCreditosE1.setBackground(new java.awt.Color(204, 204, 204));
         capacidadCreditosE1.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
-        capacidadCreditosE1.setForeground(new java.awt.Color(0, 0, 0));
         capacidadCreditosE1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         capacidadCreditosE1.setText("0");
         jPanel1.add(capacidadCreditosE1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 300, 40, 40));
 
         capacidadInicioE1.setBackground(new java.awt.Color(204, 204, 204));
         capacidadInicioE1.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
-        capacidadInicioE1.setForeground(new java.awt.Color(0, 0, 0));
         capacidadInicioE1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         capacidadInicioE1.setText("0");
         jPanel1.add(capacidadInicioE1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 370, 40, 40));
 
         capacidadCierreE1.setBackground(new java.awt.Color(204, 204, 204));
         capacidadCierreE1.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
-        capacidadCierreE1.setForeground(new java.awt.Color(0, 0, 0));
         capacidadCierreE1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         capacidadCierreE1.setText("0");
         jPanel1.add(capacidadCierreE1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 440, 40, 40));
 
         ensambladoresE1.setBackground(new java.awt.Color(204, 204, 204));
         ensambladoresE1.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
-        ensambladoresE1.setForeground(new java.awt.Color(0, 0, 0));
         ensambladoresE1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         ensambladoresE1.setText("0");
         jPanel1.add(ensambladoresE1, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 160, 40, 50));
 
         productoresIntroE1.setBackground(new java.awt.Color(204, 204, 204));
         productoresIntroE1.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
-        productoresIntroE1.setForeground(new java.awt.Color(0, 0, 0));
         productoresIntroE1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         productoresIntroE1.setText("0");
         jPanel1.add(productoresIntroE1, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 230, 40, 40));
 
         productoresCreditosE1.setBackground(new java.awt.Color(204, 204, 204));
         productoresCreditosE1.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
-        productoresCreditosE1.setForeground(new java.awt.Color(0, 0, 0));
         productoresCreditosE1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         productoresCreditosE1.setText("0");
         jPanel1.add(productoresCreditosE1, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 300, 40, 40));
 
         productoresInicioE1.setBackground(new java.awt.Color(204, 204, 204));
         productoresInicioE1.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
-        productoresInicioE1.setForeground(new java.awt.Color(0, 0, 0));
         productoresInicioE1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         productoresInicioE1.setText("0");
         jPanel1.add(productoresInicioE1, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 370, 40, 40));
 
         productoresCierreE1.setBackground(new java.awt.Color(204, 204, 204));
         productoresCierreE1.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
-        productoresCierreE1.setForeground(new java.awt.Color(0, 0, 0));
         productoresCierreE1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         productoresCierreE1.setText("0");
         jPanel1.add(productoresCierreE1, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 440, 40, 40));
 
         jLabel14.setBackground(new java.awt.Color(204, 204, 204));
         jLabel14.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(0, 0, 0));
         jLabel14.setText("Ensambladores");
         jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 160, 150, 50));
 
         jLabel15.setBackground(new java.awt.Color(204, 204, 204));
         jLabel15.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
         jLabel15.setText("Estudio");
         jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, 60, 40));
 
         jLabel16.setBackground(new java.awt.Color(204, 204, 204));
         jLabel16.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(0, 0, 0));
         jLabel16.setText("Estudio");
         jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 130, 70, 30));
 
         jLabel17.setBackground(new java.awt.Color(204, 204, 204));
         jLabel17.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(0, 0, 0));
         jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel17.setText("2");
         jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 130, 40, 30));
 
         jLabel18.setBackground(new java.awt.Color(204, 204, 204));
         jLabel18.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(0, 0, 0));
         jLabel18.setText("Capacidad Guionistas");
         jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 230, 170, 40));
 
         jLabel19.setBackground(new java.awt.Color(204, 204, 204));
         jLabel19.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(0, 0, 0));
         jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel19.setText("1");
         jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 190, 40, 40));
 
         jLabel20.setBackground(new java.awt.Color(204, 204, 204));
         jLabel20.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(0, 0, 0));
         jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel20.setText("1");
         jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 130, 40, 30));
 
         jLabel21.setBackground(new java.awt.Color(204, 204, 204));
         jLabel21.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
-        jLabel21.setForeground(new java.awt.Color(0, 0, 0));
         jLabel21.setText("Capacidad Plot Twist");
         jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 500, 180, 40));
 
         capacidadPlotTwistE1.setBackground(new java.awt.Color(204, 204, 204));
         capacidadPlotTwistE1.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
-        capacidadPlotTwistE1.setForeground(new java.awt.Color(0, 0, 0));
         capacidadPlotTwistE1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         capacidadPlotTwistE1.setText("0");
         jPanel1.add(capacidadPlotTwistE1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 500, 40, 40));
 
         capacidadPlotTwistE2.setBackground(new java.awt.Color(204, 204, 204));
         capacidadPlotTwistE2.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
-        capacidadPlotTwistE2.setForeground(new java.awt.Color(0, 0, 0));
         capacidadPlotTwistE2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         capacidadPlotTwistE2.setText("0");
         jPanel1.add(capacidadPlotTwistE2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 500, 40, 40));
 
         jLabel22.setBackground(new java.awt.Color(204, 204, 204));
         jLabel22.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(0, 0, 0));
         jLabel22.setText("Productores Plot Twist");
         jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 500, 210, 40));
 
         productoresPlotTwistE2.setBackground(new java.awt.Color(204, 204, 204));
         productoresPlotTwistE2.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
-        productoresPlotTwistE2.setForeground(new java.awt.Color(0, 0, 0));
         productoresPlotTwistE2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         productoresPlotTwistE2.setText("0");
         jPanel1.add(productoresPlotTwistE2, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 500, 40, 40));
 
         productoresPlotTwistE1.setBackground(new java.awt.Color(204, 204, 204));
         productoresPlotTwistE1.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
-        productoresPlotTwistE1.setForeground(new java.awt.Color(0, 0, 0));
         productoresPlotTwistE1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         productoresPlotTwistE1.setText("0");
         jPanel1.add(productoresPlotTwistE1, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 500, 40, 40));
@@ -508,7 +464,7 @@ public class VentanaParametros extends javax.swing.JFrame {
         });
         jPanel1.add(capacidadCierreInf, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 440, -1, 40));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 550));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 560));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

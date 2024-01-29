@@ -105,7 +105,7 @@ public class VentanaDashboard extends javax.swing.JFrame {
         });
         jPanel3.add(irParametrosButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 140, 130, 40));
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 110, 510));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 110, 520));
 
         jLabel1.setFont(new java.awt.Font("Poor Richard", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(102, 102, 102));
@@ -134,7 +134,7 @@ public class VentanaDashboard extends javax.swing.JFrame {
 
         jPanel1.add(grafica3, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 90, 230, 450));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 560));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
