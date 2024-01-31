@@ -5,6 +5,7 @@
  */
 package Clases;
 import Interfaces.VentanaSimulacion;
+import java.util.concurrent.Semaphore;
 /**
  *
  * @author sebas
@@ -17,6 +18,12 @@ public class main {
     public static void main(String[] args) {
         VentanaSimulacion simulacion = new VentanaSimulacion();
         simulacion.setVisible(true);
+        
+        Semaphore mutex = new Semaphore(1);
+        Drive drive = new Drive();
+        
+        Productor hilo1 = new Productor(0, 3000, "Jose", drive, mutex);
+        hilo1.start();
     }
     
 }

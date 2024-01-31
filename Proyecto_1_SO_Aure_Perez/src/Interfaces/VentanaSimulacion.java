@@ -13,9 +13,8 @@ import javax.swing.JOptionPane;
  */
 public class VentanaSimulacion extends javax.swing.JFrame {
 
-    /**
-     * Creates new form VentanaSimulacion
-     */
+    
+    
     public VentanaSimulacion() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -182,7 +181,6 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         jLabel34 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(900, 550));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Panel.setBackground(new java.awt.Color(204, 204, 204));
@@ -204,7 +202,7 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         jLabel4.setBackground(new java.awt.Color(153, 153, 153));
         jLabel4.setFont(new java.awt.Font("NSimSun", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setText("Estudio 1");
+        jLabel4.setText("Cartoon Network");
         Panel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 140, -1, -1));
 
         productoresIniE1.setBackground(new java.awt.Color(153, 153, 153));
@@ -323,7 +321,7 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         maxCreE1.setBackground(new java.awt.Color(153, 153, 153));
         maxCreE1.setFont(new java.awt.Font("NSimSun", 0, 14)); // NOI18N
         maxCreE1.setForeground(new java.awt.Color(0, 0, 0));
-        maxCreE1.setText("25");
+        maxCreE1.setText("20");
         Panel.add(maxCreE1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 330, 20, -1));
 
         jLabel10.setBackground(new java.awt.Color(153, 153, 153));
@@ -541,7 +539,7 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         jLabel48.setFont(new java.awt.Font("NSimSun", 0, 14)); // NOI18N
         jLabel48.setForeground(new java.awt.Color(0, 0, 0));
         jLabel48.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel48.setText("Star Chanel");
+        jLabel48.setText("Star Channel");
         Panel.add(jLabel48, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 390, 160, -1));
 
         jLabel49.setBackground(new java.awt.Color(153, 153, 153));
@@ -559,7 +557,7 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         jLabel51.setBackground(new java.awt.Color(153, 153, 153));
         jLabel51.setFont(new java.awt.Font("NSimSun", 0, 14)); // NOI18N
         jLabel51.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel51.setText("Estudio 2");
+        jLabel51.setText("Star Channel");
         Panel.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 140, -1, -1));
 
         estadoDirectorE1.setBackground(new java.awt.Color(153, 153, 153));
@@ -674,7 +672,7 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         maxIniE1.setBackground(new java.awt.Color(153, 153, 153));
         maxIniE1.setFont(new java.awt.Font("NSimSun", 0, 14)); // NOI18N
         maxIniE1.setForeground(new java.awt.Color(0, 0, 0));
-        maxIniE1.setText("50");
+        maxIniE1.setText("55");
         Panel.add(maxIniE1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 370, 20, -1));
 
         capacidadIniE1.setBackground(new java.awt.Color(153, 153, 153));
@@ -692,7 +690,7 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         maxCieE1.setBackground(new java.awt.Color(153, 153, 153));
         maxCieE1.setFont(new java.awt.Font("NSimSun", 0, 14)); // NOI18N
         maxCieE1.setForeground(new java.awt.Color(0, 0, 0));
-        maxCieE1.setText("55");
+        maxCieE1.setText("35");
         Panel.add(maxCieE1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 410, 20, -1));
 
         capacidadCieE1.setBackground(new java.awt.Color(153, 153, 153));
@@ -723,7 +721,7 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         maxIntE1.setBackground(new java.awt.Color(153, 153, 153));
         maxIntE1.setFont(new java.awt.Font("NSimSun", 0, 14)); // NOI18N
         maxIntE1.setForeground(new java.awt.Color(0, 0, 0));
-        maxIntE1.setText("30");
+        maxIntE1.setText("25");
         Panel.add(maxIntE1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 290, 20, -1));
 
         sueldoIntE1.setBackground(new java.awt.Color(153, 153, 153));
@@ -757,7 +755,7 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         maxCreE2.setBackground(new java.awt.Color(153, 153, 153));
         maxCreE2.setFont(new java.awt.Font("NSimSun", 0, 14)); // NOI18N
         maxCreE2.setForeground(new java.awt.Color(0, 0, 0));
-        maxCreE2.setText("25");
+        maxCreE2.setText("20");
         Panel.add(maxCreE2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 330, 20, -1));
 
         jLabel60.setBackground(new java.awt.Color(153, 153, 153));
@@ -807,7 +805,7 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         maxIniE2.setBackground(new java.awt.Color(153, 153, 153));
         maxIniE2.setFont(new java.awt.Font("NSimSun", 0, 14)); // NOI18N
         maxIniE2.setForeground(new java.awt.Color(0, 0, 0));
-        maxIniE2.setText("50");
+        maxIniE2.setText("55");
         Panel.add(maxIniE2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 370, 20, -1));
 
         capacidadIniE2.setBackground(new java.awt.Color(153, 153, 153));
@@ -825,7 +823,7 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         maxCieE2.setBackground(new java.awt.Color(153, 153, 153));
         maxCieE2.setFont(new java.awt.Font("NSimSun", 0, 14)); // NOI18N
         maxCieE2.setForeground(new java.awt.Color(0, 0, 0));
-        maxCieE2.setText("55");
+        maxCieE2.setText("35");
         Panel.add(maxCieE2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 410, 20, -1));
 
         capacidadCieE2.setBackground(new java.awt.Color(153, 153, 153));
@@ -857,7 +855,7 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         maxIntE2.setBackground(new java.awt.Color(153, 153, 153));
         maxIntE2.setFont(new java.awt.Font("NSimSun", 0, 14)); // NOI18N
         maxIntE2.setForeground(new java.awt.Color(0, 0, 0));
-        maxIntE2.setText("30");
+        maxIntE2.setText("25");
         Panel.add(maxIntE2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 290, 20, -1));
 
         jLabel61.setBackground(new java.awt.Color(153, 153, 153));
@@ -945,7 +943,7 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         maxPTE1.setBackground(new java.awt.Color(153, 153, 153));
         maxPTE1.setFont(new java.awt.Font("NSimSun", 0, 14)); // NOI18N
         maxPTE1.setForeground(new java.awt.Color(0, 0, 0));
-        maxPTE1.setText("40");
+        maxPTE1.setText("10");
         Panel.add(maxPTE1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 450, 20, -1));
 
         productoresPTE1.setBackground(new java.awt.Color(153, 153, 153));
@@ -998,7 +996,7 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         maxPTE2.setBackground(new java.awt.Color(153, 153, 153));
         maxPTE2.setFont(new java.awt.Font("NSimSun", 0, 14)); // NOI18N
         maxPTE2.setForeground(new java.awt.Color(0, 0, 0));
-        maxPTE2.setText("40");
+        maxPTE2.setText("10");
         Panel.add(maxPTE2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 450, 20, -1));
 
         productoresPTE2.setBackground(new java.awt.Color(153, 153, 153));
@@ -1328,6 +1326,7 @@ public class VentanaSimulacion extends javax.swing.JFrame {
     }//GEN-LAST:event_eliminarEE2ActionPerformed
 
     private void iniciarEstudiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarEstudiosActionPerformed
+        // starts de los hilos
         
     }//GEN-LAST:event_iniciarEstudiosActionPerformed
 
