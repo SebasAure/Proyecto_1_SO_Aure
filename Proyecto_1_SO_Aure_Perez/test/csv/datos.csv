@@ -1,0 +1,22 @@
+--TIEMPO--,
+duracionDia,5000
+--DRIVE--
+guionesDrive,25
+escenariosDrive,20
+animacionesDrive,55
+doblajesDrive,35
+plotTwitsDrive,10
+--PRODUCTORES CN--
+guionistasCN,1
+disenadoresCN,1
+animadoresCN,1
+actoresCN,1
+plotTwitsCN,1
+ensambladoresCN,1
+--PRODUCTORES SC--
+guionistasSC,1
+disenadoresSC,1 
+animadoresSC,1 
+actoresSC,1 
+plotTwitsSC,1 
+ensambladoresSC,1 

@@ -6,6 +6,7 @@
 package Clases;
 import Interfaces.VentanaSimulacion;
 import java.util.concurrent.Semaphore;
+import Clases.ArchivoCSV;
 /**
  *
  * @author sebas
