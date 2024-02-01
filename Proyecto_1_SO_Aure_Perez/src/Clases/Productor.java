@@ -8,6 +8,7 @@ package Clases;
 import java.util.concurrent.Semaphore;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JLabel;
 
 /**
  *
@@ -18,43 +19,46 @@ public class Productor extends Thread{
     private String nombre; //por que privado?
     private int tipo; // quejesto
     private int duracionDia;
-    private Drive drive;
+    private int contadorDias = 0;
+    private DriveCN drive;
     private float salarioTotal;
     private float contador;
     private Semaphore mutex;
+    private JLabel salario;
+    
     
     private int salarioGuionistas = 20; 
-    private float salarioTotalGuionistas;
+    private int salarioTotalGuionistas;
     //private float contadorGuionistas;
     //private Semaphore mutexGuionistas;
     
     private int salarioDisenadores = 26; 
-    private float salarioTotalDisenadores;
+    private int salarioTotalDisenadores;
     //private float contadorDisenadores;
     //private Semaphore mutexDisenadores;
     
     private int salarioAnimadores = 40; 
-    private float salarioTotalAnimadores;
+    private int salarioTotalAnimadores;
     //private float contadorAnimadores;
     //private Semaphore mutexAnimadores;
     
     private int salarioActores = 16; 
-    private float salarioTotalActores;
+    private int salarioTotalActores;
     //private float contadorActores;
     //private Semaphore mutexActores;
     
     private int salarioPlotTwist = 34; 
-    private float salarioTotalPlotTwist;
+    private int salarioTotalPlotTwist;
     //private float contadorPlotTwist;
     //private Semaphore mutexPlotTwist;
     
     private int salarioEnsambladores = 50; 
-    private float salarioTotalEnsambladores;
+    private int salarioTotalEnsambladores;
     //private float contadorEnsambladores;
     //private Semaphore mutexEnsambladores;
     
     // Constructor 
-    public Productor(int tipo, int duracion, String nombre, Drive d, Semaphore m){
+    public Productor(int tipo, int duracion, String nombre, DriveCN d, Semaphore m, JLabel salario){
         this.tipo = tipo;
         this.salarioTotal = 0;
         this.duracionDia = duracion;
@@ -62,6 +66,7 @@ public class Productor extends Thread{
         this.drive = d;
         this.contador = 0;
         this.mutex = m;
+        this.salario = salario;
     }
     
     @Override
@@ -69,9 +74,11 @@ public class Productor extends Thread{
         while (true) {            
             
             try {
+                contadorDias ++;
                 obtenerSalario(tipo);
-                trabajar();
-                System.out.println("Productor: " + this.nombre + " gana: " + this.salarioTotal + "$");
+                //trabajar();
+                System.out.println("Productor: " + this.nombre + " gana: " + this.salario.getText() + "$");
+                System.out.println("Dias: " + this.contadorDias);
                 sleep(this.duracionDia);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Productor.class.getName()).log(Level.SEVERE, null, ex);
@@ -80,18 +87,33 @@ public class Productor extends Thread{
     }
     
     public void obtenerSalario(int tipo){
-        if (tipo == 0){
-            this.salarioTotalGuionistas += this.salarioGuionistas*24; // por que por 24 (creo que representa un dia no?)
-        } else if (tipo == 1){
-            this.salarioTotalDisenadores += this.salarioDisenadores*24; 
-        } else if (tipo == 2){
-            this.salarioTotalAnimadores += this.salarioAnimadores*24;
-        } else if (tipo == 3){
-            this.salarioTotalActores += this.salarioActores*24;
-        } else if (tipo == 4){
-            this.salarioTotalPlotTwist += this.salarioPlotTwist*24;
-        } else if (tipo == 5){
-            this.salarioTotalEnsambladores += this.salarioEnsambladores*24;
+        switch (tipo) {
+            case 0:
+                this.salarioTotalGuionistas += this.salarioGuionistas*24; // por que por 24 (creo que representa un dia no?)
+                this.salario.setText(Integer.toString(this.salarioTotalGuionistas));
+                break;
+            case 1:
+                this.salarioTotalDisenadores += this.salarioDisenadores*24;
+                this.salario.setText(Integer.toString(this.salarioTotalDisenadores));
+                break;
+            case 2:
+                this.salarioTotalAnimadores += this.salarioAnimadores*24;
+                this.salario.setText(Integer.toString(this.salarioTotalAnimadores));
+                break;
+            case 3:
+                this.salarioTotalActores += this.salarioActores*24;
+                this.salario.setText(Integer.toString(this.salarioTotalActores));
+                break;
+            case 4:
+                this.salarioTotalPlotTwist += this.salarioPlotTwist*24;
+                this.salario.setText(Integer.toString(this.salarioTotalPlotTwist));
+                break;
+            case 5:
+                this.salarioTotalEnsambladores += this.salarioEnsambladores*24;
+                this.salario.setText(Integer.toString(this.salarioTotalEnsambladores));
+                break;
+            default:
+                break;
         }
         
     }
@@ -101,7 +123,7 @@ public class Productor extends Thread{
         if (this.contador >= 1){
             try {
                 this.mutex.acquire(); //wait
-                this.drive.addPart(this.tipo);//critica
+                this.drive.addPart(tipo);//critica
                 this.mutex.release();// signal
                 this.contador = 0;
                 

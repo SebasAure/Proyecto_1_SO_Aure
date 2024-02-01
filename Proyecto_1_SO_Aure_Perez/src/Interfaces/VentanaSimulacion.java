@@ -5,6 +5,15 @@
  */
 package Interfaces;
 
+import Clases.ActorCN;
+import Clases.AnimadorCN;
+import Clases.DisenadorCN;
+import Clases.DriveCN;
+import Clases.EnsambladorCN;
+import Clases.GuionistaCN;
+import Clases.PlotTwistCN;
+import Clases.Productor;
+import java.util.concurrent.Semaphore;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 /**
@@ -13,12 +22,30 @@ import javax.swing.JOptionPane;
  */
 public class VentanaSimulacion extends javax.swing.JFrame {
 
-    
+    int duracionDia = 5000;
     
     public VentanaSimulacion() {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        
+        agregarPIntE1.setEnabled(false);
+        agregarPCreE1.setEnabled(false);
+        agregarPIniE1.setEnabled(false);
+        agregarPCieE1.setEnabled(false);
+        agregarPPTE1.setEnabled(false);
+        agregarEE1.setEnabled(false);
+        
+        eliminarPIntE1.setEnabled(false);
+        eliminarPCreE1.setEnabled(false);
+        eliminarPIniE1.setEnabled(false);
+        eliminarPCieE1.setEnabled(false);
+        eliminarPPTE1.setEnabled(false);
+        eliminarEE1.setEnabled(false);
+        
+        
+        
+        
     }
 
     /**
@@ -102,9 +129,9 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         estadoPME1 = new javax.swing.JLabel();
         sueldoPME2 = new javax.swing.JLabel();
         maxIntE1 = new javax.swing.JLabel();
-        sueldoIntE1 = new javax.swing.JLabel();
-        sueldoCreE1 = new javax.swing.JLabel();
-        sueldoIniE1 = new javax.swing.JLabel();
+        salarioGuionistasCN = new javax.swing.JLabel();
+        salarioDisenadoresCN = new javax.swing.JLabel();
+        salarioAnimadoresCN = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         maxCreE2 = new javax.swing.JLabel();
         jLabel60 = new javax.swing.JLabel();
@@ -129,8 +156,8 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         sueldoIniE2 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         productoresCieE1 = new javax.swing.JLabel();
-        sueldoCieE1 = new javax.swing.JLabel();
-        sueldoEE1 = new javax.swing.JLabel();
+        salarioActoresCN = new javax.swing.JLabel();
+        salarioEnsambladoresCN = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
@@ -140,7 +167,7 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         productoresPTE1 = new javax.swing.JLabel();
         agregarPPTE1 = new javax.swing.JButton();
         eliminarPPTE1 = new javax.swing.JButton();
-        sueldoPTE1 = new javax.swing.JLabel();
+        salarioPlotTwistsCN = new javax.swing.JLabel();
         capacidadPTE2 = new javax.swing.JLabel();
         jLabel73 = new javax.swing.JLabel();
         maxPTE2 = new javax.swing.JLabel();
@@ -724,26 +751,26 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         maxIntE1.setText("25");
         Panel.add(maxIntE1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 290, 20, -1));
 
-        sueldoIntE1.setBackground(new java.awt.Color(153, 153, 153));
-        sueldoIntE1.setFont(new java.awt.Font("NSimSun", 0, 14)); // NOI18N
-        sueldoIntE1.setForeground(new java.awt.Color(0, 0, 0));
-        sueldoIntE1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        sueldoIntE1.setText("0");
-        Panel.add(sueldoIntE1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 280, 50, 30));
+        salarioGuionistasCN.setBackground(new java.awt.Color(153, 153, 153));
+        salarioGuionistasCN.setFont(new java.awt.Font("NSimSun", 0, 14)); // NOI18N
+        salarioGuionistasCN.setForeground(new java.awt.Color(0, 0, 0));
+        salarioGuionistasCN.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        salarioGuionistasCN.setText("0");
+        Panel.add(salarioGuionistasCN, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 280, 50, 30));
 
-        sueldoCreE1.setBackground(new java.awt.Color(153, 153, 153));
-        sueldoCreE1.setFont(new java.awt.Font("NSimSun", 0, 14)); // NOI18N
-        sueldoCreE1.setForeground(new java.awt.Color(0, 0, 0));
-        sueldoCreE1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        sueldoCreE1.setText("0");
-        Panel.add(sueldoCreE1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 320, 50, 30));
+        salarioDisenadoresCN.setBackground(new java.awt.Color(153, 153, 153));
+        salarioDisenadoresCN.setFont(new java.awt.Font("NSimSun", 0, 14)); // NOI18N
+        salarioDisenadoresCN.setForeground(new java.awt.Color(0, 0, 0));
+        salarioDisenadoresCN.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        salarioDisenadoresCN.setText("0");
+        Panel.add(salarioDisenadoresCN, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 320, 50, 30));
 
-        sueldoIniE1.setBackground(new java.awt.Color(153, 153, 153));
-        sueldoIniE1.setFont(new java.awt.Font("NSimSun", 0, 14)); // NOI18N
-        sueldoIniE1.setForeground(new java.awt.Color(0, 0, 0));
-        sueldoIniE1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        sueldoIniE1.setText("0");
-        Panel.add(sueldoIniE1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 360, 50, 30));
+        salarioAnimadoresCN.setBackground(new java.awt.Color(153, 153, 153));
+        salarioAnimadoresCN.setFont(new java.awt.Font("NSimSun", 0, 14)); // NOI18N
+        salarioAnimadoresCN.setForeground(new java.awt.Color(0, 0, 0));
+        salarioAnimadoresCN.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        salarioAnimadoresCN.setText("0");
+        Panel.add(salarioAnimadoresCN, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 360, 50, 30));
 
         jLabel12.setBackground(new java.awt.Color(153, 153, 153));
         jLabel12.setFont(new java.awt.Font("NSimSun", 0, 14)); // NOI18N
@@ -894,19 +921,19 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         productoresCieE1.setText("0");
         Panel.add(productoresCieE1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 410, -1, -1));
 
-        sueldoCieE1.setBackground(new java.awt.Color(153, 153, 153));
-        sueldoCieE1.setFont(new java.awt.Font("NSimSun", 0, 14)); // NOI18N
-        sueldoCieE1.setForeground(new java.awt.Color(0, 0, 0));
-        sueldoCieE1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        sueldoCieE1.setText("0");
-        Panel.add(sueldoCieE1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 400, 50, 30));
+        salarioActoresCN.setBackground(new java.awt.Color(153, 153, 153));
+        salarioActoresCN.setFont(new java.awt.Font("NSimSun", 0, 14)); // NOI18N
+        salarioActoresCN.setForeground(new java.awt.Color(0, 0, 0));
+        salarioActoresCN.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        salarioActoresCN.setText("0");
+        Panel.add(salarioActoresCN, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 400, 50, 30));
 
-        sueldoEE1.setBackground(new java.awt.Color(153, 153, 153));
-        sueldoEE1.setFont(new java.awt.Font("NSimSun", 0, 14)); // NOI18N
-        sueldoEE1.setForeground(new java.awt.Color(0, 0, 0));
-        sueldoEE1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        sueldoEE1.setText("0");
-        Panel.add(sueldoEE1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 500, 50, 30));
+        salarioEnsambladoresCN.setBackground(new java.awt.Color(153, 153, 153));
+        salarioEnsambladoresCN.setFont(new java.awt.Font("NSimSun", 0, 14)); // NOI18N
+        salarioEnsambladoresCN.setForeground(new java.awt.Color(0, 0, 0));
+        salarioEnsambladoresCN.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        salarioEnsambladoresCN.setText("0");
+        Panel.add(salarioEnsambladoresCN, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 500, 50, 30));
 
         jLabel6.setBackground(new java.awt.Color(153, 153, 153));
         jLabel6.setFont(new java.awt.Font("NSimSun", 0, 14)); // NOI18N
@@ -974,12 +1001,12 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         });
         Panel.add(eliminarPPTE1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 440, 40, 30));
 
-        sueldoPTE1.setBackground(new java.awt.Color(153, 153, 153));
-        sueldoPTE1.setFont(new java.awt.Font("NSimSun", 0, 14)); // NOI18N
-        sueldoPTE1.setForeground(new java.awt.Color(0, 0, 0));
-        sueldoPTE1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        sueldoPTE1.setText("0");
-        Panel.add(sueldoPTE1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 440, 50, 30));
+        salarioPlotTwistsCN.setBackground(new java.awt.Color(153, 153, 153));
+        salarioPlotTwistsCN.setFont(new java.awt.Font("NSimSun", 0, 14)); // NOI18N
+        salarioPlotTwistsCN.setForeground(new java.awt.Color(0, 0, 0));
+        salarioPlotTwistsCN.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        salarioPlotTwistsCN.setText("0");
+        Panel.add(salarioPlotTwistsCN, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 440, 50, 30));
 
         capacidadPTE2.setBackground(new java.awt.Color(153, 153, 153));
         capacidadPTE2.setFont(new java.awt.Font("NSimSun", 0, 14)); // NOI18N
@@ -1326,7 +1353,50 @@ public class VentanaSimulacion extends javax.swing.JFrame {
     }//GEN-LAST:event_eliminarEE2ActionPerformed
 
     private void iniciarEstudiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarEstudiosActionPerformed
+        agregarPIntE1.setEnabled(true);
+        agregarPCreE1.setEnabled(true);
+        agregarPIniE1.setEnabled(true);
+        agregarPCieE1.setEnabled(true);
+        agregarPPTE1.setEnabled(true);
+        agregarEE1.setEnabled(true);
+        
+        eliminarPIntE1.setEnabled(true);
+        eliminarPCreE1.setEnabled(true);
+        eliminarPIniE1.setEnabled(true);
+        eliminarPCieE1.setEnabled(true);
+        eliminarPPTE1.setEnabled(true);
+        eliminarEE1.setEnabled(true);
+        
+        DriveCN drive = new DriveCN();
+        Semaphore mutexGuionistas = new Semaphore(1);
+        Semaphore mutexDisenadores = new Semaphore(1);
+        Semaphore mutexAnimadores = new Semaphore(1);
+        Semaphore mutexActores = new Semaphore(1);
+        Semaphore mutexPlotTwists = new Semaphore(1);
+        //Semaphore mutexEnsambladores = new Semaphore(1);
+        
+        GuionistaCN guionista = new GuionistaCN(0, duracionDia, "Guiones", drive, mutexGuionistas, salarioGuionistasCN);
+        DisenadorCN disenador = new DisenadorCN(1, duracionDia, "Escenarios", drive, mutexDisenadores, salarioDisenadoresCN);
+        AnimadorCN animador = new AnimadorCN(2, duracionDia, "Animaciones", drive, mutexAnimadores, salarioAnimadoresCN);
+        ActorCN actor = new ActorCN(3, duracionDia, "Doblajes", drive, mutexActores, salarioActoresCN);
+        PlotTwistCN plotTwist = new PlotTwistCN(4, duracionDia, "Plot Twits", drive, mutexPlotTwists, salarioPlotTwistsCN);
+        //EnsambladorCN ensamblador = new EnsambladorCN(5, duracionDia, "Capitulos", drive, mutexEnsambladores, salarioEnsambladoresCN);
+
+
+
+        
+        guionista.start();
+        disenador.start();
+        animador.start();
+        actor.start();
+        plotTwist.start();
+        //ensamblador.start();
+        
+        
+        
+
         // starts de los hilos
+        
         
     }//GEN-LAST:event_iniciarEstudiosActionPerformed
 
@@ -1537,21 +1607,21 @@ public class VentanaSimulacion extends javax.swing.JFrame {
     private javax.swing.JLabel productoresPTE1;
     private javax.swing.JLabel productoresPTE2;
     private javax.swing.JButton reiniciar;
-    private javax.swing.JLabel sueldoCieE1;
+    private javax.swing.JLabel salarioActoresCN;
+    private javax.swing.JLabel salarioAnimadoresCN;
+    private javax.swing.JLabel salarioDisenadoresCN;
+    private javax.swing.JLabel salarioEnsambladoresCN;
+    private javax.swing.JLabel salarioGuionistasCN;
+    private javax.swing.JLabel salarioPlotTwistsCN;
     private javax.swing.JLabel sueldoCieE2;
-    private javax.swing.JLabel sueldoCreE1;
     private javax.swing.JLabel sueldoCreE2;
     private javax.swing.JLabel sueldoDE1;
     private javax.swing.JLabel sueldoDE2;
-    private javax.swing.JLabel sueldoEE1;
     private javax.swing.JLabel sueldoEE2;
-    private javax.swing.JLabel sueldoIniE1;
     private javax.swing.JLabel sueldoIniE2;
-    private javax.swing.JLabel sueldoIntE1;
     private javax.swing.JLabel sueldoIntE2;
     private javax.swing.JLabel sueldoPME1;
     private javax.swing.JLabel sueldoPME2;
-    private javax.swing.JLabel sueldoPTE1;
     private javax.swing.JLabel sueldoPTE2;
     // End of variables declaration//GEN-END:variables
 }

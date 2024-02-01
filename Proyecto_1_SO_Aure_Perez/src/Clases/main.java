@@ -19,11 +19,7 @@ public class main {
         VentanaSimulacion simulacion = new VentanaSimulacion();
         simulacion.setVisible(true);
         
-        Semaphore mutex = new Semaphore(1);
-        Drive drive = new Drive();
         
-        Productor hilo1 = new Productor(0, 3000, "Jose", drive, mutex);
-        hilo1.start();
     }
     
 }
