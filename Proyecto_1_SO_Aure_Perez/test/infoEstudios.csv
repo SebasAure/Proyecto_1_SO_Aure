@@ -1,6 +1,6 @@
 --TIEMPO--
-duracionDia,10000
-diaDespacho,15
+duracionDia,5000
+diaDespacho,10
 --DRIVE--
 guionesDrive,25
 escenariosDrive,20

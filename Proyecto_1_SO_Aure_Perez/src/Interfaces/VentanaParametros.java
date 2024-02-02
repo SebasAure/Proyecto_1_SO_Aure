@@ -501,15 +501,32 @@ public class VentanaParametros extends javax.swing.JFrame {
             infoEstudios[17] = numPlotTwistsSC.getText();
             infoEstudios[18] = numEnsambladoresSC.getText();
             
+            // Validacion maximo de trabajadores CN
             if (((Integer.parseInt(numGuionistasCN.getText()) + Integer.parseInt(numDisenadoresCN.getText()) + Integer.parseInt(numAnimadoresCN.getText()) + Integer.parseInt(numActoresCN.getText()) + Integer.parseInt(numPlotTwistsCN.getText()) + Integer.parseInt(numEnsambladoresCN.getText())) > maxTrabajadoresCN)) {
                 guardado = false;
                 JOptionPane.showMessageDialog(null,"Cartoon Network debe tener maximo " +"("+ maxTrabajadoresCN +") trabajadores");
                 return;
+            // Validacion maximo de trabajadores SC
             } else if (((Integer.parseInt(numGuionistasSC.getText()) + Integer.parseInt(numDisenadoresSC.getText()) + Integer.parseInt(numAnimadoresSC.getText()) + Integer.parseInt(numActoresSC.getText()) + Integer.parseInt(numPlotTwistsSC.getText()) + Integer.parseInt(numEnsambladoresSC.getText())) > maxTrabajadoresSC)){
                 guardado = false;
                 JOptionPane.showMessageDialog(null,"Star Channel debe tener maximo " +"("+ maxTrabajadoresSC +") trabajadores");
                 return;                
-                
+            //Validacion minimo 1 tipo de trabajador por estudio    
+            } else if ((Integer.parseInt(numGuionistasCN.getText()) < 1) || (Integer.parseInt(numDisenadoresCN.getText()) < 1) || (Integer.parseInt(numAnimadoresCN.getText()) < 1) || (Integer.parseInt(numActoresCN.getText()) < 1) || (Integer.parseInt(numPlotTwistsCN.getText()) < 1) || (Integer.parseInt(numEnsambladoresCN.getText()) < 1)
+                    || (Integer.parseInt(numGuionistasSC.getText()) < 1) || (Integer.parseInt(numDisenadoresSC.getText()) < 1) || (Integer.parseInt(numAnimadoresSC.getText()) < 1) || (Integer.parseInt(numActoresSC.getText()) < 1) || (Integer.parseInt(numPlotTwistsSC.getText()) < 1) || (Integer.parseInt(numEnsambladoresSC.getText()) < 1)){
+                guardado = false;
+                JOptionPane.showMessageDialog(null,"Debe haber al menos 1 tipo de trabajador por estudio");
+                return;
+            // Validacion duracion de dias mayores o iguales a 1
+            } else if ((Integer.parseInt(duracionDia.getText()) < 1)){
+                guardado = false;
+                JOptionPane.showMessageDialog(null,"La duracion de los dias debe ser de al menos 1 segundo");
+                return;
+            // Validacion dias de lanzamientos mayores o iguales a 1
+            } else if ((Integer.parseInt(diasLanzamiento.getText()) < 1)){
+                guardado = false;
+                JOptionPane.showMessageDialog(null,"Debe haber al menos 1 dia entre lanzamientos");
+                return;
             }
             csv.GuardarCSV(infoEstudios[0], infoEstudios[1], 
                     infoEstudios[2], infoEstudios[3], infoEstudios[4], infoEstudios[5], infoEstudios[6], 
