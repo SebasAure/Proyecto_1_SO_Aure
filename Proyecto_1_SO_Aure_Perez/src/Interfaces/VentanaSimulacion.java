@@ -23,15 +23,55 @@ import javax.swing.JOptionPane;
  */
 public class VentanaSimulacion extends javax.swing.JFrame {
 
-    int duracionDia = 5000;
-    private ArchivoCSV csv;
+    
+    //Parametros generales
+    public static int duracionDia;
+    public static int dia;
+    public static int capacidadGuiones;
+    public static int capacidadEscenarios;
+    public static int capacidadAnimaciones;
+    public static int capacidadDoblajes;
+    public static int capacidadPlotTwists;
+    
+    //Elementos producidos por Cartoon Network
+    public static volatile int guionesCN;
+    public static volatile int escenariosCN;
+    public static volatile int animacionesCN;
+    public static volatile int doblajesCN;
+    public static volatile int plotTwistsCN;
+    public static volatile int capitulosProducidosCN;
+    
+    //Salarios trabajadores Cartoon Network
+    public static int sueldoGuionistasCN;
+    public static int sueldoDisenadoresCN;
+    public static int sueldoAnimadoresCN;
+    public static int sueldoActoresCN;
+    public static int sueldoPlotTwistsCN;
+    public static int sueldoEnsambladoresCN;
+    
+    //Elementos producidos por Star Channel
+    public static volatile int guionesSC;
+    public static volatile int escenariosSC;
+    public static volatile int animacionesSC;
+    public static volatile int doblajesSC;
+    public static volatile int plotTwistsSC;
+    public static volatile int capitulosProducidosSC;
+    
+    //Salarios trabajadores Star Channel
+    public static int sueldoGuionistasSC;
+    public static int sueldoDisenadoresSC;
+    public static int sueldoAnimadoresSC;
+    public static int sueldoActoresSC;
+    public static int sueldoPlotTwistsSC;
+    public static int sueldoEnsambladoresSC;
+    
+    // Funciones ArchivoCSV
+    public static ArchivoCSV csv;
+    public static String infoEstudios [];
     
     public VentanaSimulacion() {
         initComponents();
         
-        
-        this.csv = new ArchivoCSV();
-        String info []= csv.leerCSV();//Info cargada en el csv de los parametros de los estudios
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         
@@ -49,8 +89,14 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         eliminarPlotTwistCN.setEnabled(false);
         eliminarEnsambladorCN.setEnabled(false);
         
+        // Se crea el objeto csv
+        this.csv = new ArchivoCSV();
         
+        // Se lee el csv y se guarda en infoEstudios
+        String infoEstudios [] = csv.leerCSV();
         
+        // Variables estaticas de la simulacion
+        //this.capacidadGuiones = Integer.parseInt(infoEstudios[])
         
     }
 

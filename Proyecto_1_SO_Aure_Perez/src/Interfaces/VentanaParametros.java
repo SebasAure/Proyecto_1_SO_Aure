@@ -5,19 +5,51 @@
  */
 package Interfaces;
 
+import Clases.ArchivoCSV;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author sebas
  */
 public class VentanaParametros extends javax.swing.JFrame {
 
-    /**
-     * Creates new form VentanaParametros
-     */
+    public ArchivoCSV csv;
+    public String infoEstudios[];
+    public Boolean guardado;
+    
     public VentanaParametros() {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        this.csv = new ArchivoCSV();
+        this.infoEstudios = csv.leerCSV();
+        this.guardado = false;
+        
+        //TIEMPO
+        duracionDia.setText(Integer.toString((Integer.parseInt(infoEstudios[0])/1000)));
+        diasLanzamiento.setText(infoEstudios[1]);
+        //DRIVE
+        maxGuiones.setText(infoEstudios[2]);
+        maxEscenarios.setText(infoEstudios[3]);
+        maxAnimaciones.setText(infoEstudios[4]);
+        maxDoblajes.setText(infoEstudios[5]);
+        maxPlotTwits.setText(infoEstudios[6]);
+        //PRODUCTORES CN
+        numGuionistasCN.setText(infoEstudios[7]);
+        numDisenadoresCN.setText(infoEstudios[8]);
+        numAnimadoresCN.setText(infoEstudios[9]);
+        numActoresCN.setText(infoEstudios[10]);
+        numPlotTwistsCN.setText(infoEstudios[11]);
+        numEnsambladoresCN.setText(infoEstudios[12]);
+        //PRODUCTORES SC
+        numGuionistasSC.setText(infoEstudios[13]);
+        numDisenadoresSC.setText(infoEstudios[14]);
+        numAnimadoresSC.setText(infoEstudios[15]);
+        numActoresSC.setText(infoEstudios[16]);
+        numPlotTwistsSC.setText(infoEstudios[17]);
+        numEnsambladoresSC.setText(infoEstudios[18]);
+        
     }
 
     /**
@@ -31,26 +63,20 @@ public class VentanaParametros extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         numAnimadoresSC = new javax.swing.JTextField();
-        maxEscenariosSC = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         numActoresSC = new javax.swing.JTextField();
-        maxAnimacionesSC = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        ensambladoresSC = new javax.swing.JTextField();
-        maxDoblajesSC = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
+        numEnsambladoresSC = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        capacidadPlotTwistInf = new javax.swing.JToggleButton();
         duracionDia = new javax.swing.JTextField();
         numGuionistasSC = new javax.swing.JTextField();
         diasLanzamiento = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         numDisenadoresSC = new javax.swing.JTextField();
-        maxGuionesSC = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         irSimulacionButton = new javax.swing.JButton();
@@ -60,33 +86,27 @@ public class VentanaParametros extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
-        maxGuionesCN = new javax.swing.JTextField();
-        maxEscenariosCN = new javax.swing.JTextField();
+        maxGuiones = new javax.swing.JTextField();
+        maxEscenarios = new javax.swing.JTextField();
         maxAnimaciones = new javax.swing.JTextField();
-        maxDoblajesCN = new javax.swing.JTextField();
-        ensambladoresCN = new javax.swing.JTextField();
+        maxDoblajes = new javax.swing.JTextField();
+        numEnsambladoresCN = new javax.swing.JTextField();
         numGuionistasCN = new javax.swing.JTextField();
         numDisenadoresCN = new javax.swing.JTextField();
         numAnimadoresCN = new javax.swing.JTextField();
         numActoresCN = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
-        maxPlotTwitsCN = new javax.swing.JTextField();
-        maxPlotTwistsSC = new javax.swing.JTextField();
+        maxPlotTwits = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
         numPlotTwistsSC = new javax.swing.JTextField();
         numPlotTwistsCN = new javax.swing.JTextField();
         cambiarParam = new javax.swing.JToggleButton();
-        capacidadIntroInf = new javax.swing.JToggleButton();
-        capacidadCreditosInf = new javax.swing.JToggleButton();
-        capacidadInicioInf = new javax.swing.JToggleButton();
-        capacidadCierreInf = new javax.swing.JToggleButton();
+        jLabel19 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -99,20 +119,13 @@ public class VentanaParametros extends javax.swing.JFrame {
         numAnimadoresSC.setForeground(new java.awt.Color(0, 0, 0));
         numAnimadoresSC.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         numAnimadoresSC.setText("0");
-        jPanel1.add(numAnimadoresSC, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 370, 40, 40));
-
-        maxEscenariosSC.setBackground(new java.awt.Color(204, 204, 204));
-        maxEscenariosSC.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
-        maxEscenariosSC.setForeground(new java.awt.Color(0, 0, 0));
-        maxEscenariosSC.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        maxEscenariosSC.setText("0");
-        jPanel1.add(maxEscenariosSC, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 300, 40, 40));
+        jPanel1.add(numAnimadoresSC, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 260, 40, 40));
 
         jLabel9.setBackground(new java.awt.Color(204, 204, 204));
         jLabel9.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel9.setText("Productores Animadores");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 370, 210, 40));
+        jLabel9.setText("Animadores");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 260, 210, 40));
 
         jLabel4.setBackground(new java.awt.Color(204, 204, 204));
         jLabel4.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
@@ -125,20 +138,13 @@ public class VentanaParametros extends javax.swing.JFrame {
         numActoresSC.setForeground(new java.awt.Color(0, 0, 0));
         numActoresSC.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         numActoresSC.setText("0");
-        jPanel1.add(numActoresSC, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 440, 40, 40));
-
-        maxAnimacionesSC.setBackground(new java.awt.Color(204, 204, 204));
-        maxAnimacionesSC.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
-        maxAnimacionesSC.setForeground(new java.awt.Color(0, 0, 0));
-        maxAnimacionesSC.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        maxAnimacionesSC.setText("0");
-        jPanel1.add(maxAnimacionesSC, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 370, 40, 40));
+        jPanel1.add(numActoresSC, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 330, 40, 40));
 
         jLabel10.setBackground(new java.awt.Color(204, 204, 204));
         jLabel10.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel10.setText("Productores Actores");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 440, 210, 40));
+        jLabel10.setText("Actores");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 330, 210, 40));
 
         jLabel5.setBackground(new java.awt.Color(204, 204, 204));
         jLabel5.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
@@ -146,26 +152,12 @@ public class VentanaParametros extends javax.swing.JFrame {
         jLabel5.setText("Capacidad Animadores");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 370, 170, 40));
 
-        ensambladoresSC.setBackground(new java.awt.Color(204, 204, 204));
-        ensambladoresSC.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
-        ensambladoresSC.setForeground(new java.awt.Color(0, 0, 0));
-        ensambladoresSC.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        ensambladoresSC.setText("0");
-        jPanel1.add(ensambladoresSC, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 160, 40, 50));
-
-        maxDoblajesSC.setBackground(new java.awt.Color(204, 204, 204));
-        maxDoblajesSC.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
-        maxDoblajesSC.setForeground(new java.awt.Color(0, 0, 0));
-        maxDoblajesSC.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        maxDoblajesSC.setText("0");
-        jPanel1.add(maxDoblajesSC, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 440, 40, 40));
-
-        jLabel11.setBackground(new java.awt.Color(204, 204, 204));
-        jLabel11.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setText("SC");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 190, 40, 40));
+        numEnsambladoresSC.setBackground(new java.awt.Color(204, 204, 204));
+        numEnsambladoresSC.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
+        numEnsambladoresSC.setForeground(new java.awt.Color(0, 0, 0));
+        numEnsambladoresSC.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        numEnsambladoresSC.setText("0");
+        jPanel1.add(numEnsambladoresSC, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 440, 40, 40));
 
         jLabel1.setBackground(new java.awt.Color(204, 204, 204));
         jLabel1.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
@@ -179,17 +171,6 @@ public class VentanaParametros extends javax.swing.JFrame {
         jLabel6.setText("Capacidad Actores");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 440, 180, 40));
 
-        capacidadPlotTwistInf.setBackground(new java.awt.Color(51, 51, 51));
-        capacidadPlotTwistInf.setFont(new java.awt.Font("NSimSun", 0, 14)); // NOI18N
-        capacidadPlotTwistInf.setForeground(new java.awt.Color(255, 255, 255));
-        capacidadPlotTwistInf.setText("INF");
-        capacidadPlotTwistInf.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                capacidadPlotTwistInfActionPerformed(evt);
-            }
-        });
-        jPanel1.add(capacidadPlotTwistInf, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 500, -1, 40));
-
         duracionDia.setBackground(new java.awt.Color(204, 204, 204));
         duracionDia.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
         duracionDia.setForeground(new java.awt.Color(0, 0, 0));
@@ -202,7 +183,7 @@ public class VentanaParametros extends javax.swing.JFrame {
         numGuionistasSC.setForeground(new java.awt.Color(0, 0, 0));
         numGuionistasSC.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         numGuionistasSC.setText("0");
-        jPanel1.add(numGuionistasSC, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 230, 40, 40));
+        jPanel1.add(numGuionistasSC, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 120, 40, 40));
 
         diasLanzamiento.setBackground(new java.awt.Color(204, 204, 204));
         diasLanzamiento.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
@@ -214,8 +195,8 @@ public class VentanaParametros extends javax.swing.JFrame {
         jLabel7.setBackground(new java.awt.Color(204, 204, 204));
         jLabel7.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel7.setText("Productores Guionistas");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 230, 210, 40));
+        jLabel7.setText("Guionistas");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 120, 210, 40));
 
         jLabel2.setBackground(new java.awt.Color(204, 204, 204));
         jLabel2.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
@@ -228,20 +209,13 @@ public class VentanaParametros extends javax.swing.JFrame {
         numDisenadoresSC.setForeground(new java.awt.Color(0, 0, 0));
         numDisenadoresSC.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         numDisenadoresSC.setText("0");
-        jPanel1.add(numDisenadoresSC, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 300, 40, 40));
-
-        maxGuionesSC.setBackground(new java.awt.Color(204, 204, 204));
-        maxGuionesSC.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
-        maxGuionesSC.setForeground(new java.awt.Color(0, 0, 0));
-        maxGuionesSC.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        maxGuionesSC.setText("0");
-        jPanel1.add(maxGuionesSC, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 230, 40, 40));
+        jPanel1.add(numDisenadoresSC, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 190, 40, 40));
 
         jLabel8.setBackground(new java.awt.Color(204, 204, 204));
         jLabel8.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel8.setText("Productores Diseñadores");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 300, 210, 40));
+        jLabel8.setText("Diseñadores");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 190, 210, 40));
 
         jPanel3.setBackground(new java.awt.Color(51, 0, 102));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -305,93 +279,89 @@ public class VentanaParametros extends javax.swing.JFrame {
         jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 770, 20));
         jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, 770, 10));
 
-        maxGuionesCN.setBackground(new java.awt.Color(204, 204, 204));
-        maxGuionesCN.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
-        maxGuionesCN.setForeground(new java.awt.Color(0, 0, 0));
-        maxGuionesCN.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        maxGuionesCN.setText("0");
-        jPanel1.add(maxGuionesCN, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 230, 40, 40));
+        maxGuiones.setBackground(new java.awt.Color(204, 204, 204));
+        maxGuiones.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
+        maxGuiones.setForeground(new java.awt.Color(0, 0, 0));
+        maxGuiones.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        maxGuiones.setText("0");
+        jPanel1.add(maxGuiones, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 230, 90, 40));
 
-        maxEscenariosCN.setBackground(new java.awt.Color(204, 204, 204));
-        maxEscenariosCN.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
-        maxEscenariosCN.setForeground(new java.awt.Color(0, 0, 0));
-        maxEscenariosCN.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        maxEscenariosCN.setText("0");
-        jPanel1.add(maxEscenariosCN, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 300, 40, 40));
+        maxEscenarios.setBackground(new java.awt.Color(204, 204, 204));
+        maxEscenarios.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
+        maxEscenarios.setForeground(new java.awt.Color(0, 0, 0));
+        maxEscenarios.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        maxEscenarios.setText("0");
+        jPanel1.add(maxEscenarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 300, 90, 40));
 
         maxAnimaciones.setBackground(new java.awt.Color(204, 204, 204));
         maxAnimaciones.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
         maxAnimaciones.setForeground(new java.awt.Color(0, 0, 0));
         maxAnimaciones.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         maxAnimaciones.setText("0");
-        jPanel1.add(maxAnimaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 370, 40, 40));
+        jPanel1.add(maxAnimaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 370, 90, 40));
 
-        maxDoblajesCN.setBackground(new java.awt.Color(204, 204, 204));
-        maxDoblajesCN.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
-        maxDoblajesCN.setForeground(new java.awt.Color(0, 0, 0));
-        maxDoblajesCN.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        maxDoblajesCN.setText("0");
-        jPanel1.add(maxDoblajesCN, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 440, 40, 40));
+        maxDoblajes.setBackground(new java.awt.Color(204, 204, 204));
+        maxDoblajes.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
+        maxDoblajes.setForeground(new java.awt.Color(0, 0, 0));
+        maxDoblajes.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        maxDoblajes.setText("0");
+        jPanel1.add(maxDoblajes, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 440, 90, 40));
 
-        ensambladoresCN.setBackground(new java.awt.Color(204, 204, 204));
-        ensambladoresCN.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
-        ensambladoresCN.setForeground(new java.awt.Color(0, 0, 0));
-        ensambladoresCN.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        ensambladoresCN.setText("0");
-        jPanel1.add(ensambladoresCN, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 160, 40, 50));
+        numEnsambladoresCN.setBackground(new java.awt.Color(204, 204, 204));
+        numEnsambladoresCN.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
+        numEnsambladoresCN.setForeground(new java.awt.Color(0, 0, 0));
+        numEnsambladoresCN.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        numEnsambladoresCN.setText("0");
+        jPanel1.add(numEnsambladoresCN, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 440, 40, 40));
 
         numGuionistasCN.setBackground(new java.awt.Color(204, 204, 204));
         numGuionistasCN.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
         numGuionistasCN.setForeground(new java.awt.Color(0, 0, 0));
         numGuionistasCN.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         numGuionistasCN.setText("0");
-        jPanel1.add(numGuionistasCN, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 230, 40, 40));
+        jPanel1.add(numGuionistasCN, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 120, 40, 40));
 
         numDisenadoresCN.setBackground(new java.awt.Color(204, 204, 204));
         numDisenadoresCN.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
         numDisenadoresCN.setForeground(new java.awt.Color(0, 0, 0));
         numDisenadoresCN.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         numDisenadoresCN.setText("0");
-        jPanel1.add(numDisenadoresCN, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 300, 40, 40));
+        jPanel1.add(numDisenadoresCN, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 190, 40, 40));
 
         numAnimadoresCN.setBackground(new java.awt.Color(204, 204, 204));
         numAnimadoresCN.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
         numAnimadoresCN.setForeground(new java.awt.Color(0, 0, 0));
         numAnimadoresCN.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         numAnimadoresCN.setText("0");
-        jPanel1.add(numAnimadoresCN, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 370, 40, 40));
+        jPanel1.add(numAnimadoresCN, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 260, 40, 40));
 
         numActoresCN.setBackground(new java.awt.Color(204, 204, 204));
         numActoresCN.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
         numActoresCN.setForeground(new java.awt.Color(0, 0, 0));
         numActoresCN.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         numActoresCN.setText("0");
-        jPanel1.add(numActoresCN, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 440, 40, 40));
+        jPanel1.add(numActoresCN, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 330, 40, 40));
 
         jLabel14.setBackground(new java.awt.Color(204, 204, 204));
         jLabel14.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(0, 0, 0));
         jLabel14.setText("Ensambladores");
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 160, 150, 50));
-
-        jLabel15.setBackground(new java.awt.Color(204, 204, 204));
-        jLabel15.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel15.setText("Estudio");
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, 60, 40));
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 440, 150, 40));
 
         jLabel16.setBackground(new java.awt.Color(204, 204, 204));
         jLabel16.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel16.setText("Estudio");
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 130, 70, 30));
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel16.setText("Estudios");
+        jLabel16.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 70, 90, 30));
 
         jLabel17.setBackground(new java.awt.Color(204, 204, 204));
         jLabel17.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(0, 0, 0));
         jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel17.setText("SC");
-        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 130, 40, 30));
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 90, 40, 30));
 
         jLabel18.setBackground(new java.awt.Color(204, 204, 204));
         jLabel18.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
@@ -399,19 +369,12 @@ public class VentanaParametros extends javax.swing.JFrame {
         jLabel18.setText("Capacidad Guionistas");
         jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 230, 170, 40));
 
-        jLabel19.setBackground(new java.awt.Color(204, 204, 204));
-        jLabel19.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel19.setText("CN");
-        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 190, 40, 40));
-
         jLabel20.setBackground(new java.awt.Color(204, 204, 204));
         jLabel20.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(0, 0, 0));
         jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel20.setText("CN");
-        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 130, 40, 30));
+        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 90, 40, 30));
 
         jLabel21.setBackground(new java.awt.Color(204, 204, 204));
         jLabel21.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
@@ -419,39 +382,32 @@ public class VentanaParametros extends javax.swing.JFrame {
         jLabel21.setText("Capacidad Plot Twist");
         jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 500, 180, 40));
 
-        maxPlotTwitsCN.setBackground(new java.awt.Color(204, 204, 204));
-        maxPlotTwitsCN.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
-        maxPlotTwitsCN.setForeground(new java.awt.Color(0, 0, 0));
-        maxPlotTwitsCN.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        maxPlotTwitsCN.setText("0");
-        jPanel1.add(maxPlotTwitsCN, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 500, 40, 40));
-
-        maxPlotTwistsSC.setBackground(new java.awt.Color(204, 204, 204));
-        maxPlotTwistsSC.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
-        maxPlotTwistsSC.setForeground(new java.awt.Color(0, 0, 0));
-        maxPlotTwistsSC.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        maxPlotTwistsSC.setText("0");
-        jPanel1.add(maxPlotTwistsSC, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 500, 40, 40));
+        maxPlotTwits.setBackground(new java.awt.Color(204, 204, 204));
+        maxPlotTwits.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
+        maxPlotTwits.setForeground(new java.awt.Color(0, 0, 0));
+        maxPlotTwits.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        maxPlotTwits.setText("0");
+        jPanel1.add(maxPlotTwits, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 500, 90, 40));
 
         jLabel22.setBackground(new java.awt.Color(204, 204, 204));
         jLabel22.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel22.setText("Productores Plot Twist");
-        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 500, 210, 40));
+        jLabel22.setText("Plot Twist");
+        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 390, 210, 40));
 
         numPlotTwistsSC.setBackground(new java.awt.Color(204, 204, 204));
         numPlotTwistsSC.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
         numPlotTwistsSC.setForeground(new java.awt.Color(0, 0, 0));
         numPlotTwistsSC.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         numPlotTwistsSC.setText("0");
-        jPanel1.add(numPlotTwistsSC, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 500, 40, 40));
+        jPanel1.add(numPlotTwistsSC, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 390, 40, 40));
 
         numPlotTwistsCN.setBackground(new java.awt.Color(204, 204, 204));
         numPlotTwistsCN.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
         numPlotTwistsCN.setForeground(new java.awt.Color(0, 0, 0));
         numPlotTwistsCN.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         numPlotTwistsCN.setText("0");
-        jPanel1.add(numPlotTwistsCN, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 500, 40, 40));
+        jPanel1.add(numPlotTwistsCN, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 390, 40, 40));
 
         cambiarParam.setBackground(new java.awt.Color(51, 51, 51));
         cambiarParam.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
@@ -462,60 +418,18 @@ public class VentanaParametros extends javax.swing.JFrame {
                 cambiarParamActionPerformed(evt);
             }
         });
-        jPanel1.add(cambiarParam, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 80, 300, 50));
+        jPanel1.add(cambiarParam, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 490, 290, 50));
 
-        capacidadIntroInf.setBackground(new java.awt.Color(51, 51, 51));
-        capacidadIntroInf.setFont(new java.awt.Font("NSimSun", 0, 14)); // NOI18N
-        capacidadIntroInf.setForeground(new java.awt.Color(255, 255, 255));
-        capacidadIntroInf.setText("INF");
-        capacidadIntroInf.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                capacidadIntroInfActionPerformed(evt);
-            }
-        });
-        jPanel1.add(capacidadIntroInf, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 230, -1, 40));
-
-        capacidadCreditosInf.setBackground(new java.awt.Color(51, 51, 51));
-        capacidadCreditosInf.setFont(new java.awt.Font("NSimSun", 0, 14)); // NOI18N
-        capacidadCreditosInf.setForeground(new java.awt.Color(255, 255, 255));
-        capacidadCreditosInf.setText("INF");
-        capacidadCreditosInf.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                capacidadCreditosInfActionPerformed(evt);
-            }
-        });
-        jPanel1.add(capacidadCreditosInf, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 300, -1, 40));
-
-        capacidadInicioInf.setBackground(new java.awt.Color(51, 51, 51));
-        capacidadInicioInf.setFont(new java.awt.Font("NSimSun", 0, 14)); // NOI18N
-        capacidadInicioInf.setForeground(new java.awt.Color(255, 255, 255));
-        capacidadInicioInf.setText("INF");
-        capacidadInicioInf.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                capacidadInicioInfActionPerformed(evt);
-            }
-        });
-        jPanel1.add(capacidadInicioInf, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 370, -1, 40));
-
-        capacidadCierreInf.setBackground(new java.awt.Color(51, 51, 51));
-        capacidadCierreInf.setFont(new java.awt.Font("NSimSun", 0, 14)); // NOI18N
-        capacidadCierreInf.setForeground(new java.awt.Color(255, 255, 255));
-        capacidadCierreInf.setText("INF");
-        capacidadCierreInf.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                capacidadCierreInfActionPerformed(evt);
-            }
-        });
-        jPanel1.add(capacidadCierreInf, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 440, -1, 40));
+        jLabel19.setBackground(new java.awt.Color(204, 204, 204));
+        jLabel19.setFont(new java.awt.Font("NSimSun", 0, 16)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel19.setText("Trabajadores");
+        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 70, 200, 30));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 550));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void capacidadPlotTwistInfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_capacidadPlotTwistInfActionPerformed
-
-    }//GEN-LAST:event_capacidadPlotTwistInfActionPerformed
 
     private void irSimulacionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irSimulacionButtonActionPerformed
         this.dispose();
@@ -535,23 +449,73 @@ public class VentanaParametros extends javax.swing.JFrame {
 
     private void cambiarParamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cambiarParamActionPerformed
         
+        try {
+            //Para la validacion de que sea solo entero el valor
+            //ingresado en las casillas
+            int numero;
+            numero = Integer.parseInt(Integer.toString(Integer.parseInt(duracionDia.getText())*1000));
+            numero = Integer.parseInt(diasLanzamiento.getText());
+            
+            numero = Integer.parseInt(maxGuiones.getText());
+            numero = Integer.parseInt(maxEscenarios.getText());
+            numero = Integer.parseInt(maxAnimaciones.getText());
+            numero = Integer.parseInt(maxDoblajes.getText());
+            numero = Integer.parseInt(maxPlotTwits.getText());
+ 
+            numero = Integer.parseInt(numGuionistasCN.getText());
+            numero = Integer.parseInt(numDisenadoresCN.getText());
+            numero = Integer.parseInt(numAnimadoresCN.getText());
+            numero = Integer.parseInt(numActoresCN.getText());
+            numero = Integer.parseInt(numPlotTwistsCN.getText());
+            numero = Integer.parseInt(numEnsambladoresCN.getText());
+        
+            numero = Integer.parseInt(numGuionistasSC.getText());
+            numero = Integer.parseInt(numDisenadoresSC.getText());
+            numero = Integer.parseInt(numAnimadoresSC.getText());
+            numero = Integer.parseInt(numActoresSC.getText());
+            numero = Integer.parseInt(numPlotTwistsSC.getText());
+            numero = Integer.parseInt(numEnsambladoresSC.getText());
+            
+            infoEstudios[0] = Integer.toString(Integer.parseInt(duracionDia.getText())*1000);
+            infoEstudios[1] = diasLanzamiento.getText();
+        
+            infoEstudios[2] = maxGuiones.getText();
+            infoEstudios[3] = maxEscenarios.getText();
+            infoEstudios[4] = maxAnimaciones.getText();
+            infoEstudios[5] = maxDoblajes.getText();
+            infoEstudios[6] = maxPlotTwits.getText();
+        
+            infoEstudios[7] = numGuionistasCN.getText();
+            infoEstudios[8] = numDisenadoresCN.getText();
+            infoEstudios[9] = numAnimadoresCN.getText();
+            infoEstudios[10] = numActoresCN.getText();
+            infoEstudios[11] = numPlotTwistsCN.getText();
+            infoEstudios[12] = numEnsambladoresCN.getText();
+        
+            infoEstudios[13] = numGuionistasSC.getText();
+            infoEstudios[14] = numDisenadoresSC.getText();
+            infoEstudios[15] = numAnimadoresSC.getText();
+            infoEstudios[16] = numActoresSC.getText();
+            infoEstudios[17] = numPlotTwistsSC.getText();
+            infoEstudios[18] = numEnsambladoresSC.getText();
+        
+            csv.GuardarCSV(infoEstudios[0], infoEstudios[1], 
+                    infoEstudios[2], infoEstudios[3], infoEstudios[4], infoEstudios[5], infoEstudios[6], 
+                    infoEstudios[7], infoEstudios[8], infoEstudios[9], infoEstudios[10], infoEstudios[11], infoEstudios[12], 
+                    infoEstudios[13], infoEstudios[14], infoEstudios[15], infoEstudios[16], infoEstudios[17], infoEstudios[18]);
+            JOptionPane.showMessageDialog(null,"Informacion de los estudios guardada");
+            guardado = true;
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"ERROR, En las casillas solo deben ir números enteros");
+            return;
+        }
+        
+        
+
+        
+        
     }//GEN-LAST:event_cambiarParamActionPerformed
-
-    private void capacidadIntroInfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_capacidadIntroInfActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_capacidadIntroInfActionPerformed
-
-    private void capacidadCreditosInfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_capacidadCreditosInfActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_capacidadCreditosInfActionPerformed
-
-    private void capacidadInicioInfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_capacidadInicioInfActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_capacidadInicioInfActionPerformed
-
-    private void capacidadCierreInfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_capacidadCierreInfActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_capacidadCierreInfActionPerformed
 
     /**
      * @param args the command line arguments
@@ -590,25 +554,16 @@ public class VentanaParametros extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton cambiarParam;
-    private javax.swing.JToggleButton capacidadCierreInf;
-    private javax.swing.JToggleButton capacidadCreditosInf;
-    private javax.swing.JToggleButton capacidadInicioInf;
-    private javax.swing.JToggleButton capacidadIntroInf;
-    private javax.swing.JToggleButton capacidadPlotTwistInf;
     private javax.swing.JTextField diasLanzamiento;
     private javax.swing.JTextField duracionDia;
-    private javax.swing.JTextField ensambladoresCN;
-    private javax.swing.JTextField ensambladoresSC;
     private javax.swing.JButton irDashboardButton;
     private javax.swing.JButton irParametrosButton;
     private javax.swing.JButton irSimulacionButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
@@ -628,21 +583,18 @@ public class VentanaParametros extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTextField maxAnimaciones;
-    private javax.swing.JTextField maxAnimacionesSC;
-    private javax.swing.JTextField maxDoblajesCN;
-    private javax.swing.JTextField maxDoblajesSC;
-    private javax.swing.JTextField maxEscenariosCN;
-    private javax.swing.JTextField maxEscenariosSC;
-    private javax.swing.JTextField maxGuionesCN;
-    private javax.swing.JTextField maxGuionesSC;
-    private javax.swing.JTextField maxPlotTwistsSC;
-    private javax.swing.JTextField maxPlotTwitsCN;
+    private javax.swing.JTextField maxDoblajes;
+    private javax.swing.JTextField maxEscenarios;
+    private javax.swing.JTextField maxGuiones;
+    private javax.swing.JTextField maxPlotTwits;
     private javax.swing.JTextField numActoresCN;
     private javax.swing.JTextField numActoresSC;
     private javax.swing.JTextField numAnimadoresCN;
     private javax.swing.JTextField numAnimadoresSC;
     private javax.swing.JTextField numDisenadoresCN;
     private javax.swing.JTextField numDisenadoresSC;
+    private javax.swing.JTextField numEnsambladoresCN;
+    private javax.swing.JTextField numEnsambladoresSC;
     private javax.swing.JTextField numGuionistasCN;
     private javax.swing.JTextField numGuionistasSC;
     private javax.swing.JTextField numPlotTwistsCN;

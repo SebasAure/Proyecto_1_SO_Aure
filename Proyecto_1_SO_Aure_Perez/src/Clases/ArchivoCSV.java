@@ -19,7 +19,7 @@ public class ArchivoCSV {
     public String[] leerCSV() {
         String line;
         String text = "";
-        File file = new File("test\\datos.csv");
+        File file = new File("test\\infoEstudios.csv");
         try {
             if (!file.exists()) {
                 file.createNewFile();
@@ -55,7 +55,7 @@ public class ArchivoCSV {
         return text;
     }
     
-    public String[] generarData(String duracionDia,
+    public String[] generarData(String duracionDia, String diaDespacho,
             String guionesDrive, String escenariosDrive, String animacionesDrive, String doblajesDrive, String plotTwitsDrive,
             String guionistasCN, String disenadoresCN, String animadoresCN, String actoresCN, String plotTwistsCN, String ensambladoresCN,
             String guionistasSC, String disenadoresSC, String animadoresSC, String actoresSC, String plotTwistsSC, String ensambladoresSC) {
@@ -63,20 +63,21 @@ public class ArchivoCSV {
         String[] data = {
             "--TIEMPO--",
             "duracionDia, " + duracionDia,
+            "diaDespacho, " + diaDespacho,
             "--DRIVE--",
             "guionesDrive, " + guionesDrive,
             "escenariosDrive, " + escenariosDrive,
             "animacionesDrive, " + animacionesDrive,
             "doblajesDrive, " + doblajesDrive,
             "plotTwitsDrive, " + plotTwitsDrive,
-            "--PRODUCTORES CN--",
+            "--TRABAJADORES CN--",
             "guionistasCN, " + guionistasCN,
             "disenadoresCN, " + disenadoresCN,
             "animadoresCN, " + animadoresCN,
             "actoresCN, " + actoresCN,
             "plotTwitsCN, " + plotTwistsCN,
             "ensambladoresCN, " + ensambladoresCN,
-            "--PRODUCTORES SC--",
+            "--TRABAJADORES SC--",
             "guionistasSC, " + guionistasSC,
             "disenadoresSC, " + disenadoresSC,
             "animadoresSC, " + animadoresSC,
@@ -88,22 +89,22 @@ public class ArchivoCSV {
         return data;
     }
     
-    public void GuardarCSVgenerarData(String duracionDia,
+    public void GuardarCSV(String duracionDia, String diaDespacho,
             String guionesDrive, String escenariosDrive, String animacionesDrive, String doblajesDrive, String plotTwitsDrive,
             String guionistasCN, String disenadoresCN, String animadoresCN, String actoresCN, String plotTwistsCN, String ensambladoresCN,
             String guionistasSC, String disenadoresSC, String animadoresSC, String actoresSC, String plotTwistsSC, String ensambladoresSC) {
         
-        String[] data = generarData( duracionDia,
+        String[] data = generarData( duracionDia, diaDespacho,
              guionesDrive, escenariosDrive, animacionesDrive, doblajesDrive, plotTwitsDrive,
              guionistasCN, disenadoresCN, animadoresCN, actoresCN, plotTwistsCN, ensambladoresCN,
              guionistasSC, disenadoresSC, animadoresSC, actoresSC, plotTwistsSC, ensambladoresSC);
         
         try {
-            File file = new File("test\\datos.csv");
+            File file = new File("test\\infoEstudios.csv");
             if (!file.exists()) {
                 file.createNewFile();
             } else {
-                CsvWriter csvwriter = new CsvWriter("test\\datos.csv");
+                CsvWriter csvwriter = new CsvWriter("test\\infoEstudios.csv");
                 for (int i = 0; i < data.length; i++) {
                     String [] line = data[i].split(",");
                     csvwriter.writeRecord(line);
