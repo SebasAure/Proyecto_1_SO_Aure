@@ -17,6 +17,8 @@ public class VentanaParametros extends javax.swing.JFrame {
     public ArchivoCSV csv;
     public String infoEstudios[];
     public Boolean guardado;
+    public int maxTrabajadoresCN = 20;
+    public int maxTrabajadoresSC = 21;
     
     public VentanaParametros() {
         initComponents();
@@ -49,7 +51,7 @@ public class VentanaParametros extends javax.swing.JFrame {
         numActoresSC.setText(infoEstudios[16]);
         numPlotTwistsSC.setText(infoEstudios[17]);
         numEnsambladoresSC.setText(infoEstudios[18]);
-        
+              
     }
 
     /**
@@ -478,7 +480,7 @@ public class VentanaParametros extends javax.swing.JFrame {
             
             infoEstudios[0] = Integer.toString(Integer.parseInt(duracionDia.getText())*1000);
             infoEstudios[1] = diasLanzamiento.getText();
-        
+            
             infoEstudios[2] = maxGuiones.getText();
             infoEstudios[3] = maxEscenarios.getText();
             infoEstudios[4] = maxAnimaciones.getText();
@@ -498,7 +500,17 @@ public class VentanaParametros extends javax.swing.JFrame {
             infoEstudios[16] = numActoresSC.getText();
             infoEstudios[17] = numPlotTwistsSC.getText();
             infoEstudios[18] = numEnsambladoresSC.getText();
-        
+            
+            if (((Integer.parseInt(numGuionistasCN.getText()) + Integer.parseInt(numDisenadoresCN.getText()) + Integer.parseInt(numAnimadoresCN.getText()) + Integer.parseInt(numActoresCN.getText()) + Integer.parseInt(numPlotTwistsCN.getText()) + Integer.parseInt(numEnsambladoresCN.getText())) > maxTrabajadoresCN)) {
+                guardado = false;
+                JOptionPane.showMessageDialog(null,"Cartoon Network debe tener maximo " +"("+ maxTrabajadoresCN +") trabajadores");
+                return;
+            } else if (((Integer.parseInt(numGuionistasSC.getText()) + Integer.parseInt(numDisenadoresSC.getText()) + Integer.parseInt(numAnimadoresSC.getText()) + Integer.parseInt(numActoresSC.getText()) + Integer.parseInt(numPlotTwistsSC.getText()) + Integer.parseInt(numEnsambladoresSC.getText())) > maxTrabajadoresSC)){
+                guardado = false;
+                JOptionPane.showMessageDialog(null,"Star Channel debe tener maximo " +"("+ maxTrabajadoresSC +") trabajadores");
+                return;                
+                
+            }
             csv.GuardarCSV(infoEstudios[0], infoEstudios[1], 
                     infoEstudios[2], infoEstudios[3], infoEstudios[4], infoEstudios[5], infoEstudios[6], 
                     infoEstudios[7], infoEstudios[8], infoEstudios[9], infoEstudios[10], infoEstudios[11], infoEstudios[12], 
