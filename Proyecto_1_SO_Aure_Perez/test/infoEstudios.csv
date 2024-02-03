@@ -9,15 +9,15 @@ doblajesDrive,35
 plotTwitsDrive,10
 --TRABAJADORES CN--
 guionistasCN,1
-disenadoresCN,1
-animadoresCN,1
-actoresCN,1
-plotTwitsCN,1
-ensambladoresCN,1
+disenadoresCN,2
+animadoresCN,3
+actoresCN,4
+plotTwitsCN,5
+ensambladoresCN,2
 --TRABAJADORES SC--
-guionistasSC,1
-disenadoresSC,1
-animadoresSC,1
-actoresSC,1
-plotTwitsSC,1
+guionistasSC,2
+disenadoresSC,5
+animadoresSC,4
+actoresSC,3
+plotTwitsSC,2
 ensambladoresSC,1

@@ -26,7 +26,7 @@ public class VentanaSimulacion extends javax.swing.JFrame {
     
     //Parametros generales
     public static int duracionDia;
-    public static int dia;
+    public static int diasDespacho;
     public static int capacidadGuiones;
     public static int capacidadEscenarios;
     public static int capacidadAnimaciones;
@@ -96,7 +96,95 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         String infoEstudios [] = csv.leerCSV();
         
         // Variables estaticas de la simulacion
-        //this.capacidadGuiones = Integer.parseInt(infoEstudios[])
+        this.diasDespacho = Integer.parseInt(infoEstudios[1]);
+        this.capacidadGuiones = Integer.parseInt(infoEstudios[2]);
+        this.capacidadEscenarios = Integer.parseInt(infoEstudios[3]);
+        this.capacidadAnimaciones = Integer.parseInt(infoEstudios[4]);
+        this.capacidadDoblajes = Integer.parseInt(infoEstudios[5]);
+        this.capacidadPlotTwists = Integer.parseInt(infoEstudios[6]);
+        
+        // Variables dinamicas de la simulacion
+        // Cartoon Network
+        this.guionesCN = 0;
+        this.escenariosCN = 0;
+        this.animacionesCN = 0;
+        this.doblajesCN = 0;
+        this.plotTwistsCN = 0;
+        this.capitulosProducidosCN = 0;
+        
+        this.sueldoGuionistasCN = 0;
+        this.sueldoDisenadoresCN = 0;
+        this.sueldoAnimadoresCN = 0;
+        this.sueldoActoresCN = 0;
+        this.sueldoPlotTwistsCN = 0;
+        this.sueldoEnsambladoresCN = 0;
+    
+        // Star Channel
+        this.guionesSC = 0;
+        this.escenariosSC = 0;
+        this.animacionesSC = 0;
+        this.doblajesSC = 0;
+        this.plotTwistsSC = 0;
+        this.capitulosProducidosSC = 0;
+    
+        this.sueldoGuionistasSC = 0;
+        this.sueldoDisenadoresSC = 0;
+        this.sueldoAnimadoresSC = 0;
+        this.sueldoActoresSC = 0;
+        this.sueldoPlotTwistsSC = 0;
+        this.sueldoEnsambladoresSC = 0;
+        
+        // Asignacion de valores en interfaz
+        
+        // Dias lanzamiento
+        diasLanzamiento.setText(Integer.toString(diasDespacho));
+        
+        // Partes producidas por Cartoon Network
+        cantidadGuionesCN.setText(Integer.toString(guionesCN));
+        cantidadEscenariosCN.setText(Integer.toString(escenariosCN));
+        cantidadAnimacionesCN.setText(Integer.toString(animacionesCN));
+        cantidadDoblajesCN.setText(Integer.toString(doblajesCN));
+        cantidadPlotTwistsCN.setText(Integer.toString(plotTwistsCN));
+        
+        // Partes producidas por Star Channel
+        cantidadGuionesSC.setText(Integer.toString(guionesSC));
+        cantidadEscenariosSC.setText(Integer.toString(escenariosSC));
+        cantidadAnimacionesSC.setText(Integer.toString(animacionesSC));
+        cantidadDoblajesSC.setText(Integer.toString(doblajesSC));
+        cantidadPlotTwistsSC.setText(Integer.toString(plotTwistsSC));
+        
+        // Trabajadores Cartoon Network
+        numGuionistasCN.setText(infoEstudios[7]);
+        numDisenadoresCN.setText(infoEstudios[8]);
+        numAnimadoresCN.setText(infoEstudios[9]);
+        numActoresCN.setText(infoEstudios[10]);
+        numPlotTwistsCN.setText(infoEstudios[11]);
+        numEnsambladoresCN.setText(infoEstudios[12]);
+        
+        // Trabajadores Star Channel
+        numGuionistasSC.setText(infoEstudios[13]);
+        numDisenadoresSC.setText(infoEstudios[14]);
+        numAnimadoresSC.setText(infoEstudios[15]);
+        numActoresSC.setText(infoEstudios[16]);
+        numPlotTwistsSC.setText(infoEstudios[17]);
+        numEnsambladoresSC.setText(infoEstudios[18]);
+        
+        // Sueldos Cartoon Network
+        salarioGuionistasCN.setText(Integer.toString(sueldoGuionistasCN));
+        salarioDisenadoresCN.setText(Integer.toString(sueldoDisenadoresCN));
+        salarioAnimadoresCN.setText(Integer.toString(sueldoAnimadoresCN));
+        salarioActoresCN.setText(Integer.toString(sueldoActoresCN));
+        salarioPlotTwistsCN.setText(Integer.toString(sueldoPlotTwistsCN));
+        salarioEnsambladoresCN.setText(Integer.toString(sueldoEnsambladoresCN));
+        
+        // Sueldos Star Channel
+        salarioGuionistasSC.setText(Integer.toString(sueldoGuionistasSC));
+        salarioDisenadoresSC.setText(Integer.toString(sueldoDisenadoresSC));
+        salarioAnimadoresSC.setText(Integer.toString(sueldoAnimadoresSC));
+        salarioActoresSC.setText(Integer.toString(sueldoActoresSC));
+        salarioPlotTwistsSC.setText(Integer.toString(sueldoPlotTwistsSC));
+        salarioEnsambladoresSC.setText(Integer.toString(sueldoEnsambladoresSC));
+        
         
     }
 
@@ -183,7 +271,6 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         estadoDirectorSC = new javax.swing.JLabel();
         estadoPMSC = new javax.swing.JLabel();
         iniciarEstudios = new javax.swing.JButton();
-        countdownSC = new javax.swing.JLabel();
         jLabel38 = new javax.swing.JLabel();
         jLabel58 = new javax.swing.JLabel();
         numDisenadoresCN = new javax.swing.JLabel();
@@ -247,7 +334,6 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         gananciasSC = new javax.swing.JLabel();
         reiniciar = new javax.swing.JButton();
         aggDashboard = new javax.swing.JButton();
-        jLabel36 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel20 = new javax.swing.JLabel();
@@ -256,7 +342,7 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         jLabel30 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
         jLabel37 = new javax.swing.JLabel();
-        countdownCN = new javax.swing.JLabel();
+        diasLanzamiento = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -829,13 +915,6 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         });
         Panel.add(iniciarEstudios, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 80, 160, 40));
 
-        countdownSC.setBackground(new java.awt.Color(153, 153, 153));
-        countdownSC.setFont(new java.awt.Font("NSimSun", 0, 14)); // NOI18N
-        countdownSC.setForeground(new java.awt.Color(0, 0, 0));
-        countdownSC.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        countdownSC.setText("0");
-        Panel.add(countdownSC, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 100, 50, 20));
-
         jLabel38.setBackground(new java.awt.Color(153, 153, 153));
         jLabel38.setFont(new java.awt.Font("NSimSun", 0, 14)); // NOI18N
         jLabel38.setForeground(new java.awt.Color(0, 0, 0));
@@ -1274,12 +1353,6 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         });
         Panel.add(aggDashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, 140, 40));
 
-        jLabel36.setBackground(new java.awt.Color(153, 153, 153));
-        jLabel36.setFont(new java.awt.Font("NSimSun", 0, 14)); // NOI18N
-        jLabel36.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel36.setText("Dias restantes para lanzamiento del Estudio 2:");
-        Panel.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 90, 330, 40));
-
         jLabel1.setBackground(new java.awt.Color(102, 102, 102));
         jLabel1.setFont(new java.awt.Font("Poor Richard", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(102, 102, 102));
@@ -1317,15 +1390,15 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         jLabel37.setBackground(new java.awt.Color(153, 153, 153));
         jLabel37.setFont(new java.awt.Font("NSimSun", 0, 14)); // NOI18N
         jLabel37.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel37.setText("Dias restantes para lanzamiento del Estudio 1:");
-        Panel.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 70, 330, 40));
+        jLabel37.setText("Dias restantes para lanzamiento:");
+        Panel.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 70, 230, 60));
 
-        countdownCN.setBackground(new java.awt.Color(153, 153, 153));
-        countdownCN.setFont(new java.awt.Font("NSimSun", 0, 14)); // NOI18N
-        countdownCN.setForeground(new java.awt.Color(0, 0, 0));
-        countdownCN.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        countdownCN.setText("0");
-        Panel.add(countdownCN, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 80, 50, 20));
+        diasLanzamiento.setBackground(new java.awt.Color(153, 153, 153));
+        diasLanzamiento.setFont(new java.awt.Font("NSimSun", 0, 14)); // NOI18N
+        diasLanzamiento.setForeground(new java.awt.Color(0, 0, 0));
+        diasLanzamiento.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        diasLanzamiento.setText("0");
+        Panel.add(diasLanzamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 80, 90, 40));
 
         jLabel34.setBackground(new java.awt.Color(153, 153, 153));
         jLabel34.setFont(new java.awt.Font("NSimSun", 0, 14)); // NOI18N
@@ -1559,8 +1632,7 @@ public class VentanaSimulacion extends javax.swing.JFrame {
     private javax.swing.JLabel cantidadPlotTwistsSC;
     private javax.swing.JLabel capitulosCN;
     private javax.swing.JLabel capitulosSC;
-    private javax.swing.JLabel countdownCN;
-    private javax.swing.JLabel countdownSC;
+    private javax.swing.JLabel diasLanzamiento;
     private javax.swing.JButton eliminarActorCN;
     private javax.swing.JButton eliminarActorSC;
     private javax.swing.JButton eliminarAnimadorCN;
@@ -1615,7 +1687,6 @@ public class VentanaSimulacion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
-    private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
