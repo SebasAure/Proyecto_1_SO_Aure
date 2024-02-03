@@ -32,6 +32,15 @@ public class VentanaSimulacion extends javax.swing.JFrame {
     public static int capacidadAnimaciones;
     public static int capacidadDoblajes;
     public static int capacidadPlotTwists;
+    public static DriveCN drive;
+    // Semaforos Cartoon Network
+    private static Semaphore mutexGuionesCN;
+    private static Semaphore driveDisponibleGuionesCN;
+    private static Semaphore partesDisponiblesGuionesCN;
+    
+    // Trabajadores Cartoon Network
+    public static GuionistaCN guionistasCN [];
+    
     
     //Elementos producidos por Cartoon Network
     public static volatile int guionesCN;
@@ -88,7 +97,8 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         eliminarActorCN.setEnabled(false);
         eliminarPlotTwistCN.setEnabled(false);
         eliminarEnsambladorCN.setEnabled(false);
-        
+        // 
+        this.drive = new DriveCN();
         // Se crea el objeto csv
         this.csv = new ArchivoCSV();
         
@@ -96,6 +106,7 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         String infoEstudios [] = csv.leerCSV();
         
         // Variables estaticas de la simulacion
+        this.duracionDia = Integer.parseInt(infoEstudios[0]);
         this.diasDespacho = Integer.parseInt(infoEstudios[1]);
         this.capacidadGuiones = Integer.parseInt(infoEstudios[2]);
         this.capacidadEscenarios = Integer.parseInt(infoEstudios[3]);
@@ -133,6 +144,15 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         this.sueldoActoresSC = 0;
         this.sueldoPlotTwistsSC = 0;
         this.sueldoEnsambladoresSC = 0;
+        
+        // Semaforos Cartoon Network
+        // Guiones
+        this.mutexGuionesCN = new Semaphore(1, true);
+        this.driveDisponibleGuionesCN = new Semaphore(capacidadGuiones, true);
+        this.partesDisponiblesGuionesCN = new Semaphore(0, true);
+        
+        // Arrays de objetos Trabajadores/Ensambladores
+        this.guionistasCN = new GuionistaCN[VentanaParametros.maxTrabajadoresCN];
         
         // Asignacion de valores en interfaz
         
@@ -185,7 +205,12 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         salarioPlotTwistsSC.setText(Integer.toString(sueldoPlotTwistsSC));
         salarioEnsambladoresSC.setText(Integer.toString(sueldoEnsambladoresSC));
         
-        
+        // Se anaden al array de trabajadores los hilos correspondientes a la cantidad de trabajadores activos
+        for (int i = 0; i < Integer.parseInt(infoEstudios[7]); i++) {
+            GuionistaCN hiloGuionistaCN= new GuionistaCN(0, duracionDia, drive, mutexGuionesCN, driveDisponibleGuionesCN, partesDisponiblesGuionesCN, salarioActoresCN);
+            guionistasCN[i] = hiloGuionistaCN;
+            
+        } 
     }
 
     /**
@@ -1458,6 +1483,14 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         eliminarPlotTwistCN.setEnabled(true);
         eliminarEnsambladorCN.setEnabled(true);
         
+        
+        // Se inician los hilos de los arrays de trabajadores/ensambladores, PM y director 
+        for (int i = 0; i < guionistasCN.length; i++) {
+            if (guionistasCN[i] != null) {
+                guionistasCN[i].start();
+            }
+        }
+        
         //JOptionPane.showMessageDialog(rootPane, info1);
         //DriveCN drive = new DriveCN();
         //Semaphore mutexGuionistas = new Semaphore(1);
@@ -1520,6 +1553,7 @@ public class VentanaSimulacion extends javax.swing.JFrame {
     }//GEN-LAST:event_reiniciarActionPerformed
 
     private void aggDashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aggDashboardActionPerformed
+        JOptionPane.showMessageDialog(rootPane, duracionDia);
     }//GEN-LAST:event_aggDashboardActionPerformed
 
     private void agregarGuionistaSCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarGuionistaSCActionPerformed
@@ -1626,7 +1660,7 @@ public class VentanaSimulacion extends javax.swing.JFrame {
     private javax.swing.JLabel cantidadDoblajesSC;
     private javax.swing.JLabel cantidadEscenariosCN;
     private javax.swing.JLabel cantidadEscenariosSC;
-    private javax.swing.JLabel cantidadGuionesCN;
+    public static javax.swing.JLabel cantidadGuionesCN;
     private javax.swing.JLabel cantidadGuionesSC;
     private javax.swing.JLabel cantidadPlotTwistsCN;
     private javax.swing.JLabel cantidadPlotTwistsSC;

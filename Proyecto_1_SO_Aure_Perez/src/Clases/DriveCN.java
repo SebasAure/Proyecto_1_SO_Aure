@@ -5,6 +5,8 @@
  */
 package Clases;
 
+import Interfaces.VentanaSimulacion;
+
 /**
  *
  * @author sebas
@@ -33,6 +35,7 @@ public class DriveCN {
         switch (tipo) {
             case 0:
                 this.guiones += 1;
+                Interfaces.VentanaSimulacion.cantidadGuionesCN.setText(Integer.toString(guiones));
                 System.out.println("guiones disponibles:" + this.guiones);
                 break;
             case 1:

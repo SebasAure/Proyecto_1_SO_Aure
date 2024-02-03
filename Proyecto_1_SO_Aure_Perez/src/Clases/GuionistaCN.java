@@ -16,24 +16,30 @@ import javax.swing.JLabel;
  * @author sebas
  */
 public class GuionistaCN extends Thread{
-    private String nombre;
+    
     private int tipo;
     private int salarioTotal;
     private int duracionDia;
     private int salario = 20;
     private DriveCN drive;
     private float contador;
+    // Mutex
     private Semaphore mutex;
+    // Semaforo que controla el espacio disponible del Drive
+    private Semaphore driveDisponible;
+    // Semaforo que controla las partes disponibles para armar capitulos
+    private Semaphore partesDisponibles;
     private JLabel salarioInterfaz;
     
-    public GuionistaCN(int tipo, int duracion, String nombre, DriveCN d, Semaphore m, JLabel salarioInterfaz){
+    public GuionistaCN(int tipo, int duracionDia, DriveCN drive, Semaphore mutex, Semaphore driveDisponible, Semaphore partesDisponibles, JLabel salarioInterfaz){
         this.tipo = tipo;
         this.salarioTotal = 0;
-        this.duracionDia = duracion;
-        this.nombre = nombre;
-        this.drive = d;
+        this.duracionDia = duracionDia;
+        this.drive = drive;
         this.contador = 0;
-        this.mutex = m;
+        this.mutex = mutex;
+        this.driveDisponible = driveDisponible;
+        this.partesDisponibles = partesDisponibles;
         this.salarioInterfaz = salarioInterfaz;
     }
     
@@ -42,10 +48,10 @@ public class GuionistaCN extends Thread{
         while(true) {
             
             try {
+                // Produce cada 4 dias
+                sleep(this.duracionDia * 4);
                 obtenerSalario();
                 trabajar();
-                System.out.println("Trabajador: "+ this.nombre + " gana: "+this.salarioTotal+"$");
-                sleep(this.duracionDia);
             } catch (InterruptedException ex) {
                 Logger.getLogger(GuionistaCN.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -54,23 +60,23 @@ public class GuionistaCN extends Thread{
     
     public void obtenerSalario(){
         this.salarioTotal += this.salario*24;
-        this.salarioInterfaz.setText(Integer.toString(this.salarioTotal));
     }
     
     public void trabajar(){
-        this.contador += 0.34;
-        if (this.contador >= 1){
-            try {
-                this.mutex.acquire(); //wait
-                this.drive.addPart(this.tipo);//critica
-                this.mutex.release();// signal
-                this.contador = 0;
-                
-            } catch (InterruptedException ex) {
-                Logger.getLogger(GuionistaCN.class.getName()).log(Level.SEVERE, null, ex);
-            }
-           
+        try {
+            // Se verifica si hay espacio disponible para producir   
+            this.driveDisponible.acquire();
+            // Exclusion mutua para que solo pueda ingresar un trabajador a la vez
+            this.mutex.acquire(); //wait
+            // Seccion critica donde se anade una nueva parte del capitulo
+            this.drive.addPart(this.tipo);//critica
+            // Se libera el acceso a la seccion critica
+            this.mutex.release();// signal
+            // Se anade la parte del capitulo para poder ser ensamblada posteriormente
+            this.partesDisponibles.release();
+            
+        } catch (InterruptedException ex) {
+            Logger.getLogger(GuionistaCN.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
     }
 }

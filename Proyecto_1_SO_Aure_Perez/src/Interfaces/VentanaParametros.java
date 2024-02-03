@@ -17,8 +17,8 @@ public class VentanaParametros extends javax.swing.JFrame {
     public ArchivoCSV csv;
     public String infoEstudios[];
     public Boolean guardado;
-    public int maxTrabajadoresCN = 20;
-    public int maxTrabajadoresSC = 21;
+    public static int maxTrabajadoresCN = 20;
+    public static int maxTrabajadoresSC = 21;
     
     public VentanaParametros() {
         initComponents();
