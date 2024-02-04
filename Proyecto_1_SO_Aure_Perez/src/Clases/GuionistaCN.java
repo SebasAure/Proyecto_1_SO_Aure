@@ -22,7 +22,6 @@ public class GuionistaCN extends Thread{
     private int duracionDia;
     private int salario = 20;
     private DriveCN drive;
-    private float contador;
     // Mutex
     private Semaphore mutex;
     // Semaforo que controla el espacio disponible del Drive
@@ -36,7 +35,6 @@ public class GuionistaCN extends Thread{
         this.salarioTotal = 0;
         this.duracionDia = duracionDia;
         this.drive = drive;
-        this.contador = 0;
         this.mutex = mutex;
         this.driveDisponible = driveDisponible;
         this.partesDisponibles = partesDisponibles;

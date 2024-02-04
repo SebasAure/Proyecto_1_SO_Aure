@@ -33,13 +33,37 @@ public class VentanaSimulacion extends javax.swing.JFrame {
     public static int capacidadDoblajes;
     public static int capacidadPlotTwists;
     public static DriveCN drive;
+    
     // Semaforos Cartoon Network
+    // Guiones
     private static Semaphore mutexGuionesCN;
     private static Semaphore driveDisponibleGuionesCN;
     private static Semaphore partesDisponiblesGuionesCN;
+    // Escenarios
+    private static Semaphore mutexEscenariosCN;
+    private static Semaphore driveDisponibleEscenariosCN;
+    private static Semaphore partesDisponiblesEscenariosCN;
+    // Animaciones
+    private static Semaphore mutexAnimacionesCN;
+    private static Semaphore driveDisponibleAnimacionesCN;
+    private static Semaphore partesDisponiblesAnimacionesCN;
+    // Doblajes
+    private static Semaphore mutexDoblajesCN;
+    private static Semaphore driveDisponibleDoblajesCN;
+    private static Semaphore partesDisponiblesDoblajesCN;
+    // Plot Twists
+    private static Semaphore mutexPlotTwistsCN;
+    private static Semaphore driveDisponiblePlotTwistsCN;
+    private static Semaphore partesDisponiblesPlotTwistsCN;
+    // Ensambladores
+    
     
     // Trabajadores Cartoon Network
     public static GuionistaCN guionistasCN [];
+    public static DisenadorCN disenadoresCN [];
+    public static AnimadorCN animadoresCN [];
+    public static ActorCN actoresCN [];
+    public static PlotTwistCN plottwistsCN [];
     
     
     //Elementos producidos por Cartoon Network
@@ -150,9 +174,29 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         this.mutexGuionesCN = new Semaphore(1, true);
         this.driveDisponibleGuionesCN = new Semaphore(capacidadGuiones, true);
         this.partesDisponiblesGuionesCN = new Semaphore(0, true);
+        // Escenarios
+        this.mutexEscenariosCN = new Semaphore(1, true);
+        this.driveDisponibleEscenariosCN = new Semaphore(capacidadEscenarios, true);
+        this.partesDisponiblesEscenariosCN = new Semaphore(0, true);
+        // Animaciones
+        this.mutexAnimacionesCN = new Semaphore(1, true);
+        this.driveDisponibleAnimacionesCN = new Semaphore(capacidadAnimaciones, true);
+        this.partesDisponiblesAnimacionesCN = new Semaphore(0, true);
+        // Doblajes
+        this.mutexDoblajesCN = new Semaphore(1, true);
+        this.driveDisponibleDoblajesCN = new Semaphore(capacidadDoblajes, true);
+        this.partesDisponiblesDoblajesCN = new Semaphore(0, true);
+        // PlotTwists
+        this.mutexPlotTwistsCN = new Semaphore(1, true);
+        this.driveDisponiblePlotTwistsCN = new Semaphore(capacidadPlotTwists, true);
+        this.partesDisponiblesPlotTwistsCN = new Semaphore(0, true);
         
         // Arrays de objetos Trabajadores/Ensambladores
         this.guionistasCN = new GuionistaCN[VentanaParametros.maxTrabajadoresCN];
+        this.disenadoresCN = new DisenadorCN[VentanaParametros.maxTrabajadoresCN];
+        this.animadoresCN = new AnimadorCN[VentanaParametros.maxTrabajadoresCN];
+        this.actoresCN = new ActorCN[VentanaParametros.maxTrabajadoresCN];
+        this.plottwistsCN = new PlotTwistCN[VentanaParametros.maxTrabajadoresCN];
         
         // Asignacion de valores en interfaz
         
@@ -206,11 +250,36 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         salarioEnsambladoresSC.setText(Integer.toString(sueldoEnsambladoresSC));
         
         // Se anaden al array de trabajadores los hilos correspondientes a la cantidad de trabajadores activos
+        // Guionistas iniciales
         for (int i = 0; i < Integer.parseInt(infoEstudios[7]); i++) {
-            GuionistaCN hiloGuionistaCN= new GuionistaCN(0, duracionDia, drive, mutexGuionesCN, driveDisponibleGuionesCN, partesDisponiblesGuionesCN, salarioActoresCN);
+            GuionistaCN hiloGuionistaCN= new GuionistaCN(0, duracionDia, drive, mutexGuionesCN, driveDisponibleGuionesCN, partesDisponiblesGuionesCN, salarioGuionistasCN);
             guionistasCN[i] = hiloGuionistaCN;
             
-        } 
+        }
+        // Disenadores iniciales
+        for (int i = 0; i < Integer.parseInt(infoEstudios[8]); i++) {
+            DisenadorCN hiloDisenadorCN= new DisenadorCN(1, duracionDia, drive, mutexEscenariosCN, driveDisponibleEscenariosCN, partesDisponiblesEscenariosCN, salarioDisenadoresCN);
+            disenadoresCN[i] = hiloDisenadorCN;
+            
+        }
+        // Animadores iniciales
+        for (int i = 0; i < Integer.parseInt(infoEstudios[9]); i++) {
+            AnimadorCN hiloAnimadorCN= new AnimadorCN(2, duracionDia, drive, mutexAnimacionesCN, driveDisponibleAnimacionesCN, partesDisponiblesAnimacionesCN, salarioAnimadoresCN);
+            animadoresCN[i] = hiloAnimadorCN;
+            
+        }
+        // Actores iniciales
+        for (int i = 0; i < Integer.parseInt(infoEstudios[10]); i++) {
+            ActorCN hiloActorCN= new ActorCN(3, duracionDia, drive, mutexDoblajesCN, driveDisponibleDoblajesCN, partesDisponiblesDoblajesCN, salarioActoresCN);
+            actoresCN[i] = hiloActorCN;
+            
+        }
+        // Guionistas de PlotTwists iniciales
+        for (int i = 0; i < Integer.parseInt(infoEstudios[11]); i++) {
+            PlotTwistCN hiloPlotTwistCN= new PlotTwistCN(4, duracionDia, drive, mutexPlotTwistsCN, driveDisponiblePlotTwistsCN, partesDisponiblesPlotTwistsCN, salarioPlotTwistsCN);
+            plottwistsCN[i] = hiloPlotTwistCN;
+            
+        }
     }
 
     /**
@@ -279,7 +348,7 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         agregarEnsambladorCN = new javax.swing.JButton();
         eliminarEnsambladorCN = new javax.swing.JButton();
-        capitulosCN = new javax.swing.JLabel();
+        cantidadCapitulosCN = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
@@ -830,12 +899,12 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         });
         Panel.add(eliminarEnsambladorCN, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 500, 40, 30));
 
-        capitulosCN.setBackground(new java.awt.Color(153, 153, 153));
-        capitulosCN.setFont(new java.awt.Font("NSimSun", 0, 14)); // NOI18N
-        capitulosCN.setForeground(new java.awt.Color(0, 0, 0));
-        capitulosCN.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        capitulosCN.setText("0");
-        Panel.add(capitulosCN, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 190, 50, -1));
+        cantidadCapitulosCN.setBackground(new java.awt.Color(153, 153, 153));
+        cantidadCapitulosCN.setFont(new java.awt.Font("NSimSun", 0, 14)); // NOI18N
+        cantidadCapitulosCN.setForeground(new java.awt.Color(0, 0, 0));
+        cantidadCapitulosCN.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cantidadCapitulosCN.setText("0");
+        Panel.add(cantidadCapitulosCN, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 190, 50, -1));
 
         jLabel26.setBackground(new java.awt.Color(153, 153, 153));
         jLabel26.setFont(new java.awt.Font("NSimSun", 0, 14)); // NOI18N
@@ -1485,9 +1554,38 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         
         
         // Se inician los hilos de los arrays de trabajadores/ensambladores, PM y director 
+        
+        // Inician los guionistas
         for (int i = 0; i < guionistasCN.length; i++) {
             if (guionistasCN[i] != null) {
                 guionistasCN[i].start();
+            }
+        }
+        
+        // Inician los disenadores
+        for (int i = 0; i < disenadoresCN.length; i++) {
+            if (disenadoresCN[i] != null) {
+                disenadoresCN[i].start();
+            }
+        }
+        
+        // Inician los animadores
+        for (int i = 0; i < animadoresCN.length; i++) {
+            if (animadoresCN[i] != null) {
+                animadoresCN[i].start();
+            }
+        }
+        
+        // Inician los actores
+        for (int i = 0; i < actoresCN.length; i++) {
+            if (actoresCN[i] != null) {
+                actoresCN[i].start();
+            }
+        }
+        // Inician los guionistas de Plot Twists
+        for (int i = 0; i < plottwistsCN.length; i++) {
+            if (plottwistsCN[i] != null) {
+                plottwistsCN[i].start();
             }
         }
         
@@ -1654,17 +1752,17 @@ public class VentanaSimulacion extends javax.swing.JFrame {
     private javax.swing.JButton agregarGuionistaSC;
     private javax.swing.JButton agregarPlotTwistCN;
     private javax.swing.JButton agregarPlotTwistSC;
-    private javax.swing.JLabel cantidadAnimacionesCN;
+    public static javax.swing.JLabel cantidadAnimacionesCN;
     private javax.swing.JLabel cantidadAnimacionesSC;
-    private javax.swing.JLabel cantidadDoblajesCN;
+    public static javax.swing.JLabel cantidadCapitulosCN;
+    public static javax.swing.JLabel cantidadDoblajesCN;
     private javax.swing.JLabel cantidadDoblajesSC;
-    private javax.swing.JLabel cantidadEscenariosCN;
+    public static javax.swing.JLabel cantidadEscenariosCN;
     private javax.swing.JLabel cantidadEscenariosSC;
     public static javax.swing.JLabel cantidadGuionesCN;
     private javax.swing.JLabel cantidadGuionesSC;
-    private javax.swing.JLabel cantidadPlotTwistsCN;
+    public static javax.swing.JLabel cantidadPlotTwistsCN;
     private javax.swing.JLabel cantidadPlotTwistsSC;
-    private javax.swing.JLabel capitulosCN;
     private javax.swing.JLabel capitulosSC;
     private javax.swing.JLabel diasLanzamiento;
     private javax.swing.JButton eliminarActorCN;

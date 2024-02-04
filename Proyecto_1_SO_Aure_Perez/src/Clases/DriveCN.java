@@ -33,29 +33,34 @@ public class DriveCN {
     
     public void addPart(int tipo){ //añade al drive segun el tipo
         switch (tipo) {
-            case 0:
+            case 0: // Guion
                 this.guiones += 1;
                 Interfaces.VentanaSimulacion.cantidadGuionesCN.setText(Integer.toString(guiones));
                 System.out.println("guiones disponibles:" + this.guiones);
                 break;
-            case 1:
+            case 1: // Escenario
                 this.escenarios += 1;
+                Interfaces.VentanaSimulacion.cantidadEscenariosCN.setText(Integer.toString(escenarios));
                 System.out.println("escenarios disponibles:" + this.escenarios);
                 break;
-            case 2:
+            case 2: // Animacion
                 this.animaciones += 1;
+                Interfaces.VentanaSimulacion.cantidadAnimacionesCN.setText(Integer.toString(animaciones));
                 System.out.println("animaciones disponibles:" + this.animaciones);
                 break;
-            case 3:
-                this.doblajes += 5;
+            case 3: // Doblaje
+                this.doblajes += 1;
+                Interfaces.VentanaSimulacion.cantidadDoblajesCN.setText(Integer.toString(doblajes));
                 System.out.println("doblajes disponibles:" + this.doblajes);
                 break;
-            case 4:
+            case 4: // PlotTwist
                 this.plottwists += 1;
+                Interfaces.VentanaSimulacion.cantidadPlotTwistsCN.setText(Integer.toString(plottwists));
                 System.out.println("plot twists disponibles:" + this.plottwists);
                 break;
-            case 5:
+            case 5: // Capitulo
                 this.capitulos += 1;
+                Interfaces.VentanaSimulacion.cantidadCapitulosCN.setText(Integer.toString(capitulos));
                 System.out.println("capitulos disponibles:" + this.capitulos);
                 break;
             default:
