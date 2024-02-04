@@ -8,16 +8,16 @@ animacionesDrive,55
 doblajesDrive,35
 plotTwitsDrive,10
 --TRABAJADORES CN--
-guionistasCN,1
-disenadoresCN,1
+guionistasCN,5
+disenadoresCN,5
 animadoresCN,1
 actoresCN,1
 plotTwitsCN,1
 ensambladoresCN,1
 --TRABAJADORES SC--
-guionistasSC,2
+guionistasSC,5
 disenadoresSC,5
-animadoresSC,4
-actoresSC,3
-plotTwitsSC,2
+animadoresSC,1
+actoresSC,1
+plotTwitsSC,1
 ensambladoresSC,1

@@ -11,7 +11,7 @@ import Interfaces.VentanaSimulacion;
  *
  * @author sebas
  */
-public class DriveCN {
+public class DriveSC {
     
     public int guiones;
     public int escenarios;
@@ -20,7 +20,7 @@ public class DriveCN {
     public int plottwists;
     public int capitulos;
     
-    public DriveCN(){ 
+    public DriveSC(){ 
         
         // Cantidad de partes producidas de cada tipo
         this.guiones = 0;
@@ -35,33 +35,33 @@ public class DriveCN {
         switch (tipo) {
             case 0: // Guion
                 this.guiones += 1;
-                Interfaces.VentanaSimulacion.cantidadGuionesCN.setText(Integer.toString(guiones));
-                System.out.println("guiones disponibles CN:" + this.guiones);
+                Interfaces.VentanaSimulacion.cantidadGuionesSC.setText(Integer.toString(guiones));
+                System.out.println("guiones disponibles SC:" + this.guiones);
                 break;
             case 1: // Escenario
-                this.escenarios += 1;
-                Interfaces.VentanaSimulacion.cantidadEscenariosCN.setText(Integer.toString(escenarios));
-                System.out.println("escenarios disponibles CN:" + this.escenarios);
+                this.escenarios += 1; 
+                Interfaces.VentanaSimulacion.cantidadEscenariosSC.setText(Integer.toString(escenarios));
+                System.out.println("escenarios disponibles SC:" + this.escenarios);
                 break;
             case 2: // Animacion
                 this.animaciones += 1;
-                Interfaces.VentanaSimulacion.cantidadAnimacionesCN.setText(Integer.toString(animaciones));
-                System.out.println("animaciones disponibles CN:" + this.animaciones);
+                Interfaces.VentanaSimulacion.cantidadAnimacionesSC.setText(Integer.toString(animaciones));
+                System.out.println("animaciones disponibles SC:" + this.animaciones);
                 break;
             case 3: // Doblaje
                 this.doblajes += 1;
-                Interfaces.VentanaSimulacion.cantidadDoblajesCN.setText(Integer.toString(doblajes));
-                System.out.println("doblajes disponibles CN:" + this.doblajes);
+                Interfaces.VentanaSimulacion.cantidadDoblajesSC.setText(Integer.toString(doblajes));
+                System.out.println("doblajes disponibles SC:" + this.doblajes);
                 break;
             case 4: // PlotTwist
                 this.plottwists += 1;
-                Interfaces.VentanaSimulacion.cantidadPlotTwistsCN.setText(Integer.toString(plottwists));
-                System.out.println("plot twists disponibles CN:" + this.plottwists);
+                Interfaces.VentanaSimulacion.cantidadPlotTwistsSC.setText(Integer.toString(plottwists));
+                System.out.println("plot twists disponibles SC:" + this.plottwists);
                 break;
             case 5: // Capitulo
                 this.capitulos += 1;
-                Interfaces.VentanaSimulacion.cantidadCapitulosCN.setText(Integer.toString(capitulos));
-                System.out.println("capitulos disponibles CN:" + this.capitulos);
+                Interfaces.VentanaSimulacion.cantidadCapitulosSC.setText(Integer.toString(capitulos));
+                System.out.println("capitulos disponibles SC:" + this.capitulos);
                 break;
             default:
                 break;

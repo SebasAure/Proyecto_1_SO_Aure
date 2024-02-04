@@ -6,13 +6,20 @@
 package Interfaces;
 
 import Clases.ActorCN;
+import Clases.ActorSC;
 import Clases.AnimadorCN;
+import Clases.AnimadorSC;
 import Clases.ArchivoCSV;
 import Clases.DisenadorCN;
+import Clases.DisenadorSC;
 import Clases.DriveCN;
+import Clases.DriveSC;
 import Clases.EnsambladorCN;
+import Clases.EnsambladorSC;
 import Clases.GuionistaCN;
+import Clases.GuionistaSC;
 import Clases.PlotTwistCN;
+import Clases.PlotTwistSC;
 import Clases.Productor;
 import java.util.concurrent.Semaphore;
 import javax.swing.JLabel;
@@ -32,7 +39,8 @@ public class VentanaSimulacion extends javax.swing.JFrame {
     public static int capacidadAnimaciones;
     public static int capacidadDoblajes;
     public static int capacidadPlotTwists;
-    public static DriveCN drive;
+    public static DriveCN driveCN;
+    public static DriveSC driveSC;
     
     // Semaforos Cartoon Network
     // Guiones
@@ -82,6 +90,37 @@ public class VentanaSimulacion extends javax.swing.JFrame {
     public static int sueldoPlotTwistsCN;
     public static int sueldoEnsambladoresCN;
     
+    // Semaforos Star Channel
+    // Guiones
+    private static Semaphore mutexGuionesSC;
+    private static Semaphore driveDisponibleGuionesSC;
+    private static Semaphore partesDisponiblesGuionesSC;
+    // Escenarios
+    private static Semaphore mutexEscenariosSC;
+    private static Semaphore driveDisponibleEscenariosSC;
+    private static Semaphore partesDisponiblesEscenariosSC;
+    // Animaciones
+    private static Semaphore mutexAnimacionesSC;
+    private static Semaphore driveDisponibleAnimacionesSC;
+    private static Semaphore partesDisponiblesAnimacionesSC;
+    // Doblajes
+    private static Semaphore mutexDoblajesSC;
+    private static Semaphore driveDisponibleDoblajesSC;
+    private static Semaphore partesDisponiblesDoblajesSC;
+    // Plot Twists
+    private static Semaphore mutexPlotTwistsSC;
+    private static Semaphore driveDisponiblePlotTwistsSC;
+    private static Semaphore partesDisponiblesPlotTwistsSC;
+    // Ensambladores
+    
+    
+    // Trabajadores Star Channel
+    public static GuionistaSC guionistasSC [];
+    public static DisenadorSC disenadoresSC [];
+    public static AnimadorSC animadoresSC [];
+    public static ActorSC actoresSC [];
+    public static PlotTwistSC plottwistsSC [];
+    
     //Elementos producidos por Star Channel
     public static volatile int guionesSC;
     public static volatile int escenariosSC;
@@ -122,7 +161,8 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         eliminarPlotTwistCN.setEnabled(false);
         eliminarEnsambladorCN.setEnabled(false);
         // 
-        this.drive = new DriveCN();
+        this.driveCN = new DriveCN();
+        this.driveSC = new DriveSC();
         // Se crea el objeto csv
         this.csv = new ArchivoCSV();
         
@@ -191,12 +231,42 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         this.driveDisponiblePlotTwistsCN = new Semaphore(capacidadPlotTwists, true);
         this.partesDisponiblesPlotTwistsCN = new Semaphore(0, true);
         
-        // Arrays de objetos Trabajadores/Ensambladores
+        // Arrays de objetos Trabajadores/Ensambladores Cartoon Network
         this.guionistasCN = new GuionistaCN[VentanaParametros.maxTrabajadoresCN];
         this.disenadoresCN = new DisenadorCN[VentanaParametros.maxTrabajadoresCN];
         this.animadoresCN = new AnimadorCN[VentanaParametros.maxTrabajadoresCN];
         this.actoresCN = new ActorCN[VentanaParametros.maxTrabajadoresCN];
         this.plottwistsCN = new PlotTwistCN[VentanaParametros.maxTrabajadoresCN];
+        
+        // Semaforos Star Channel
+        // Guiones
+        this.mutexGuionesSC = new Semaphore(1, true);
+        this.driveDisponibleGuionesSC = new Semaphore(capacidadGuiones, true);
+        this.partesDisponiblesGuionesSC = new Semaphore(0, true);
+        // Escenarios
+        this.mutexEscenariosSC = new Semaphore(1, true);
+        this.driveDisponibleEscenariosSC = new Semaphore(capacidadEscenarios, true);
+        this.partesDisponiblesEscenariosSC = new Semaphore(0, true);
+        // Animaciones
+        this.mutexAnimacionesSC = new Semaphore(1, true);
+        this.driveDisponibleAnimacionesSC = new Semaphore(capacidadAnimaciones, true);
+        this.partesDisponiblesAnimacionesSC = new Semaphore(0, true);
+        // Doblajes
+        this.mutexDoblajesSC = new Semaphore(1, true);
+        this.driveDisponibleDoblajesSC = new Semaphore(capacidadDoblajes, true);
+        this.partesDisponiblesDoblajesSC = new Semaphore(0, true);
+        // PlotTwists
+        this.mutexPlotTwistsSC = new Semaphore(1, true);
+        this.driveDisponiblePlotTwistsSC = new Semaphore(capacidadPlotTwists, true);
+        this.partesDisponiblesPlotTwistsSC = new Semaphore(0, true);
+        
+        // Arrays de objetos Trabajadores/Ensambladores Star Channel
+        this.guionistasSC = new GuionistaSC[VentanaParametros.maxTrabajadoresSC];
+        this.disenadoresSC = new DisenadorSC[VentanaParametros.maxTrabajadoresSC];
+        this.animadoresSC = new AnimadorSC[VentanaParametros.maxTrabajadoresSC];
+        this.actoresSC = new ActorSC[VentanaParametros.maxTrabajadoresSC];
+        this.plottwistsSC = new PlotTwistSC[VentanaParametros.maxTrabajadoresSC];
+        
         
         // Asignacion de valores en interfaz
         
@@ -250,36 +320,74 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         salarioEnsambladoresSC.setText(Integer.toString(sueldoEnsambladoresSC));
         
         // Se anaden al array de trabajadores los hilos correspondientes a la cantidad de trabajadores activos
+        
+        // Cartoon Network
         // Guionistas iniciales
         for (int i = 0; i < Integer.parseInt(infoEstudios[7]); i++) {
-            GuionistaCN hiloGuionistaCN= new GuionistaCN(0, duracionDia, drive, mutexGuionesCN, driveDisponibleGuionesCN, partesDisponiblesGuionesCN, salarioGuionistasCN);
+            GuionistaCN hiloGuionistaCN= new GuionistaCN(0, duracionDia, driveCN, mutexGuionesCN, driveDisponibleGuionesCN, partesDisponiblesGuionesCN, salarioGuionistasCN);
             guionistasCN[i] = hiloGuionistaCN;
             
         }
         // Disenadores iniciales
         for (int i = 0; i < Integer.parseInt(infoEstudios[8]); i++) {
-            DisenadorCN hiloDisenadorCN= new DisenadorCN(1, duracionDia, drive, mutexEscenariosCN, driveDisponibleEscenariosCN, partesDisponiblesEscenariosCN, salarioDisenadoresCN);
+            DisenadorCN hiloDisenadorCN= new DisenadorCN(1, duracionDia, driveCN, mutexEscenariosCN, driveDisponibleEscenariosCN, partesDisponiblesEscenariosCN, salarioDisenadoresCN);
             disenadoresCN[i] = hiloDisenadorCN;
             
         }
         // Animadores iniciales
         for (int i = 0; i < Integer.parseInt(infoEstudios[9]); i++) {
-            AnimadorCN hiloAnimadorCN= new AnimadorCN(2, duracionDia, drive, mutexAnimacionesCN, driveDisponibleAnimacionesCN, partesDisponiblesAnimacionesCN, salarioAnimadoresCN);
+            AnimadorCN hiloAnimadorCN= new AnimadorCN(2, duracionDia, driveCN, mutexAnimacionesCN, driveDisponibleAnimacionesCN, partesDisponiblesAnimacionesCN, salarioAnimadoresCN);
             animadoresCN[i] = hiloAnimadorCN;
             
         }
         // Actores iniciales
         for (int i = 0; i < Integer.parseInt(infoEstudios[10]); i++) {
-            ActorCN hiloActorCN= new ActorCN(3, duracionDia, drive, mutexDoblajesCN, driveDisponibleDoblajesCN, partesDisponiblesDoblajesCN, salarioActoresCN);
+            ActorCN hiloActorCN= new ActorCN(3, duracionDia, driveCN, mutexDoblajesCN, driveDisponibleDoblajesCN, partesDisponiblesDoblajesCN, salarioActoresCN);
             actoresCN[i] = hiloActorCN;
             
         }
         // Guionistas de PlotTwists iniciales
         for (int i = 0; i < Integer.parseInt(infoEstudios[11]); i++) {
-            PlotTwistCN hiloPlotTwistCN= new PlotTwistCN(4, duracionDia, drive, mutexPlotTwistsCN, driveDisponiblePlotTwistsCN, partesDisponiblesPlotTwistsCN, salarioPlotTwistsCN);
+            PlotTwistCN hiloPlotTwistCN= new PlotTwistCN(4, duracionDia, driveCN, mutexPlotTwistsCN, driveDisponiblePlotTwistsCN, partesDisponiblesPlotTwistsCN, salarioPlotTwistsCN);
             plottwistsCN[i] = hiloPlotTwistCN;
             
         }
+        // Ensambladores iniciales
+        
+        
+        // Star Channel
+        // Guionistas iniciales
+        for (int i = 0; i < Integer.parseInt(infoEstudios[13]); i++) {
+            GuionistaSC hiloGuionistaSC= new GuionistaSC(0, duracionDia, driveSC, mutexGuionesSC, driveDisponibleGuionesSC, partesDisponiblesGuionesSC, salarioGuionistasSC);
+            guionistasSC[i] = hiloGuionistaSC;
+            
+        }
+        // Disenadores iniciales
+        for (int i = 0; i < Integer.parseInt(infoEstudios[14]); i++) {
+            DisenadorSC hiloDisenadorSC= new DisenadorSC(1, duracionDia, driveSC, mutexEscenariosSC, driveDisponibleEscenariosSC, partesDisponiblesEscenariosSC, salarioDisenadoresSC);
+            disenadoresSC[i] = hiloDisenadorSC;
+            
+        }
+        // Animadores iniciales
+        for (int i = 0; i < Integer.parseInt(infoEstudios[15]); i++) {
+            AnimadorSC hiloAnimadorSC= new AnimadorSC(2, duracionDia, driveSC, mutexAnimacionesSC, driveDisponibleAnimacionesSC, partesDisponiblesAnimacionesSC, salarioAnimadoresSC);
+            animadoresSC[i] = hiloAnimadorSC;
+            
+        }
+        // Actores iniciales
+        for (int i = 0; i < Integer.parseInt(infoEstudios[16]); i++) {
+            ActorSC hiloActorSC= new ActorSC(3, duracionDia, driveSC, mutexDoblajesSC, driveDisponibleDoblajesSC, partesDisponiblesDoblajesSC, salarioActoresSC);
+            actoresSC[i] = hiloActorSC;
+            
+        }
+        // Guionistas de PlotTwists iniciales
+        for (int i = 0; i < Integer.parseInt(infoEstudios[17]); i++) {
+            PlotTwistSC hiloPlotTwistSC= new PlotTwistSC(4, duracionDia, driveSC, mutexPlotTwistsSC, driveDisponiblePlotTwistsSC, partesDisponiblesPlotTwistsSC, salarioPlotTwistsSC);
+            plottwistsSC[i] = hiloPlotTwistSC;
+            
+        }
+        // Ensambladores iniciales
+        
     }
 
     /**
@@ -355,7 +463,7 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         faltasPMSC = new javax.swing.JLabel();
         faltasPMCN = new javax.swing.JLabel();
         jLabel39 = new javax.swing.JLabel();
-        capitulosSC = new javax.swing.JLabel();
+        cantidadCapitulosSC = new javax.swing.JLabel();
         jLabel48 = new javax.swing.JLabel();
         jLabel49 = new javax.swing.JLabel();
         jLabel50 = new javax.swing.JLabel();
@@ -941,12 +1049,12 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         Panel.add(faltasPMCN, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 170, 60, 20));
         Panel.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 310, 20, -1));
 
-        capitulosSC.setBackground(new java.awt.Color(153, 153, 153));
-        capitulosSC.setFont(new java.awt.Font("NSimSun", 0, 14)); // NOI18N
-        capitulosSC.setForeground(new java.awt.Color(0, 0, 0));
-        capitulosSC.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        capitulosSC.setText("0");
-        Panel.add(capitulosSC, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 410, 50, 20));
+        cantidadCapitulosSC.setBackground(new java.awt.Color(153, 153, 153));
+        cantidadCapitulosSC.setFont(new java.awt.Font("NSimSun", 0, 14)); // NOI18N
+        cantidadCapitulosSC.setForeground(new java.awt.Color(0, 0, 0));
+        cantidadCapitulosSC.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cantidadCapitulosSC.setText("0");
+        Panel.add(cantidadCapitulosSC, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 410, 50, 20));
 
         jLabel48.setBackground(new java.awt.Color(153, 153, 153));
         jLabel48.setFont(new java.awt.Font("NSimSun", 0, 14)); // NOI18N
@@ -1356,7 +1464,7 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         jLabel7.setBackground(new java.awt.Color(153, 153, 153));
         jLabel7.setFont(new java.awt.Font("NSimSun", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel7.setText("Episodios");
+        jLabel7.setText("Capitulos");
         Panel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 410, 80, 20));
 
         jLabel18.setBackground(new java.awt.Color(153, 153, 153));
@@ -1463,7 +1571,7 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         jLabel21.setBackground(new java.awt.Color(153, 153, 153));
         jLabel21.setFont(new java.awt.Font("NSimSun", 0, 14)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel21.setText("Episodios");
+        jLabel21.setText("Capitulos");
         Panel.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 190, 80, 20));
 
         jLabel28.setBackground(new java.awt.Color(153, 153, 153));
@@ -1554,7 +1662,7 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         
         
         // Se inician los hilos de los arrays de trabajadores/ensambladores, PM y director 
-        
+        // Cartoon Network
         // Inician los guionistas
         for (int i = 0; i < guionistasCN.length; i++) {
             if (guionistasCN[i] != null) {
@@ -1588,6 +1696,45 @@ public class VentanaSimulacion extends javax.swing.JFrame {
                 plottwistsCN[i].start();
             }
         }
+        // Inician los ensambladores
+        
+        
+        // Star Channel
+        // Inician los guionistas
+        for (int i = 0; i < guionistasSC.length; i++) {
+            if (guionistasSC[i] != null) {
+                guionistasSC[i].start();
+            }
+        }
+        
+        // Inician los disenadores
+        for (int i = 0; i < disenadoresSC.length; i++) {
+            if (disenadoresSC[i] != null) {
+                disenadoresSC[i].start();
+            }
+        }
+        
+        // Inician los animadores
+        for (int i = 0; i < animadoresSC.length; i++) {
+            if (animadoresSC[i] != null) {
+                animadoresSC[i].start();
+            }
+        }
+        
+        // Inician los actores
+        for (int i = 0; i < actoresSC.length; i++) {
+            if (actoresSC[i] != null) {
+                actoresSC[i].start();
+            }
+        }
+        // Inician los guionistas de Plot Twists
+        for (int i = 0; i < plottwistsSC.length; i++) {
+            if (plottwistsSC[i] != null) {
+                plottwistsSC[i].start();
+            }
+        }
+        // Inician los ensambladores
+        
         
         //JOptionPane.showMessageDialog(rootPane, info1);
         //DriveCN drive = new DriveCN();
@@ -1753,17 +1900,17 @@ public class VentanaSimulacion extends javax.swing.JFrame {
     private javax.swing.JButton agregarPlotTwistCN;
     private javax.swing.JButton agregarPlotTwistSC;
     public static javax.swing.JLabel cantidadAnimacionesCN;
-    private javax.swing.JLabel cantidadAnimacionesSC;
+    public static javax.swing.JLabel cantidadAnimacionesSC;
     public static javax.swing.JLabel cantidadCapitulosCN;
+    public static javax.swing.JLabel cantidadCapitulosSC;
     public static javax.swing.JLabel cantidadDoblajesCN;
-    private javax.swing.JLabel cantidadDoblajesSC;
+    public static javax.swing.JLabel cantidadDoblajesSC;
     public static javax.swing.JLabel cantidadEscenariosCN;
-    private javax.swing.JLabel cantidadEscenariosSC;
+    public static javax.swing.JLabel cantidadEscenariosSC;
     public static javax.swing.JLabel cantidadGuionesCN;
-    private javax.swing.JLabel cantidadGuionesSC;
+    public static javax.swing.JLabel cantidadGuionesSC;
     public static javax.swing.JLabel cantidadPlotTwistsCN;
-    private javax.swing.JLabel cantidadPlotTwistsSC;
-    private javax.swing.JLabel capitulosSC;
+    public static javax.swing.JLabel cantidadPlotTwistsSC;
     private javax.swing.JLabel diasLanzamiento;
     private javax.swing.JButton eliminarActorCN;
     private javax.swing.JButton eliminarActorSC;
