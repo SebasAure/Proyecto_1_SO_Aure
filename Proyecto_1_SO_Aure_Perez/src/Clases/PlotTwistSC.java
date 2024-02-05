@@ -46,8 +46,8 @@ public class PlotTwistSC extends Thread{
         while(true) {
             
             try {
-                // Produce cada 2 dias
-                sleep(this.duracionDia * 2);
+                // Produce cada 3 dias
+                sleep(this.duracionDia * 3);
                 obtenerSalario();
                 trabajar();
             } catch (InterruptedException ex) {

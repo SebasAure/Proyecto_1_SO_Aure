@@ -64,6 +64,7 @@ public class VentanaSimulacion extends javax.swing.JFrame {
     private static Semaphore driveDisponiblePlotTwistsCN;
     private static Semaphore partesDisponiblesPlotTwistsCN;
     // Ensambladores
+    private static Semaphore mutexCapitulosCN;
     
     
     // Trabajadores Cartoon Network
@@ -72,6 +73,7 @@ public class VentanaSimulacion extends javax.swing.JFrame {
     public static AnimadorCN animadoresCN [];
     public static ActorCN actoresCN [];
     public static PlotTwistCN plottwistsCN [];
+    public static EnsambladorCN ensambladoresCN [];
     
     
     //Elementos producidos por Cartoon Network
@@ -112,7 +114,7 @@ public class VentanaSimulacion extends javax.swing.JFrame {
     private static Semaphore driveDisponiblePlotTwistsSC;
     private static Semaphore partesDisponiblesPlotTwistsSC;
     // Ensambladores
-    
+    private static Semaphore mutexCapitulosSC;
     
     // Trabajadores Star Channel
     public static GuionistaSC guionistasSC [];
@@ -120,6 +122,7 @@ public class VentanaSimulacion extends javax.swing.JFrame {
     public static AnimadorSC animadoresSC [];
     public static ActorSC actoresSC [];
     public static PlotTwistSC plottwistsSC [];
+    public static EnsambladorSC ensambladoresSC [];
     
     //Elementos producidos por Star Channel
     public static volatile int guionesSC;
@@ -230,6 +233,8 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         this.mutexPlotTwistsCN = new Semaphore(1, true);
         this.driveDisponiblePlotTwistsCN = new Semaphore(capacidadPlotTwists, true);
         this.partesDisponiblesPlotTwistsCN = new Semaphore(0, true);
+        // Capitulos
+        this.mutexCapitulosCN = new Semaphore(1, true);
         
         // Arrays de objetos Trabajadores/Ensambladores Cartoon Network
         this.guionistasCN = new GuionistaCN[VentanaParametros.maxTrabajadoresCN];
@@ -237,6 +242,7 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         this.animadoresCN = new AnimadorCN[VentanaParametros.maxTrabajadoresCN];
         this.actoresCN = new ActorCN[VentanaParametros.maxTrabajadoresCN];
         this.plottwistsCN = new PlotTwistCN[VentanaParametros.maxTrabajadoresCN];
+        this.ensambladoresCN = new EnsambladorCN[VentanaParametros.maxTrabajadoresCN];
         
         // Semaforos Star Channel
         // Guiones
@@ -259,6 +265,8 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         this.mutexPlotTwistsSC = new Semaphore(1, true);
         this.driveDisponiblePlotTwistsSC = new Semaphore(capacidadPlotTwists, true);
         this.partesDisponiblesPlotTwistsSC = new Semaphore(0, true);
+        // Capitulos
+        this.mutexCapitulosSC = new Semaphore(1, true);
         
         // Arrays de objetos Trabajadores/Ensambladores Star Channel
         this.guionistasSC = new GuionistaSC[VentanaParametros.maxTrabajadoresSC];
@@ -266,7 +274,8 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         this.animadoresSC = new AnimadorSC[VentanaParametros.maxTrabajadoresSC];
         this.actoresSC = new ActorSC[VentanaParametros.maxTrabajadoresSC];
         this.plottwistsSC = new PlotTwistSC[VentanaParametros.maxTrabajadoresSC];
-        
+        this.ensambladoresSC = new EnsambladorSC[VentanaParametros.maxTrabajadoresSC];
+
         
         // Asignacion de valores en interfaz
         
@@ -279,6 +288,7 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         cantidadAnimacionesCN.setText(Integer.toString(animacionesCN));
         cantidadDoblajesCN.setText(Integer.toString(doblajesCN));
         cantidadPlotTwistsCN.setText(Integer.toString(plotTwistsCN));
+        cantidadCapitulosCN.setText(Integer.toString(capitulosProducidosCN));
         
         // Partes producidas por Star Channel
         cantidadGuionesSC.setText(Integer.toString(guionesSC));
@@ -286,6 +296,7 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         cantidadAnimacionesSC.setText(Integer.toString(animacionesSC));
         cantidadDoblajesSC.setText(Integer.toString(doblajesSC));
         cantidadPlotTwistsSC.setText(Integer.toString(plotTwistsSC));
+        cantidadCapitulosSC.setText(Integer.toString(capitulosProducidosSC));
         
         // Trabajadores Cartoon Network
         numGuionistasCN.setText(infoEstudios[7]);
@@ -353,7 +364,11 @@ public class VentanaSimulacion extends javax.swing.JFrame {
             
         }
         // Ensambladores iniciales
-        
+        for (int i = 0; i < Integer.parseInt(infoEstudios[12]); i++) {
+            EnsambladorCN hiloEnsambladorCN= new EnsambladorCN(5, duracionDia, driveCN, mutexCapitulosCN, mutexGuionesCN, driveDisponibleGuionesCN, partesDisponiblesGuionesCN, mutexEscenariosCN, driveDisponibleEscenariosCN, partesDisponiblesEscenariosCN, mutexAnimacionesCN, driveDisponibleAnimacionesCN, partesDisponiblesAnimacionesCN, mutexDoblajesCN, driveDisponibleDoblajesCN, partesDisponiblesDoblajesCN, mutexPlotTwistsCN, driveDisponiblePlotTwistsCN, partesDisponiblesPlotTwistsCN, salarioEnsambladoresCN);
+            ensambladoresCN[i] = hiloEnsambladorCN;
+   
+        }
         
         // Star Channel
         // Guionistas iniciales
@@ -387,7 +402,11 @@ public class VentanaSimulacion extends javax.swing.JFrame {
             
         }
         // Ensambladores iniciales
-        
+        for (int i = 0; i < Integer.parseInt(infoEstudios[18]); i++) {
+            EnsambladorSC hiloEnsambladorSC= new EnsambladorSC(5, duracionDia, driveSC, mutexCapitulosSC, mutexGuionesSC, driveDisponibleGuionesSC, partesDisponiblesGuionesSC, mutexEscenariosSC, driveDisponibleEscenariosSC, partesDisponiblesEscenariosSC, mutexAnimacionesSC, driveDisponibleAnimacionesSC, partesDisponiblesAnimacionesSC, mutexDoblajesSC, driveDisponibleDoblajesSC, partesDisponiblesDoblajesSC, mutexPlotTwistsSC, driveDisponiblePlotTwistsSC, partesDisponiblesPlotTwistsSC, salarioEnsambladoresSC);
+            ensambladoresSC[i] = hiloEnsambladorSC;
+   
+        }
     }
 
     /**
@@ -1697,7 +1716,11 @@ public class VentanaSimulacion extends javax.swing.JFrame {
             }
         }
         // Inician los ensambladores
-        
+        for (int i = 0; i < ensambladoresCN.length; i++) {
+            if (ensambladoresCN[i] != null) {
+                ensambladoresCN[i].start();
+            }
+        }
         
         // Star Channel
         // Inician los guionistas
@@ -1734,7 +1757,11 @@ public class VentanaSimulacion extends javax.swing.JFrame {
             }
         }
         // Inician los ensambladores
-        
+        for (int i = 0; i < ensambladoresSC.length; i++) {
+            if (ensambladoresSC[i] != null) {
+                ensambladoresSC[i].start();
+            }
+        }
         
         //JOptionPane.showMessageDialog(rootPane, info1);
         //DriveCN drive = new DriveCN();

@@ -46,8 +46,8 @@ public class GuionistaSC extends Thread{
         while(true) {
             
             try {
-                // Produce cada 4 dias
-                sleep(this.duracionDia * 4);
+                // Produce cada 3 dias
+                sleep(this.duracionDia * 3);
                 obtenerSalario();
                 trabajar();
             } catch (InterruptedException ex) {

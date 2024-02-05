@@ -67,4 +67,37 @@ public class DriveSC {
                 break;
         }
     }
+    
+    public void takePart(int tipo){ //toma del drive segun el tipo
+        // Para producir un capitulo de Star Channel se requieren 2 guiones, 3 escenarios, 4 animaciones, 6 doblajes (y 5 plot twists en el caso dado) 
+        switch (tipo) {
+            case 0: // Guion
+                this.guiones -= 2;
+                Interfaces.VentanaSimulacion.cantidadGuionesSC.setText(Integer.toString(guiones));
+                System.out.println("guiones disponibles SC:" + this.guiones);
+                break;
+            case 1: // Escenario
+                this.escenarios -= 3;
+                Interfaces.VentanaSimulacion.cantidadEscenariosSC.setText(Integer.toString(escenarios));
+                System.out.println("escenarios disponibles SC:" + this.escenarios);
+                break;
+            case 2: // Animacion
+                this.animaciones -= 4;
+                Interfaces.VentanaSimulacion.cantidadAnimacionesSC.setText(Integer.toString(animaciones));
+                System.out.println("animaciones disponibles SC:" + this.animaciones);
+                break;
+            case 3: // Doblaje
+                this.doblajes -= 6;
+                Interfaces.VentanaSimulacion.cantidadDoblajesSC.setText(Integer.toString(doblajes));
+                System.out.println("doblajes disponibles SC:" + this.doblajes);
+                break;
+            case 4: // PlotTwist
+                this.plottwists -= 5;
+                Interfaces.VentanaSimulacion.cantidadPlotTwistsSC.setText(Integer.toString(plottwists));
+                System.out.println("plot twists disponibles SC:" + this.plottwists);
+                break;
+            default:
+                break;
+        }
+    }    
 }

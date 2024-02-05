@@ -46,8 +46,8 @@ public class AnimadorSC extends Thread{
         while(true) {
             
             try {
-                // Produce cada dia
-                sleep(this.duracionDia);
+                // Produce cada dia (pero como produce 2 al dia es lo mismo que produzca 1 parte cada medio dia)
+                sleep(this.duracionDia/2);
                 obtenerSalario();
                 trabajar();
             } catch (InterruptedException ex) {

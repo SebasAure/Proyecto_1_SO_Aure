@@ -46,8 +46,8 @@ public class ActorSC extends Thread{
         while(true) {
             
             try {
-                // Produce cada dia (pero como produce 5 al dia es lo mismo que produzca 1 parte cada quinto del dia)
-                sleep(this.duracionDia/5);
+                // Produce cada dia (pero como produce 3 al dia es lo mismo que produzca 1 parte cada tercio del dia)
+                sleep(this.duracionDia/3);
                 obtenerSalario();
                 trabajar();
             } catch (InterruptedException ex) {
