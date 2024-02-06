@@ -21,6 +21,8 @@ public class EnsambladorSC extends Thread{
     private int salarioTotal;
     private int duracionDia;
     private int salario = 50;
+    private int diasProduccion = 2;
+    private int horasPagadas = 24;
     //Cantidad de partes necesarias para ensamblar un capitulo para Cartoon Network
     private int numGuiones = 2;
     private int numEscenarios = 3;
@@ -82,7 +84,7 @@ public class EnsambladorSC extends Thread{
             
             try {
                 // Produce cada 2 dias
-                sleep(this.duracionDia * 2);
+                sleep(this.duracionDia * diasProduccion);
                 obtenerSalario();
                 ensamblar();
             } catch (InterruptedException ex) {
@@ -92,7 +94,8 @@ public class EnsambladorSC extends Thread{
     }
     
     public void obtenerSalario(){
-        this.salarioTotal += this.salario*24;
+        this.salarioTotal += this.salario*horasPagadas*diasProduccion;
+        Interfaces.VentanaSimulacion.salarioEnsambladoresSC.setText(Integer.toString(salarioTotal));
     }
     
     public void ensamblar(){

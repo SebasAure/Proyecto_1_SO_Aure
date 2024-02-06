@@ -196,7 +196,7 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         this.sueldoActoresCN = 0;
         this.sueldoPlotTwistsCN = 0;
         this.sueldoEnsambladoresCN = 0;
-    
+        
         // Star Channel
         this.guionesSC = 0;
         this.escenariosSC = 0;
@@ -1762,36 +1762,6 @@ public class VentanaSimulacion extends javax.swing.JFrame {
                 ensambladoresSC[i].start();
             }
         }
-        
-        //JOptionPane.showMessageDialog(rootPane, info1);
-        //DriveCN drive = new DriveCN();
-        //Semaphore mutexGuionistas = new Semaphore(1);
-        //Semaphore mutexDisenadores = new Semaphore(1);
-        //Semaphore mutexAnimadores = new Semaphore(1);
-        //Semaphore mutexActores = new Semaphore(1);
-        //Semaphore mutexPlotTwists = new Semaphore(1);
-        //Semaphore mutexEnsambladores = new Semaphore(1);
-        
-        //GuionistaCN guionista = new GuionistaCN(0, duracionDia, "Guiones", drive, mutexGuionistas, salarioGuionistasCN);
-        //DisenadorCN disenador = new DisenadorCN(1, duracionDia, "Escenarios", drive, mutexDisenadores, salarioDisenadoresCN);
-        //AnimadorCN animador = new AnimadorCN(2, duracionDia, "Animaciones", drive, mutexAnimadores, salarioAnimadoresCN);
-        //ActorCN actor = new ActorCN(3, duracionDia, "Doblajes", drive, mutexActores, salarioActoresCN);
-        //PlotTwistCN plotTwist = new PlotTwistCN(4, duracionDia, "Plot Twits", drive, mutexPlotTwists, salarioPlotTwistsCN);
-        //EnsambladorCN ensamblador = new EnsambladorCN(5, duracionDia, "Capitulos", drive, mutexEnsambladores, salarioEnsambladoresCN);
-
-
-
-        
-        //guionista.start();
-        //disenador.start();
-        //animador.start();
-        //actor.start();
-        //plotTwist.start();
-        //ensamblador.start();
-        
-        
-        
-
        
         
         
@@ -2038,23 +2008,23 @@ public class VentanaSimulacion extends javax.swing.JFrame {
     private javax.swing.JLabel numDisenadoresSC;
     private javax.swing.JLabel numEnsambladoresCN;
     private javax.swing.JLabel numEnsambladoresSC;
-    private javax.swing.JLabel numGuionistasCN;
+    public static javax.swing.JLabel numGuionistasCN;
     private javax.swing.JLabel numGuionistasSC;
     private javax.swing.JLabel numPlotTwistsCN;
     private javax.swing.JLabel numPlotTwistsSC;
     private javax.swing.JButton reiniciar;
-    private javax.swing.JLabel salarioActoresCN;
-    private javax.swing.JLabel salarioActoresSC;
-    private javax.swing.JLabel salarioAnimadoresCN;
-    private javax.swing.JLabel salarioAnimadoresSC;
-    private javax.swing.JLabel salarioDisenadoresCN;
-    private javax.swing.JLabel salarioDisenadoresSC;
-    private javax.swing.JLabel salarioEnsambladoresCN;
-    private javax.swing.JLabel salarioEnsambladoresSC;
-    private javax.swing.JLabel salarioGuionistasCN;
-    private javax.swing.JLabel salarioGuionistasSC;
-    private javax.swing.JLabel salarioPlotTwistsCN;
-    private javax.swing.JLabel salarioPlotTwistsSC;
+    public static javax.swing.JLabel salarioActoresCN;
+    public static javax.swing.JLabel salarioActoresSC;
+    public static javax.swing.JLabel salarioAnimadoresCN;
+    public static javax.swing.JLabel salarioAnimadoresSC;
+    public static javax.swing.JLabel salarioDisenadoresCN;
+    public static javax.swing.JLabel salarioDisenadoresSC;
+    public static javax.swing.JLabel salarioEnsambladoresCN;
+    public static javax.swing.JLabel salarioEnsambladoresSC;
+    public static javax.swing.JLabel salarioGuionistasCN;
+    public static javax.swing.JLabel salarioGuionistasSC;
+    public static javax.swing.JLabel salarioPlotTwistsCN;
+    public static javax.swing.JLabel salarioPlotTwistsSC;
     private javax.swing.JLabel sueldoDCN;
     private javax.swing.JLabel sueldoDSC;
     private javax.swing.JLabel sueldoPMCN;

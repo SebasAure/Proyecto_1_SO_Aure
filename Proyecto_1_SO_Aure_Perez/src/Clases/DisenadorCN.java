@@ -21,6 +21,8 @@ public class DisenadorCN extends Thread{
     private int salarioTotal;
     private int duracionDia;
     private int salario = 26;
+    private int diasProduccion = 4;
+    private int horasPagadas = 24;
     private DriveCN drive;
     // Mutex
     private Semaphore mutex;
@@ -47,7 +49,7 @@ public class DisenadorCN extends Thread{
             
             try {
                 // Produce cada 4 dias
-                sleep(this.duracionDia * 4);
+                sleep(this.duracionDia * diasProduccion);
                 obtenerSalario();
                 trabajar();
             } catch (InterruptedException ex) {
@@ -57,7 +59,9 @@ public class DisenadorCN extends Thread{
     }
     
     public void obtenerSalario(){
-        this.salarioTotal += this.salario*24;
+        this.salarioTotal += this.salario*horasPagadas*diasProduccion;
+        Interfaces.VentanaSimulacion.salarioDisenadoresCN.setText(Integer.toString(salarioTotal));
+
     }
     
     public void trabajar(){

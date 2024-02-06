@@ -21,6 +21,8 @@ public class PlotTwistCN extends Thread{
     private int salarioTotal;
     private int duracionDia;
     private int salario = 34;
+    private int diasProduccion = 2;
+    private int horasPagadas = 24;
     private DriveCN drive;
     // Mutex
     private Semaphore mutex;
@@ -47,7 +49,7 @@ public class PlotTwistCN extends Thread{
             
             try {
                 // Produce cada 2 dias
-                sleep(this.duracionDia * 2);
+                sleep(this.duracionDia * diasProduccion);
                 obtenerSalario();
                 trabajar();
             } catch (InterruptedException ex) {
@@ -57,7 +59,8 @@ public class PlotTwistCN extends Thread{
     }
     
     public void obtenerSalario(){
-        this.salarioTotal += this.salario*24;
+        this.salarioTotal += this.salario*horasPagadas*diasProduccion;
+        Interfaces.VentanaSimulacion.salarioPlotTwistsCN.setText(Integer.toString(salarioTotal));
     }
     
     public void trabajar(){

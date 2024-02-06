@@ -5,6 +5,7 @@
  */
 package Clases;
 
+import Interfaces.VentanaSimulacion;
 import static java.lang.Thread.sleep;
 import java.util.concurrent.Semaphore;
 import java.util.logging.Level;
@@ -21,6 +22,8 @@ public class GuionistaSC extends Thread{
     private int salarioTotal;
     private int duracionDia;
     private int salario = 20;
+    private int diasProduccion = 3;
+    private int horasPagadas = 24;
     private DriveSC drive;
     // Mutex
     private Semaphore mutex;
@@ -47,7 +50,7 @@ public class GuionistaSC extends Thread{
             
             try {
                 // Produce cada 3 dias
-                sleep(this.duracionDia * 3);
+                sleep(this.duracionDia * diasProduccion);
                 obtenerSalario();
                 trabajar();
             } catch (InterruptedException ex) {
@@ -57,7 +60,9 @@ public class GuionistaSC extends Thread{
     }
     
     public void obtenerSalario(){
-        this.salarioTotal += this.salario*24;
+        this.salarioTotal += this.salario*horasPagadas*diasProduccion;
+        Interfaces.VentanaSimulacion.salarioGuionistasSC.setText(Integer.toString(salarioTotal));
+
     }
     
     public void trabajar(){
