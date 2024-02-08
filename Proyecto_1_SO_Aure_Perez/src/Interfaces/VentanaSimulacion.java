@@ -149,7 +149,8 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        
+        // Se deshabilitan los botones de ambos estudios
+        // Botones agregar/eliminar trabajadores Cartoon Network
         agregarGuionistaCN.setEnabled(false);
         agregarDisenadorCN.setEnabled(false);
         agregarAnimadorCN.setEnabled(false);
@@ -163,7 +164,22 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         eliminarActorCN.setEnabled(false);
         eliminarPlotTwistCN.setEnabled(false);
         eliminarEnsambladorCN.setEnabled(false);
-        // 
+        
+        // Botones agregar/eliminar trabajadores Star Channel
+        agregarGuionistaSC.setEnabled(false);
+        agregarDisenadorSC.setEnabled(false);
+        agregarAnimadorSC.setEnabled(false);
+        agregarActorSC.setEnabled(false);
+        agregarPlotTwistSC.setEnabled(false);
+        agregarEnsambladorSC.setEnabled(false);
+        
+        eliminarGuionistaSC.setEnabled(false);
+        eliminarDisenadorSC.setEnabled(false);
+        eliminarAnimadorSC.setEnabled(false);
+        eliminarActorSC.setEnabled(false);
+        eliminarPlotTwistSC.setEnabled(false);
+        eliminarEnsambladorSC.setEnabled(false);
+        
         this.driveCN = new DriveCN();
         this.driveSC = new DriveSC();
         // Se crea el objeto csv
@@ -409,6 +425,215 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         }
     }
     
+    public void agregarTrabajadorCN(JLabel tipoTrabajador, int tipo){
+        // Calcular la cantidad de trabajadores concurrentes
+        int numTrabajadoresCN = Integer.parseInt(numGuionistasCN.getText()) + 
+                                Integer.parseInt(numDisenadoresCN.getText()) + 
+                                Integer.parseInt(numAnimadoresCN.getText()) + 
+                                Integer.parseInt(numActoresCN.getText()) + 
+                                Integer.parseInt(numPlotTwistsCN.getText()) + 
+                                Integer.parseInt(numEnsambladoresCN.getText());
+        // Validacion para que no exceda el numero de trabajadores permitidos concurrentemente
+            if (numTrabajadoresCN == VentanaParametros.maxTrabajadoresCN) {
+                JOptionPane.showMessageDialog(null, "El número de trabajadores en Cartoon Network no puede ser mayor a " + "(" + VentanaParametros.maxTrabajadoresCN + ")");
+                return;
+            }
+        // Cambia la cantidad de trabajadores en interfaz
+        String numeroTrabajadores = tipoTrabajador.getText();
+        int entero= Integer.parseInt(numeroTrabajadores);
+        entero++;
+        numeroTrabajadores= Integer.toString(entero);
+        tipoTrabajador.setText(numeroTrabajadores);
+        
+        switch (tipo) {
+            
+            case 0: // Guionista
+                GuionistaCN hiloGuionistaCN= new GuionistaCN(0, duracionDia, driveCN, mutexGuionesCN, driveDisponibleGuionesCN, partesDisponiblesGuionesCN, salarioGuionistasCN);
+                // Recorre cada posicion del array y pregunta si el elemento de esa posicion es null, 
+                // (si hay un algo en una posicion i no sera null, pero si esta vacia es que puede ser 
+                // introducido un nuevo elemento, es decir, un nuevo trabajador/hilo)
+                for (int i = 0; i < guionistasCN.length; i++) {
+                    if (guionistasCN[i] == null) {
+                        guionistasCN[i] = hiloGuionistaCN;
+                        break;
+                    }
+                }
+                hiloGuionistaCN.start();
+                break;
+            case 1: // Disenador
+                DisenadorCN hiloDisenadorCN= new DisenadorCN(1, duracionDia, driveCN, mutexEscenariosCN, driveDisponibleEscenariosCN, partesDisponiblesEscenariosCN, salarioDisenadoresCN);
+                // Recorre cada posicion del array y pregunta si el elemento de esa posicion es null, 
+                // (si hay un algo en una posicion i no sera null, pero si esta vacia es que puede ser 
+                // introducido un nuevo elemento, es decir, un nuevo trabajador/hilo)
+                for (int i = 0; i < disenadoresCN.length; i++) {
+                    if (disenadoresCN[i] == null) {
+                        disenadoresCN[i] = hiloDisenadorCN;
+                        break;
+                    }
+                }
+                hiloDisenadorCN.start();
+                break;
+            case 2: // Animador
+                AnimadorCN hiloAnimadorCN= new AnimadorCN(2, duracionDia, driveCN, mutexAnimacionesCN, driveDisponibleAnimacionesCN, partesDisponiblesAnimacionesCN, salarioAnimadoresCN);
+                // Recorre cada posicion del array y pregunta si el elemento de esa posicion es null, 
+                // (si hay un algo en una posicion i no sera null, pero si esta vacia es que puede ser 
+                // introducido un nuevo elemento, es decir, un nuevo trabajador/hilo)
+                for (int i = 0; i < animadoresCN.length; i++) {
+                    if (animadoresCN[i] == null) {
+                        animadoresCN[i] = hiloAnimadorCN;
+                        break;
+                    }
+                }
+                hiloAnimadorCN.start();
+                break;
+            case 3: // Actor
+                ActorCN hiloActorCN= new ActorCN(3, duracionDia, driveCN, mutexDoblajesCN, driveDisponibleDoblajesCN, partesDisponiblesDoblajesCN, salarioActoresCN);
+                // Recorre cada posicion del array y pregunta si el elemento de esa posicion es null, 
+                // (si hay un algo en una posicion i no sera null, pero si esta vacia es que puede ser 
+                // introducido un nuevo elemento, es decir, un nuevo trabajador/hilo)
+                for (int i = 0; i < actoresCN.length; i++) {
+                    if (actoresCN[i] == null) {
+                        actoresCN[i] = hiloActorCN;
+                        break;
+                    }
+                }
+                hiloActorCN.start();
+                break;
+            case 4: // Guionista de Plot Twist
+                PlotTwistCN hiloPlotTwistCN= new PlotTwistCN(4, duracionDia, driveCN, mutexPlotTwistsCN, driveDisponiblePlotTwistsCN, partesDisponiblesPlotTwistsCN, salarioPlotTwistsCN);
+                // Recorre cada posicion del array y pregunta si el elemento de esa posicion es null, 
+                // (si hay un algo en una posicion i no sera null, pero si esta vacia es que puede ser 
+                // introducido un nuevo elemento, es decir, un nuevo trabajador/hilo)
+                for (int i = 0; i < plottwistsCN.length; i++) {
+                    if (plottwistsCN[i] == null) {
+                        plottwistsCN[i] = hiloPlotTwistCN;
+                        break;
+                    }
+                }
+                hiloPlotTwistCN.start();
+                break;
+            case 5: // Ensamblador
+                EnsambladorCN hiloEnsambladorCN= new EnsambladorCN(5, duracionDia, driveCN, mutexCapitulosCN, mutexGuionesCN, driveDisponibleGuionesCN, partesDisponiblesGuionesCN, mutexEscenariosCN, driveDisponibleEscenariosCN, partesDisponiblesEscenariosCN, mutexAnimacionesCN, driveDisponibleAnimacionesCN, partesDisponiblesAnimacionesCN, mutexDoblajesCN, driveDisponibleDoblajesCN, partesDisponiblesDoblajesCN, mutexPlotTwistsCN, driveDisponiblePlotTwistsCN, partesDisponiblesPlotTwistsCN, salarioEnsambladoresCN);
+                // Recorre cada posicion del array y pregunta si el elemento de esa posicion es null, 
+                // (si hay un algo en una posicion i no sera null, pero si esta vacia es que puede ser 
+                // introducido un nuevo elemento, es decir, un nuevo trabajador/hilo)
+                for (int i = 0; i < ensambladoresCN.length; i++) {
+                    if (ensambladoresCN[i] == null) {
+                        ensambladoresCN[i] = hiloEnsambladorCN;
+                        break;
+                    }
+                }
+                hiloEnsambladorCN.start();
+                break;
+            default:
+                break;
+        }
+    }
+    
+    public void agregarTrabajadorSC(JLabel tipoTrabajador, int tipo){
+        // Calcular la cantidad de trabajadores concurrentes
+        int numTrabajadoresSC = Integer.parseInt(numGuionistasSC.getText()) + 
+                                Integer.parseInt(numDisenadoresSC.getText()) + 
+                                Integer.parseInt(numAnimadoresSC.getText()) + 
+                                Integer.parseInt(numActoresSC.getText()) + 
+                                Integer.parseInt(numPlotTwistsSC.getText()) + 
+                                Integer.parseInt(numEnsambladoresSC.getText());
+        // Validacion para que no exceda el numero de trabajadores permitidos concurrentemente
+            if (numTrabajadoresSC == VentanaParametros.maxTrabajadoresSC) {
+                JOptionPane.showMessageDialog(null, "El número de trabajadores en Star Channel no puede ser mayor a " + "(" + VentanaParametros.maxTrabajadoresSC + ")");
+                return;
+            }
+        // Cambia la cantidad de trabajadores en interfaz
+        String numeroTrabajadores = tipoTrabajador.getText();
+        int entero= Integer.parseInt(numeroTrabajadores);
+        entero++;
+        numeroTrabajadores= Integer.toString(entero);
+        tipoTrabajador.setText(numeroTrabajadores);
+        
+        switch (tipo) {
+            
+            case 0: // Guionista
+                GuionistaSC hiloGuionistaSC= new GuionistaSC(0, duracionDia, driveSC, mutexGuionesSC, driveDisponibleGuionesSC, partesDisponiblesGuionesSC, salarioGuionistasSC);
+                // Recorre cada posicion del array y pregunta si el elemento de esa posicion es null, 
+                // (si hay un algo en una posicion i no sera null, pero si esta vacia es que puede ser 
+                // introducido un nuevo elemento, es decir, un nuevo trabajador/hilo)
+                for (int i = 0; i < guionistasSC.length; i++) {
+                    if (guionistasSC[i] == null) {
+                        guionistasSC[i] = hiloGuionistaSC;
+                        break;
+                    }
+                }
+                hiloGuionistaSC.start();
+                break;
+            case 1: // Disenador
+                DisenadorSC hiloDisenadorSC= new DisenadorSC(1, duracionDia, driveSC, mutexEscenariosSC, driveDisponibleEscenariosSC, partesDisponiblesEscenariosSC, salarioDisenadoresSC);
+                // Recorre cada posicion del array y pregunta si el elemento de esa posicion es null, 
+                // (si hay un algo en una posicion i no sera null, pero si esta vacia es que puede ser 
+                // introducido un nuevo elemento, es decir, un nuevo trabajador/hilo)
+                for (int i = 0; i < disenadoresSC.length; i++) {
+                    if (disenadoresSC[i] == null) {
+                        disenadoresSC[i] = hiloDisenadorSC;
+                        break;
+                    }
+                }
+                hiloDisenadorSC.start();
+                break;
+            case 2: // Animador
+                AnimadorSC hiloAnimadorSC= new AnimadorSC(2, duracionDia, driveSC, mutexAnimacionesSC, driveDisponibleAnimacionesSC, partesDisponiblesAnimacionesSC, salarioAnimadoresSC);
+                // Recorre cada posicion del array y pregunta si el elemento de esa posicion es null, 
+                // (si hay un algo en una posicion i no sera null, pero si esta vacia es que puede ser 
+                // introducido un nuevo elemento, es decir, un nuevo trabajador/hilo)
+                for (int i = 0; i < animadoresSC.length; i++) {
+                    if (animadoresSC[i] == null) {
+                        animadoresSC[i] = hiloAnimadorSC;
+                        break;
+                    }
+                }
+                hiloAnimadorSC.start();
+                break;
+            case 3: // Actor
+                ActorSC hiloActorSC= new ActorSC(3, duracionDia, driveSC, mutexDoblajesSC, driveDisponibleDoblajesSC, partesDisponiblesDoblajesSC, salarioActoresSC);
+                // Recorre cada posicion del array y pregunta si el elemento de esa posicion es null, 
+                // (si hay un algo en una posicion i no sera null, pero si esta vacia es que puede ser 
+                // introducido un nuevo elemento, es decir, un nuevo trabajador/hilo)
+                for (int i = 0; i < actoresSC.length; i++) {
+                    if (actoresSC[i] == null) {
+                        actoresSC[i] = hiloActorSC;
+                        break;
+                    }
+                }
+                hiloActorSC.start();
+                break;
+            case 4: // Guionista de Plot Twist
+                PlotTwistSC hiloPlotTwistSC= new PlotTwistSC(4, duracionDia, driveSC, mutexPlotTwistsSC, driveDisponiblePlotTwistsSC, partesDisponiblesPlotTwistsSC, salarioPlotTwistsSC);
+                // Recorre cada posicion del array y pregunta si el elemento de esa posicion es null, 
+                // (si hay un algo en una posicion i no sera null, pero si esta vacia es que puede ser 
+                // introducido un nuevo elemento, es decir, un nuevo trabajador/hilo)
+                for (int i = 0; i < plottwistsSC.length; i++) {
+                    if (plottwistsSC[i] == null) {
+                        plottwistsSC[i] = hiloPlotTwistSC;
+                        break;
+                    }
+                }
+                hiloPlotTwistSC.start();
+                break;
+            case 5: // Ensamblador
+                EnsambladorSC hiloEnsambladorSC= new EnsambladorSC(5, duracionDia, driveSC, mutexCapitulosSC, mutexGuionesSC, driveDisponibleGuionesSC, partesDisponiblesGuionesSC, mutexEscenariosSC, driveDisponibleEscenariosSC, partesDisponiblesEscenariosSC, mutexAnimacionesSC, driveDisponibleAnimacionesSC, partesDisponiblesAnimacionesSC, mutexDoblajesSC, driveDisponibleDoblajesSC, partesDisponiblesDoblajesSC, mutexPlotTwistsSC, driveDisponiblePlotTwistsSC, partesDisponiblesPlotTwistsSC, salarioEnsambladoresSC);
+                // Recorre cada posicion del array y pregunta si el elemento de esa posicion es null, 
+                // (si hay un algo en una posicion i no sera null, pero si esta vacia es que puede ser 
+                // introducido un nuevo elemento, es decir, un nuevo trabajador/hilo)
+                for (int i = 0; i < ensambladoresSC.length; i++) {
+                    if (ensambladoresSC[i] == null) {
+                        ensambladoresSC[i] = hiloEnsambladorSC;
+                        break;
+                    }
+                }
+                hiloEnsambladorSC.start();
+                break;
+            default:
+                break;
+        }
+    }
     
 
     /**
@@ -1669,27 +1894,33 @@ public class VentanaSimulacion extends javax.swing.JFrame {
     }//GEN-LAST:event_eliminarGuionistaCNActionPerformed
 
     private void agregarGuionistaCNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarGuionistaCNActionPerformed
+        agregarTrabajadorCN(numGuionistasCN,0);
     }//GEN-LAST:event_agregarGuionistaCNActionPerformed
 
     private void eliminarDisenadorCNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarDisenadorCNActionPerformed
     }//GEN-LAST:event_eliminarDisenadorCNActionPerformed
 
     private void agregarDisenadorCNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarDisenadorCNActionPerformed
+        agregarTrabajadorCN(numDisenadoresCN,1);
+
     }//GEN-LAST:event_agregarDisenadorCNActionPerformed
 
     private void eliminarAnimadorCNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarAnimadorCNActionPerformed
     }//GEN-LAST:event_eliminarAnimadorCNActionPerformed
 
     private void agregarAnimadorCNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarAnimadorCNActionPerformed
+        agregarTrabajadorCN(numAnimadoresCN,2);
     }//GEN-LAST:event_agregarAnimadorCNActionPerformed
 
     private void eliminarActorCNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActorCNActionPerformed
     }//GEN-LAST:event_eliminarActorCNActionPerformed
 
     private void agregarActorCNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActorCNActionPerformed
+        agregarTrabajadorCN(numActoresCN,3);
     }//GEN-LAST:event_agregarActorCNActionPerformed
 
     private void agregarEnsambladorCNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarEnsambladorCNActionPerformed
+        agregarTrabajadorCN(numEnsambladoresCN,5);
     }//GEN-LAST:event_agregarEnsambladorCNActionPerformed
 
     private void eliminarEnsambladorCNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarEnsambladorCNActionPerformed
@@ -1697,6 +1928,8 @@ public class VentanaSimulacion extends javax.swing.JFrame {
     }//GEN-LAST:event_eliminarEnsambladorCNActionPerformed
 
     private void iniciarEstudiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarEstudiosActionPerformed
+        
+        // Se habilitan los botones de ambos estudios 
         agregarGuionistaCN.setEnabled(true);
         agregarDisenadorCN.setEnabled(true);
         agregarAnimadorCN.setEnabled(true);
@@ -1711,11 +1944,26 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         eliminarPlotTwistCN.setEnabled(true);
         eliminarEnsambladorCN.setEnabled(true);
         
+        agregarGuionistaSC.setEnabled(true);
+        agregarDisenadorSC.setEnabled(true);
+        agregarAnimadorSC.setEnabled(true);
+        agregarActorSC.setEnabled(true);
+        agregarPlotTwistSC.setEnabled(true);
+        agregarEnsambladorSC.setEnabled(true);
+        
+        eliminarGuionistaSC.setEnabled(true);
+        eliminarDisenadorSC.setEnabled(true);
+        eliminarAnimadorSC.setEnabled(true);
+        eliminarActorSC.setEnabled(true);
+        eliminarPlotTwistSC.setEnabled(true);
+        eliminarEnsambladorSC.setEnabled(true);
+        
         
         // Se inician los hilos de los arrays de trabajadores/ensambladores, PM y director 
         // Cartoon Network
         // Inician los guionistas
         for (int i = 0; i < guionistasCN.length; i++) {
+            // Va recorriendo el array y si la posicion i no esta vacia es que tiene un hilo y lo inicia
             if (guionistasCN[i] != null) {
                 guionistasCN[i].start();
             }
@@ -1800,6 +2048,7 @@ public class VentanaSimulacion extends javax.swing.JFrame {
     }//GEN-LAST:event_iniciarEstudiosActionPerformed
 
     private void agregarPlotTwistCNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarPlotTwistCNActionPerformed
+        agregarTrabajadorCN(numPlotTwistsCN,4);
     }//GEN-LAST:event_agregarPlotTwistCNActionPerformed
 
     private void eliminarPlotTwistCNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarPlotTwistCNActionPerformed
@@ -1831,7 +2080,7 @@ public class VentanaSimulacion extends javax.swing.JFrame {
     }//GEN-LAST:event_aggDashboardActionPerformed
 
     private void agregarGuionistaSCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarGuionistaSCActionPerformed
-        // TODO add your handling code here:
+        agregarTrabajadorSC(numGuionistasSC, 0);
     }//GEN-LAST:event_agregarGuionistaSCActionPerformed
 
     private void eliminarGuionistaSCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarGuionistaSCActionPerformed
@@ -1843,11 +2092,11 @@ public class VentanaSimulacion extends javax.swing.JFrame {
     }//GEN-LAST:event_eliminarDisenadorSCActionPerformed
 
     private void agregarDisenadorSCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarDisenadorSCActionPerformed
-        // TODO add your handling code here:
+        agregarTrabajadorSC(numDisenadoresSC, 1);
     }//GEN-LAST:event_agregarDisenadorSCActionPerformed
 
     private void agregarAnimadorSCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarAnimadorSCActionPerformed
-        // TODO add your handling code here:
+        agregarTrabajadorSC(numAnimadoresSC, 2);
     }//GEN-LAST:event_agregarAnimadorSCActionPerformed
 
     private void eliminarAnimadorSCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarAnimadorSCActionPerformed
@@ -1859,11 +2108,11 @@ public class VentanaSimulacion extends javax.swing.JFrame {
     }//GEN-LAST:event_eliminarActorSCActionPerformed
 
     private void agregarActorSCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActorSCActionPerformed
-        // TODO add your handling code here:
+        agregarTrabajadorSC(numActoresSC, 3);
     }//GEN-LAST:event_agregarActorSCActionPerformed
 
     private void agregarPlotTwistSCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarPlotTwistSCActionPerformed
-        // TODO add your handling code here:
+        agregarTrabajadorSC(numPlotTwistsSC, 4);
     }//GEN-LAST:event_agregarPlotTwistSCActionPerformed
 
     private void eliminarPlotTwistSCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarPlotTwistSCActionPerformed
@@ -1875,7 +2124,7 @@ public class VentanaSimulacion extends javax.swing.JFrame {
     }//GEN-LAST:event_eliminarEnsambladorSCActionPerformed
 
     private void agregarEnsambladorSCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarEnsambladorSCActionPerformed
-        // TODO add your handling code here:
+        agregarTrabajadorSC(numEnsambladoresSC, 5);
     }//GEN-LAST:event_agregarEnsambladorSCActionPerformed
 
     /**
