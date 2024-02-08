@@ -23,11 +23,12 @@ public class EnsambladorSC extends Thread{
     private int salario = 50;
     private int diasProduccion = 2;
     private int horasPagadas = 24;
-    //Cantidad de partes necesarias para ensamblar un capitulo para Cartoon Network
+    //Cantidad de partes necesarias para ensamblar un capitulo para Star Channel
     private int numGuiones = 2;
     private int numEscenarios = 3;
     private int numAnimaciones = 4;
     private int numDoblajes = 6;
+    private int numPlotTwists = 5;
     
     private DriveSC drive;
     // Mutex para el ensamblado de capitulos
@@ -100,57 +101,133 @@ public class EnsambladorSC extends Thread{
     
     public void ensamblar(){
         try {
-            // Guiones
-            // Se toma la parte del capitulo para poder ensamblar   
-            this.partesDisponiblesGuiones.acquire(numGuiones);
-            // Exclusion mutua para que solo pueda ingresar un ensamblador a la vez
-            this.mutexGuiones.acquire(); //wait
-            // Seccion critica donde se anade una nueva parte del capitulo
-            this.drive.takePart(0);//critica
-            // Se libera el acceso a la seccion critica
-            this.mutexGuiones.release();// signal
-            // Se anade un espacio disponible para la produccion 
-            this.driveDisponibleGuiones.release(numGuiones);
+            if (drive.contadorCapitulosEstandar == 6) {
+                // Ensamblado capitulos con Plot Twist 
+                
+                // Guiones
+                // Se toma la parte del capitulo para poder ensamblar   
+                this.partesDisponiblesGuiones.acquire(numGuiones);
+                // Exclusion mutua para que solo pueda ingresar un ensamblador a la vez
+                this.mutexGuiones.acquire(); //wait
+                // Seccion critica donde se anade una nueva parte del capitulo
+                this.drive.takePart(0);//critica
+                // Se libera el acceso a la seccion critica
+                this.mutexGuiones.release();// signal
+                // Se anade un espacio disponible para la produccion 
+                this.driveDisponibleGuiones.release(numGuiones);
             
-            // Escenarios
-            // Se toma la parte del capitulo para poder ensamblar   
-            this.partesDisponiblesEscenarios.acquire(numEscenarios);
-            // Exclusion mutua para que solo pueda ingresar un ensamblador a la vez
-            this.mutexEscenarios.acquire(); //wait
-            // Seccion critica donde se anade una nueva parte del capitulo
-            this.drive.takePart(1);//critica
-            // Se libera el acceso a la seccion critica
-            this.mutexEscenarios.release();// signal
-            // Se anade un espacio disponible para la produccion 
-            this.driveDisponibleEscenarios.release(numEscenarios);
+                // Escenarios
+                // Se toma la parte del capitulo para poder ensamblar   
+                this.partesDisponiblesEscenarios.acquire(numEscenarios);
+                // Exclusion mutua para que solo pueda ingresar un ensamblador a la vez
+                this.mutexEscenarios.acquire(); //wait
+                // Seccion critica donde se anade una nueva parte del capitulo
+                this.drive.takePart(1);//critica
+                // Se libera el acceso a la seccion critica
+                this.mutexEscenarios.release();// signal
+                // Se anade un espacio disponible para la produccion 
+                this.driveDisponibleEscenarios.release(numEscenarios);
             
-            // Animaciones
-            // Se toma la parte del capitulo para poder ensamblar   
-            this.partesDisponiblesAnimaciones.acquire(numAnimaciones);
-            // Exclusion mutua para que solo pueda ingresar un ensamblador a la vez
-            this.mutexAnimaciones.acquire(); //wait
-            // Seccion critica donde se anade una nueva parte del capitulo
-            this.drive.takePart(2);//critica
-            // Se libera el acceso a la seccion critica
-            this.mutexAnimaciones.release();// signal
-            // Se anade un espacio disponible para la produccion 
-            this.driveDisponibleAnimaciones.release(numAnimaciones);
+                // Animaciones
+                // Se toma la parte del capitulo para poder ensamblar   
+                this.partesDisponiblesAnimaciones.acquire(numAnimaciones);
+                // Exclusion mutua para que solo pueda ingresar un ensamblador a la vez
+                this.mutexAnimaciones.acquire(); //wait
+                // Seccion critica donde se anade una nueva parte del capitulo
+                this.drive.takePart(2);//critica
+                // Se libera el acceso a la seccion critica
+                this.mutexAnimaciones.release();// signal
+                // Se anade un espacio disponible para la produccion 
+                this.driveDisponibleAnimaciones.release(numAnimaciones);
             
-            // Doblajes
-            // Se toma la parte del capitulo para poder ensamblar   
-            this.partesDisponiblesDoblajes.acquire(numDoblajes);
-            // Exclusion mutua para que solo pueda ingresar un ensamblador a la vez
-            this.mutexDoblajes.acquire(); //wait
-            // Seccion critica donde se anade una nueva parte del capitulo
-            this.drive.takePart(3);//critica
-            // Se libera el acceso a la seccion critica
-            this.mutexDoblajes.release();// signal
-            // Se anade un espacio disponible para la produccion 
-            this.driveDisponibleDoblajes.release(numDoblajes);
+                // Doblajes
+                // Se toma la parte del capitulo para poder ensamblar   
+                this.partesDisponiblesDoblajes.acquire(numDoblajes);
+                // Exclusion mutua para que solo pueda ingresar un ensamblador a la vez
+                this.mutexDoblajes.acquire(); //wait
+                // Seccion critica donde se anade una nueva parte del capitulo
+                this.drive.takePart(3);//critica
+                // Se libera el acceso a la seccion critica
+                this.mutexDoblajes.release();// signal
+                // Se anade un espacio disponible para la produccion 
+                this.driveDisponibleDoblajes.release(numDoblajes);
+                
+                // Plot Twists
+                // Se toma la parte del capitulo para poder ensamblar   
+                this.partesDisponiblesPlotTwists.acquire(numPlotTwists);
+                // Exclusion mutua para que solo pueda ingresar un ensamblador a la vez
+                this.mutexPlotTwists.acquire(); //wait
+                // Seccion critica donde se anade una nueva parte del capitulo
+                this.drive.takePart(4);//critica
+                // Se libera el acceso a la seccion critica
+                this.mutexPlotTwists.release();// signal
+                // Se anade un espacio disponible para la produccion 
+                this.driveDisponiblePlotTwists.release(numPlotTwists);
             
-            this.mutex.acquire();
-            this.drive.addPart(this.tipo);
-            this.mutex.release();
+                this.mutex.acquire();
+                this.drive.addPart(6);
+                this.mutex.release();
+                
+                // Se reinicia el contador de Capitulos estandar, para permitir que se vuelvan a ensamblar capitulos Estandar 
+                drive.contadorCapitulosEstandar = 0;
+                
+            } else {
+                
+                // Ensamblado capitulos normales
+                
+                // Guiones
+                // Se toma la parte del capitulo para poder ensamblar   
+                this.partesDisponiblesGuiones.acquire(numGuiones);
+                // Exclusion mutua para que solo pueda ingresar un ensamblador a la vez
+                this.mutexGuiones.acquire(); //wait
+                // Seccion critica donde se anade una nueva parte del capitulo
+                this.drive.takePart(0);//critica
+                // Se libera el acceso a la seccion critica
+                this.mutexGuiones.release();// signal
+                // Se anade un espacio disponible para la produccion 
+                this.driveDisponibleGuiones.release(numGuiones);
+            
+                // Escenarios
+                // Se toma la parte del capitulo para poder ensamblar   
+                this.partesDisponiblesEscenarios.acquire(numEscenarios);
+                // Exclusion mutua para que solo pueda ingresar un ensamblador a la vez
+                this.mutexEscenarios.acquire(); //wait
+                // Seccion critica donde se anade una nueva parte del capitulo
+                this.drive.takePart(1);//critica
+                // Se libera el acceso a la seccion critica
+                this.mutexEscenarios.release();// signal
+                // Se anade un espacio disponible para la produccion 
+                this.driveDisponibleEscenarios.release(numEscenarios);
+            
+                // Animaciones
+                // Se toma la parte del capitulo para poder ensamblar   
+                this.partesDisponiblesAnimaciones.acquire(numAnimaciones);
+                // Exclusion mutua para que solo pueda ingresar un ensamblador a la vez
+                this.mutexAnimaciones.acquire(); //wait
+                // Seccion critica donde se anade una nueva parte del capitulo
+                this.drive.takePart(2);//critica
+                // Se libera el acceso a la seccion critica
+                this.mutexAnimaciones.release();// signal
+                // Se anade un espacio disponible para la produccion 
+                this.driveDisponibleAnimaciones.release(numAnimaciones);
+            
+                // Doblajes
+                // Se toma la parte del capitulo para poder ensamblar   
+                this.partesDisponiblesDoblajes.acquire(numDoblajes);
+                // Exclusion mutua para que solo pueda ingresar un ensamblador a la vez
+                this.mutexDoblajes.acquire(); //wait
+                // Seccion critica donde se anade una nueva parte del capitulo
+                this.drive.takePart(3);//critica
+                // Se libera el acceso a la seccion critica
+                this.mutexDoblajes.release();// signal
+                // Se anade un espacio disponible para la produccion 
+                this.driveDisponibleDoblajes.release(numDoblajes);
+            
+                this.mutex.acquire();
+                this.drive.addPart(this.tipo);
+                this.mutex.release();
+            }
+            
 
             
             

@@ -6,6 +6,7 @@
 package Clases;
 
 import Interfaces.VentanaSimulacion;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -13,15 +14,18 @@ import Interfaces.VentanaSimulacion;
  */
 public class DriveCN {
     
+    public int contadorCapitulosEstandar;
+    
     public int guiones;
     public int escenarios;
     public int animaciones;
     public int doblajes;
     public int plottwists;
     public int capitulos;
+    public int capitulosPlotTwist;
     
     public DriveCN(){ 
-        
+        this.contadorCapitulosEstandar = 0;
         // Cantidad de partes producidas de cada tipo
         this.guiones = 0;
         this.escenarios = 0;
@@ -29,6 +33,7 @@ public class DriveCN {
         this.doblajes = 0;
         this.plottwists = 0;
         this.capitulos = 0;
+        this.capitulosPlotTwist = 0;
     }
     
     public void addPart(int tipo){ //añade al drive segun el tipo
@@ -60,8 +65,15 @@ public class DriveCN {
                 break;
             case 5: // Capitulo
                 this.capitulos += 1;
+                // Contador de capitulos estandar, que va a aumentando de 1 en 1 para permitir que eventualmente se creen capitulos con plot twist
+                this.contadorCapitulosEstandar ++;
                 Interfaces.VentanaSimulacion.cantidadCapitulosCN.setText(Integer.toString(capitulos));
                 System.out.println("capitulos disponibles CN:" + this.capitulos);
+                break;
+            case 6: // Capitulo con Plot Twist
+                this.capitulosPlotTwist += 1;
+                Interfaces.VentanaSimulacion.cantidadCapitulosPTCN.setText(Integer.toString(capitulosPlotTwist));
+                System.out.println("capitulos disponibles CN:" + this.capitulosPlotTwist);
                 break;
             default:
                 break;

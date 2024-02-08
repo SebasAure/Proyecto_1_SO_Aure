@@ -13,12 +13,15 @@ import Interfaces.VentanaSimulacion;
  */
 public class DriveSC {
     
+    public int contadorCapitulosEstandar;
+
     public int guiones;
     public int escenarios;
     public int animaciones;
     public int doblajes;
     public int plottwists;
     public int capitulos;
+    public int capitulosPlotTwist;
     
     public DriveSC(){ 
         
@@ -29,6 +32,7 @@ public class DriveSC {
         this.doblajes = 0;
         this.plottwists = 0;
         this.capitulos = 0;
+        this.capitulosPlotTwist = 0;
     }
     
     public void addPart(int tipo){ //añade al drive segun el tipo
@@ -60,8 +64,15 @@ public class DriveSC {
                 break;
             case 5: // Capitulo
                 this.capitulos += 1;
+                // Contador de capitulos estandar, que va a aumentando de 1 en 1 para permitir que eventualmente se creen capitulos con plot twist
+                this.contadorCapitulosEstandar ++;
                 Interfaces.VentanaSimulacion.cantidadCapitulosSC.setText(Integer.toString(capitulos));
                 System.out.println("capitulos disponibles SC:" + this.capitulos);
+                break;
+            case 6: // Capitulo con Plot Twist
+                this.capitulosPlotTwist += 1;
+                Interfaces.VentanaSimulacion.cantidadCapitulosPTSC.setText(Integer.toString(capitulosPlotTwist));
+                System.out.println("capitulos disponibles SC:" + this.capitulosPlotTwist);
                 break;
             default:
                 break;
