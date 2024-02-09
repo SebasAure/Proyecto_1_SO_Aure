@@ -48,7 +48,7 @@ public class GuionistaSC extends Thread{
     
     @Override
     public void run(){
-        while(this.activo) {
+        while(this.activo && (Interfaces.VentanaSimulacion.diasDespachoSC > 0)) {
             
             try {
                 // Produce cada 3 dias

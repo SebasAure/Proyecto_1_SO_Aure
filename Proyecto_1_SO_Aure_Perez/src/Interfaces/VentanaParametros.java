@@ -517,6 +517,11 @@ public class VentanaParametros extends javax.swing.JFrame {
                 guardado = false;
                 JOptionPane.showMessageDialog(null,"Debe haber al menos 1 tipo de trabajador por estudio");
                 return;
+            //Validacion minimo 1 tipo de trabajador por estudio    
+            } else if ((Integer.parseInt(maxGuiones.getText()) < 6) || (Integer.parseInt(maxEscenarios.getText()) < 6) || (Integer.parseInt(maxAnimaciones.getText()) < 6) || (Integer.parseInt(maxDoblajes.getText()) < 6) || (Integer.parseInt(maxPlotTwits.getText()) < 6)){
+                guardado = false;
+                JOptionPane.showMessageDialog(null,"Debe haber una capacidad minima de (6) elementos por tipo de Drive");
+                return;
             // Validacion duracion de dias mayores o iguales a 1
             } else if ((Integer.parseInt(duracionDia.getText()) < 1)){
                 guardado = false;

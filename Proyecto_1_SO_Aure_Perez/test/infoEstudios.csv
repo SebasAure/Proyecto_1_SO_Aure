@@ -1,6 +1,6 @@
 --TIEMPO--
 duracionDia,1000
-diaDespacho,1
+diaDespacho,5
 --DRIVE--
 guionesDrive,25
 escenariosDrive,20
@@ -8,7 +8,7 @@ animacionesDrive,55
 doblajesDrive,35
 plotTwitsDrive,10
 --TRABAJADORES CN--
-guionistasCN,10
+guionistasCN,1
 disenadoresCN,1
 animadoresCN,1
 actoresCN,1

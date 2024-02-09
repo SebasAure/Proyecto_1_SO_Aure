@@ -47,7 +47,7 @@ public class ActorSC extends Thread{
     
     @Override
     public void run(){
-        while(this.activo) {
+        while(this.activo && (Interfaces.VentanaSimulacion.diasDespachoSC > 0)) {
             
             try {
                 // Produce cada dia (pero como produce 3 al dia es lo mismo que produzca 1 parte cada tercio del dia)

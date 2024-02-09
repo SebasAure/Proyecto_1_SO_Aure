@@ -47,7 +47,7 @@ public class ActorCN extends Thread{
     
     @Override
     public void run(){
-        while(this.activo) {
+        while(this.activo && (Interfaces.VentanaSimulacion.diasDespachoCN > 0)) {
             
             try {
                 
