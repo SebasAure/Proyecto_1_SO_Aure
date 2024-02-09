@@ -5,6 +5,7 @@
  */
 package Clases;
 
+import Interfaces.VentanaSimulacion;
 import static java.lang.Thread.sleep;
 import java.util.concurrent.Semaphore;
 import java.util.logging.Level;
@@ -88,8 +89,8 @@ public class ProjectManagerSC extends Thread{
     
     public void obtenerSalario(){
         
-        this.salarioTotal += this.salario*horasPagadas;
-        Interfaces.VentanaSimulacion.salarioProjectManagerSC.setText(Integer.toString(salarioTotal));
+        VentanaSimulacion.sueldoProjectManagerSC += this.salario*horasPagadas;
+        Interfaces.VentanaSimulacion.salarioProjectManagerSC.setText(Integer.toString(VentanaSimulacion.sueldoProjectManagerSC));
         
     }
     

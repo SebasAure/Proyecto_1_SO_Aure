@@ -5,6 +5,7 @@
  */
 package Clases;
 
+import Interfaces.VentanaSimulacion;
 import static java.lang.Thread.sleep;
 import java.util.concurrent.Semaphore;
 import java.util.logging.Level;
@@ -17,8 +18,6 @@ import javax.swing.JLabel;
  */
 public class ProjectManagerCN extends Thread{
     
-    private volatile boolean activo;
-    private int tipo;
     private int salarioTotal;
     private int duracionDia;
     private int salario = 40;
@@ -34,7 +33,6 @@ public class ProjectManagerCN extends Thread{
     private JLabel salarioInterfaz;
     
     public ProjectManagerCN(int duracionDia, Semaphore mutexCountdown, JLabel salarioInterfaz){
-        this.activo = true;
         this.horasAnimeRevisando = 0;
         this.duracionDia = duracionDia;
         this.mutexCountdown = mutexCountdown;
@@ -51,10 +49,12 @@ public class ProjectManagerCN extends Thread{
                 while ((horasAnimeRevisando != 16) && (Interfaces.VentanaSimulacion.diasDespachoCN > 0)) {                    
                     // Ve anime
                     Interfaces.VentanaSimulacion.estadoProjectManagerCN.setText("Viendo anime");
+                    VentanaSimulacion.jugando = true;
                     sleep((long) (this.duracionDia*minutosAnime));
                     
                     // Ve revisa el proyecto
                     Interfaces.VentanaSimulacion.estadoProjectManagerCN.setText("Revisando el proyecto");
+                    VentanaSimulacion.jugando = false;
                     sleep((long) (this.duracionDia*minutosRevisando));
                     horasAnimeRevisando ++;
                 }
@@ -87,8 +87,8 @@ public class ProjectManagerCN extends Thread{
     
     public void obtenerSalario(){
         
-        this.salarioTotal += this.salario*horasPagadas;
-        Interfaces.VentanaSimulacion.salarioProjectManagerCN.setText(Integer.toString(salarioTotal));
+        VentanaSimulacion.sueldoProjectManagerCN += this.salario*horasPagadas;
+        Interfaces.VentanaSimulacion.salarioProjectManagerCN.setText(Integer.toString(VentanaSimulacion.sueldoProjectManagerCN));
         
     }
     

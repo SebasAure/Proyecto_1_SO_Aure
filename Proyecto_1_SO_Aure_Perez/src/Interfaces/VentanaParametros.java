@@ -82,7 +82,6 @@ public class VentanaParametros extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         irSimulacionButton = new javax.swing.JButton();
-        irDashboardButton = new javax.swing.JButton();
         irParametrosButton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
@@ -219,7 +218,7 @@ public class VentanaParametros extends javax.swing.JFrame {
         jLabel8.setText("Diseñadores");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 190, 210, 40));
 
-        jPanel3.setBackground(new java.awt.Color(51, 0, 102));
+        jPanel3.setBackground(new java.awt.Color(255, 153, 51));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         irSimulacionButton.setBackground(new java.awt.Color(0, 0, 0));
@@ -233,20 +232,7 @@ public class VentanaParametros extends javax.swing.JFrame {
                 irSimulacionButtonActionPerformed(evt);
             }
         });
-        jPanel3.add(irSimulacionButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 40, 130, 40));
-
-        irDashboardButton.setBackground(new java.awt.Color(0, 0, 0));
-        irDashboardButton.setFont(new java.awt.Font("NSimSun", 0, 14)); // NOI18N
-        irDashboardButton.setForeground(new java.awt.Color(204, 204, 204));
-        irDashboardButton.setText("Dashboard");
-        irDashboardButton.setBorder(null);
-        irDashboardButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        irDashboardButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                irDashboardButtonActionPerformed(evt);
-            }
-        });
-        jPanel3.add(irDashboardButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 90, 130, 40));
+        jPanel3.add(irSimulacionButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 40, 130, 80));
 
         irParametrosButton.setBackground(new java.awt.Color(0, 0, 0));
         irParametrosButton.setFont(new java.awt.Font("NSimSun", 0, 14)); // NOI18N
@@ -259,11 +245,11 @@ public class VentanaParametros extends javax.swing.JFrame {
                 irParametrosButtonActionPerformed(evt);
             }
         });
-        jPanel3.add(irParametrosButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 140, 130, 40));
+        jPanel3.add(irParametrosButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 140, 130, 80));
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 110, 510));
 
-        jPanel2.setBackground(new java.awt.Color(102, 0, 102));
+        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel12.setFont(new java.awt.Font("Poor Richard", 1, 18)); // NOI18N
@@ -271,7 +257,7 @@ public class VentanaParametros extends javax.swing.JFrame {
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel12.setText("ESTUDIOS");
         jLabel12.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 110, 40));
+        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 30));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 40));
 
@@ -439,14 +425,8 @@ public class VentanaParametros extends javax.swing.JFrame {
         simulacion.setVisible(true);
     }//GEN-LAST:event_irSimulacionButtonActionPerformed
 
-    private void irDashboardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irDashboardButtonActionPerformed
-        this.dispose();
-        VentanaDashboard dashboard = new VentanaDashboard();
-        dashboard.setVisible(true);
-    }//GEN-LAST:event_irDashboardButtonActionPerformed
-
     private void irParametrosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irParametrosButtonActionPerformed
-        this.setEnabled(false);
+        this.irParametrosButton.setEnabled(false);
     }//GEN-LAST:event_irParametrosButtonActionPerformed
 
     private void cambiarParamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cambiarParamActionPerformed
@@ -590,7 +570,6 @@ public class VentanaParametros extends javax.swing.JFrame {
     private javax.swing.JToggleButton cambiarParam;
     private javax.swing.JTextField diasLanzamiento;
     private javax.swing.JTextField duracionDia;
-    private javax.swing.JButton irDashboardButton;
     private javax.swing.JButton irParametrosButton;
     private javax.swing.JButton irSimulacionButton;
     private javax.swing.JLabel jLabel1;

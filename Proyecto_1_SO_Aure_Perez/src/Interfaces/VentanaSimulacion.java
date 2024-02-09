@@ -10,6 +10,8 @@ import Clases.ActorSC;
 import Clases.AnimadorCN;
 import Clases.AnimadorSC;
 import Clases.ArchivoCSV;
+import Clases.DirectorCN;
+import Clases.DirectorSC;
 import Clases.DisenadorCN;
 import Clases.DisenadorSC;
 import Clases.DriveCN;
@@ -43,6 +45,10 @@ public class VentanaSimulacion extends javax.swing.JFrame {
     public static int capacidadPlotTwists;
     public static DriveCN driveCN;
     public static DriveSC driveSC;
+    public static boolean jugando;
+    public static int faltasCN;
+    public static int faltasSC;
+
     
     // Semaforos Cartoon Network
     // Guiones
@@ -67,7 +73,7 @@ public class VentanaSimulacion extends javax.swing.JFrame {
     private static Semaphore partesDisponiblesPlotTwistsCN;
     // Ensambladores
     private static Semaphore mutexCapitulosCN;
-    // Project Manager
+    // Project Manager/Director
     private static Semaphore mutexCountdownCN;
     
     // Trabajadores Cartoon Network
@@ -120,7 +126,7 @@ public class VentanaSimulacion extends javax.swing.JFrame {
     private static Semaphore partesDisponiblesPlotTwistsSC;
     // Ensambladores
     private static Semaphore mutexCapitulosSC;
-    // Project Manager
+    // Project Manager/Director
     private static Semaphore mutexCountdownSC;
     
     // Trabajadores Star Channel
@@ -160,6 +166,7 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         this.setResizable(false);
         // Se deshabilitan los botones de ambos estudios
         // Botones agregar/eliminar trabajadores Cartoon Network
+        irSimulacionButton.setEnabled(false);
         agregarGuionistaCN.setEnabled(false);
         agregarDisenadorCN.setEnabled(false);
         agregarAnimadorCN.setEnabled(false);
@@ -193,6 +200,9 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         this.driveSC = new DriveSC();
         // Se crea el objeto csv
         this.csv = new ArchivoCSV();
+        this.jugando = jugando;
+        this.faltasCN = faltasCN;
+        this.faltasSC = faltasSC;
         
         // Se lee el csv y se guarda en infoEstudios
         String infoEstudios [] = csv.leerCSV();
@@ -223,6 +233,7 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         this.sueldoPlotTwistsCN = 0;
         this.sueldoEnsambladoresCN = 0;
         this.sueldoProjectManagerCN = 0;
+        this.sueldoDirectorCN = 0;
         
         // Star Channel
         this.guionesSC = 0;
@@ -238,6 +249,8 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         this.sueldoActoresSC = 0;
         this.sueldoPlotTwistsSC = 0;
         this.sueldoEnsambladoresSC = 0;
+        this.sueldoProjectManagerSC = 0;
+        this.sueldoDirectorSC = 0;
         
         // Semaforos Cartoon Network
         // Guiones
@@ -951,7 +964,6 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         irSimulacionButton = new javax.swing.JButton();
-        irDashboardButton = new javax.swing.JButton();
         irParametrosButton = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -966,8 +978,6 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         netoSC = new javax.swing.JLabel();
         gastosSC = new javax.swing.JLabel();
         gananciasSC = new javax.swing.JLabel();
-        reiniciar = new javax.swing.JButton();
-        aggDashboard = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel20 = new javax.swing.JLabel();
@@ -1520,7 +1530,7 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         estadoDirectorCN.setFont(new java.awt.Font("NSimSun", 0, 12)); // NOI18N
         estadoDirectorCN.setForeground(new java.awt.Color(0, 0, 0));
         estadoDirectorCN.setText("null");
-        Panel.add(estadoDirectorCN, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 200, 110, 20));
+        Panel.add(estadoDirectorCN, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 200, 130, 20));
 
         salarioDirectorCN.setBackground(new java.awt.Color(153, 153, 153));
         salarioDirectorCN.setFont(new java.awt.Font("NSimSun", 0, 14)); // NOI18N
@@ -1533,13 +1543,13 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         estadoDirectorSC.setFont(new java.awt.Font("NSimSun", 0, 12)); // NOI18N
         estadoDirectorSC.setForeground(new java.awt.Color(0, 0, 0));
         estadoDirectorSC.setText("null");
-        Panel.add(estadoDirectorSC, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 200, 100, 20));
+        Panel.add(estadoDirectorSC, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 200, 130, 20));
 
         estadoProjectManagerSC.setBackground(new java.awt.Color(153, 153, 153));
         estadoProjectManagerSC.setFont(new java.awt.Font("NSimSun", 0, 12)); // NOI18N
         estadoProjectManagerSC.setForeground(new java.awt.Color(0, 0, 0));
         estadoProjectManagerSC.setText("null");
-        Panel.add(estadoProjectManagerSC, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 170, 100, 20));
+        Panel.add(estadoProjectManagerSC, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 170, 120, 20));
 
         iniciarEstudios.setBackground(new java.awt.Color(51, 51, 51));
         iniciarEstudios.setFont(new java.awt.Font("NSimSun", 0, 14)); // NOI18N
@@ -1550,7 +1560,7 @@ public class VentanaSimulacion extends javax.swing.JFrame {
                 iniciarEstudiosActionPerformed(evt);
             }
         });
-        Panel.add(iniciarEstudios, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 80, 160, 40));
+        Panel.add(iniciarEstudios, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 80, 410, 40));
 
         jLabel38.setBackground(new java.awt.Color(153, 153, 153));
         jLabel38.setFont(new java.awt.Font("NSimSun", 0, 14)); // NOI18N
@@ -1658,7 +1668,7 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         estadoProjectManagerCN.setFont(new java.awt.Font("NSimSun", 0, 12)); // NOI18N
         estadoProjectManagerCN.setForeground(new java.awt.Color(0, 0, 0));
         estadoProjectManagerCN.setText("null");
-        Panel.add(estadoProjectManagerCN, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 170, 110, 20));
+        Panel.add(estadoProjectManagerCN, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 170, 130, 20));
 
         salarioProjectManagerSC.setBackground(new java.awt.Color(153, 153, 153));
         salarioProjectManagerSC.setFont(new java.awt.Font("NSimSun", 0, 14)); // NOI18N
@@ -1846,7 +1856,7 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         salarioPlotTwistsCN.setText("0");
         Panel.add(salarioPlotTwistsCN, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 440, 50, 30));
 
-        jPanel1.setBackground(new java.awt.Color(102, 0, 102));
+        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel17.setFont(new java.awt.Font("Poor Richard", 1, 18)); // NOI18N
@@ -1854,11 +1864,11 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel17.setText("ESTUDIOS");
         jLabel17.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 110, 40));
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 30));
 
         Panel.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 40));
 
-        jPanel3.setBackground(new java.awt.Color(51, 0, 102));
+        jPanel3.setBackground(new java.awt.Color(255, 153, 51));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         irSimulacionButton.setBackground(new java.awt.Color(0, 0, 0));
@@ -1872,20 +1882,7 @@ public class VentanaSimulacion extends javax.swing.JFrame {
                 irSimulacionButtonActionPerformed(evt);
             }
         });
-        jPanel3.add(irSimulacionButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 40, 130, 40));
-
-        irDashboardButton.setBackground(new java.awt.Color(0, 0, 0));
-        irDashboardButton.setFont(new java.awt.Font("NSimSun", 0, 14)); // NOI18N
-        irDashboardButton.setForeground(new java.awt.Color(204, 204, 204));
-        irDashboardButton.setText("Dashboard");
-        irDashboardButton.setBorder(null);
-        irDashboardButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        irDashboardButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                irDashboardButtonActionPerformed(evt);
-            }
-        });
-        jPanel3.add(irDashboardButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 90, 130, 40));
+        jPanel3.add(irSimulacionButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 40, 130, 80));
 
         irParametrosButton.setBackground(new java.awt.Color(0, 0, 0));
         irParametrosButton.setFont(new java.awt.Font("NSimSun", 0, 14)); // NOI18N
@@ -1898,7 +1895,7 @@ public class VentanaSimulacion extends javax.swing.JFrame {
                 irParametrosButtonActionPerformed(evt);
             }
         });
-        jPanel3.add(irParametrosButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 140, 130, 40));
+        jPanel3.add(irParametrosButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 140, 130, 80));
 
         Panel.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 110, 500));
 
@@ -1986,28 +1983,6 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         gananciasSC.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         gananciasSC.setText("0");
         Panel.add(gananciasSC, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 480, 50, 20));
-
-        reiniciar.setBackground(new java.awt.Color(51, 51, 51));
-        reiniciar.setFont(new java.awt.Font("NSimSun", 0, 14)); // NOI18N
-        reiniciar.setForeground(new java.awt.Color(255, 255, 255));
-        reiniciar.setText("Reiniciar");
-        reiniciar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                reiniciarActionPerformed(evt);
-            }
-        });
-        Panel.add(reiniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 80, -1, 40));
-
-        aggDashboard.setBackground(new java.awt.Color(51, 51, 51));
-        aggDashboard.setFont(new java.awt.Font("NSimSun", 0, 14)); // NOI18N
-        aggDashboard.setForeground(new java.awt.Color(255, 255, 255));
-        aggDashboard.setText("Guardar Corrida");
-        aggDashboard.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                aggDashboardActionPerformed(evt);
-            }
-        });
-        Panel.add(aggDashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, 140, 40));
 
         jLabel1.setBackground(new java.awt.Color(102, 102, 102));
         jLabel1.setFont(new java.awt.Font("Poor Richard", 1, 12)); // NOI18N
@@ -2130,6 +2105,8 @@ public class VentanaSimulacion extends javax.swing.JFrame {
     }//GEN-LAST:event_eliminarEnsambladorCNActionPerformed
 
     private void iniciarEstudiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarEstudiosActionPerformed
+        irSimulacionButton.setEnabled(false);
+
         iniciarEstudios.setEnabled(false);
         // Se habilitan los botones de ambos estudios 
         agregarGuionistaCN.setEnabled(true);
@@ -2206,6 +2183,9 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         // Inicia el Project Manager
         ProjectManagerCN hiloProjectManagerCN = new ProjectManagerCN(duracionDia, mutexCountdownCN, salarioProjectManagerCN);
         hiloProjectManagerCN.start();
+        // Inicia el Director
+        DirectorCN hiloDirectorCN = new DirectorCN(duracionDia, mutexCountdownCN, salarioDirectorCN);
+        hiloDirectorCN.start();
         
         // Star Channel
         // Inician los guionistas
@@ -2250,6 +2230,9 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         // Inicia el Project Manager
         ProjectManagerSC hiloProjectManagerSC = new ProjectManagerSC(duracionDia, mutexCountdownSC, salarioProjectManagerSC);
         hiloProjectManagerSC.start();
+        // Inicia el Director
+        DirectorSC hiloDirectorSC = new DirectorSC(duracionDia, mutexCountdownSC, salarioDirectorSC);
+        hiloDirectorSC.start();
        
         
         
@@ -2267,26 +2250,13 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_irSimulacionButtonActionPerformed
 
-    private void irDashboardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irDashboardButtonActionPerformed
-
-        this.dispose();
-        VentanaDashboard dashboard = new VentanaDashboard();
-        dashboard.setVisible(true);
-    }//GEN-LAST:event_irDashboardButtonActionPerformed
-
     private void irParametrosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irParametrosButtonActionPerformed
+        Interfaces.VentanaSimulacion.diasDespachoCN = 0;
+        Interfaces.VentanaSimulacion.diasDespachoSC = 0;
         this.dispose();
         VentanaParametros parametros = new VentanaParametros();
         parametros.setVisible(true);
     }//GEN-LAST:event_irParametrosButtonActionPerformed
-
-    private void reiniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reiniciarActionPerformed
-   
-    }//GEN-LAST:event_reiniciarActionPerformed
-
-    private void aggDashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aggDashboardActionPerformed
-        JOptionPane.showMessageDialog(rootPane, duracionDia);
-    }//GEN-LAST:event_aggDashboardActionPerformed
 
     private void agregarGuionistaSCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarGuionistaSCActionPerformed
         agregarTrabajadorSC(numGuionistasSC, 0);
@@ -2373,7 +2343,6 @@ public class VentanaSimulacion extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Panel;
-    private javax.swing.JButton aggDashboard;
     public static javax.swing.JButton agregarActorCN;
     public static javax.swing.JButton agregarActorSC;
     public static javax.swing.JButton agregarAnimadorCN;
@@ -2420,12 +2389,11 @@ public class VentanaSimulacion extends javax.swing.JFrame {
     public static javax.swing.JLabel estadoProjectManagerSC;
     public static javax.swing.JLabel faltasProjectManagerCN;
     public static javax.swing.JLabel faltasProjectManagerSC;
-    private javax.swing.JLabel gananciasCN;
-    private javax.swing.JLabel gananciasSC;
-    private javax.swing.JLabel gastosCN;
-    private javax.swing.JLabel gastosSC;
+    public static javax.swing.JLabel gananciasCN;
+    public static javax.swing.JLabel gananciasSC;
+    public static javax.swing.JLabel gastosCN;
+    public static javax.swing.JLabel gastosSC;
     private javax.swing.JButton iniciarEstudios;
-    private javax.swing.JButton irDashboardButton;
     private javax.swing.JButton irParametrosButton;
     private javax.swing.JButton irSimulacionButton;
     private javax.swing.JLabel jLabel1;
@@ -2494,8 +2462,8 @@ public class VentanaSimulacion extends javax.swing.JFrame {
     private javax.swing.JLabel maxGuionesSC;
     private javax.swing.JLabel maxPlotTwistsCN;
     private javax.swing.JLabel maxPlotTwistsSC;
-    private javax.swing.JLabel netoCN;
-    private javax.swing.JLabel netoSC;
+    public static javax.swing.JLabel netoCN;
+    public static javax.swing.JLabel netoSC;
     private javax.swing.JLabel numActoresCN;
     private javax.swing.JLabel numActoresSC;
     private javax.swing.JLabel numAnimadoresCN;
@@ -2508,7 +2476,6 @@ public class VentanaSimulacion extends javax.swing.JFrame {
     private javax.swing.JLabel numGuionistasSC;
     private javax.swing.JLabel numPlotTwistsCN;
     private javax.swing.JLabel numPlotTwistsSC;
-    private javax.swing.JButton reiniciar;
     public static javax.swing.JLabel salarioActoresCN;
     public static javax.swing.JLabel salarioActoresSC;
     public static javax.swing.JLabel salarioAnimadoresCN;

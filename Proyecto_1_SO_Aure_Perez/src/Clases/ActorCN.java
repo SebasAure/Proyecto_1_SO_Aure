@@ -5,6 +5,7 @@
  */
 package Clases;
 
+import Interfaces.VentanaSimulacion;
 import static java.lang.Thread.sleep;
 import java.util.concurrent.Semaphore;
 import java.util.logging.Level;
@@ -62,9 +63,9 @@ public class ActorCN extends Thread{
     }
     
     public void obtenerSalario(){
-        //revisar
-        this.salarioTotal += this.salario*horasPagadas*diasProduccion;
-        Interfaces.VentanaSimulacion.salarioActoresCN.setText(Integer.toString(salarioTotal));
+        
+        VentanaSimulacion.sueldoActoresCN += this.salario*horasPagadas*diasProduccion;
+        Interfaces.VentanaSimulacion.salarioActoresCN.setText(Integer.toString(VentanaSimulacion.sueldoActoresCN));
         
     }
     
