@@ -17,6 +17,7 @@ import javax.swing.JLabel;
  */
 public class EnsambladorCN extends Thread{
     
+    private volatile boolean activo;
     private int tipo;
     private int salarioTotal;
     private int duracionDia;
@@ -56,6 +57,7 @@ public class EnsambladorCN extends Thread{
     private JLabel salarioInterfaz;
     
     public EnsambladorCN(int tipo, int duracionDia, DriveCN drive, Semaphore mutex, Semaphore mutexGuiones, Semaphore driveDisponibleGuiones, Semaphore partesDisponiblesGuiones, Semaphore mutexEscenarios, Semaphore driveDisponibleEscenarios, Semaphore partesDisponiblesEscenarios, Semaphore mutexAnimaciones, Semaphore driveDisponibleAnimaciones, Semaphore partesDisponiblesAnimaciones, Semaphore mutexDoblajes, Semaphore driveDisponibleDoblajes, Semaphore partesDisponiblesDoblajes, Semaphore mutexPlotTwists, Semaphore driveDisponiblePlotTwists, Semaphore partesDisponiblesPlotTwists, JLabel salarioInterfaz){
+        this.activo = true;
         this.tipo = tipo;
         this.salarioTotal = 0;
         this.duracionDia = duracionDia;
@@ -81,7 +83,7 @@ public class EnsambladorCN extends Thread{
     
     @Override
     public void run(){
-        while(true) {
+        while(this.activo) {
             
             try {
                 // Produce cada 2 dias                                  
@@ -226,4 +228,9 @@ public class EnsambladorCN extends Thread{
             Logger.getLogger(EnsambladorCN.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void parar(){
+        this.activo = false;
+    }
+    
 }

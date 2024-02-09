@@ -17,6 +17,7 @@ import javax.swing.JLabel;
  */
 public class ActorCN extends Thread{
     
+    private volatile boolean activo;
     private int tipo;
     private int salarioTotal;
     private int duracionDia;
@@ -33,6 +34,7 @@ public class ActorCN extends Thread{
     private JLabel salarioInterfaz;
     
     public ActorCN(int tipo, int duracionDia, DriveCN drive, Semaphore mutex, Semaphore driveDisponible, Semaphore partesDisponibles, JLabel salarioInterfaz){
+        this.activo = true;
         this.tipo = tipo;
         this.salarioTotal = 0;
         this.duracionDia = duracionDia;
@@ -45,7 +47,7 @@ public class ActorCN extends Thread{
     
     @Override
     public void run(){
-        while(true) {
+        while(this.activo) {
             
             try {
                 
@@ -82,5 +84,9 @@ public class ActorCN extends Thread{
         } catch (InterruptedException ex) {
             Logger.getLogger(ActorCN.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public void parar(){
+        this.activo = false;
     }
 }

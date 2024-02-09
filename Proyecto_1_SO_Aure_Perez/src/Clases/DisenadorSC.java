@@ -17,6 +17,7 @@ import javax.swing.JLabel;
  */
 public class DisenadorSC extends Thread{
     
+    private volatile boolean activo;
     private int tipo;
     private int salarioTotal;
     private int duracionDia;
@@ -33,6 +34,7 @@ public class DisenadorSC extends Thread{
     private JLabel salarioInterfaz;
     
     public DisenadorSC(int tipo, int duracionDia, DriveSC drive, Semaphore mutex, Semaphore driveDisponible, Semaphore partesDisponibles, JLabel salarioInterfaz){
+        this.activo = true;
         this.tipo = tipo;
         this.salarioTotal = 0;
         this.duracionDia = duracionDia;
@@ -45,7 +47,7 @@ public class DisenadorSC extends Thread{
     
     @Override
     public void run(){
-        while(true) {
+        while(this.activo) {
             
             try {
                 // Produce cada 3 dias
@@ -79,5 +81,9 @@ public class DisenadorSC extends Thread{
         } catch (InterruptedException ex) {
             Logger.getLogger(DisenadorSC.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public void parar(){
+        this.activo = false;
     }
 }

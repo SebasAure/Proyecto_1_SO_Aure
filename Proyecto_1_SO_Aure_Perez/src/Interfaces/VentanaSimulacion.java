@@ -158,7 +158,7 @@ public class VentanaSimulacion extends javax.swing.JFrame {
         agregarPlotTwistCN.setEnabled(false);
         agregarEnsambladorCN.setEnabled(false);
         
-        eliminarGuionistaCN.setEnabled(false);
+        eliminarGuionistaCN.setEnabled(true);
         eliminarDisenadorCN.setEnabled(false);
         eliminarAnimadorCN.setEnabled(false);
         eliminarActorCN.setEnabled(false);
@@ -629,6 +629,156 @@ public class VentanaSimulacion extends javax.swing.JFrame {
                     }
                 }
                 hiloEnsambladorSC.start();
+                break;
+            default:
+                break;
+        }
+    }
+    
+    public void eliminarTrabajadorCN(JLabel tipoTrabajador, int tipo){
+        
+        // Validacion para que no exceda el numero de trabajadores permitidos concurrentemente
+            if (Integer.parseInt(tipoTrabajador.getText()) <= 1) {
+                JOptionPane.showMessageDialog(null, "Debe haber al menos un trabajador de cada tipo en Cartoon Network");
+                return;
+            }
+        // Cambia la cantidad de trabajadores en interfaz
+        String numeroTrabajadores = tipoTrabajador.getText();
+        int entero= Integer.parseInt(numeroTrabajadores);
+        entero--;
+        numeroTrabajadores= Integer.toString(entero);
+        tipoTrabajador.setText(numeroTrabajadores);
+        
+        switch (tipo) {
+            
+            case 0: // Guionista
+                for (int i = 0; i < guionistasCN.length; i++) {
+                    if (guionistasCN[i]==null) {
+                        guionistasCN[i-1].parar();
+                        guionistasCN[i-1]=null;
+                        break;
+                    }
+                }
+                break;
+            case 1: // Disenador
+                for (int i = 0; i < disenadoresCN.length; i++) {
+                    if (disenadoresCN[i]==null) {
+                        disenadoresCN[i-1].parar();
+                        disenadoresCN[i-1]=null;
+                        break;
+                    }
+                }
+                break;
+            case 2: // Animador
+                for (int i = 0; i < animadoresCN.length; i++) {
+                    if (animadoresCN[i]==null) {
+                        animadoresCN[i-1].parar();
+                        animadoresCN[i-1]=null;
+                        break;
+                    }
+                }
+                break;
+            case 3: // Actor
+                for (int i = 0; i < actoresCN.length; i++) {
+                    if (actoresCN[i]==null) {
+                        actoresCN[i-1].parar();
+                        actoresCN[i-1]=null;
+                        break;
+                    }
+                }
+                break;
+            case 4: // Guionista de Plot Twist
+                for (int i = 0; i < plottwistsCN.length; i++) {
+                    if (plottwistsCN[i]==null) {
+                        plottwistsCN[i-1].parar();
+                        plottwistsCN[i-1]=null;
+                        break;
+                    }
+                }
+                break;
+            case 5: // Ensamblador
+                for (int i = 0; i < ensambladoresCN.length; i++) {
+                    if (ensambladoresCN[i]==null) {
+                        ensambladoresCN[i-1].parar();
+                        ensambladoresCN[i-1]=null;
+                        break;
+                    }
+                }
+                break;
+            default:
+                break;
+        }
+    }
+    
+    public void eliminarTrabajadorSC(JLabel tipoTrabajador, int tipo){
+        
+        // Validacion para que no exceda el numero de trabajadores permitidos concurrentemente
+            if (Integer.parseInt(tipoTrabajador.getText()) <= 1) {
+                JOptionPane.showMessageDialog(null, "Debe haber al menos un trabajador de cada tipo en Star Channel");
+                return;
+            }
+        // Cambia la cantidad de trabajadores en interfaz
+        String numeroTrabajadores = tipoTrabajador.getText();
+        int entero= Integer.parseInt(numeroTrabajadores);
+        entero--;
+        numeroTrabajadores= Integer.toString(entero);
+        tipoTrabajador.setText(numeroTrabajadores);
+        
+        switch (tipo) {
+            
+            case 0: // Guionista
+                for (int i = 0; i < guionistasSC.length; i++) {
+                    if (guionistasSC[i]==null) {
+                        guionistasSC[i-1].parar();
+                        guionistasSC[i-1]=null;
+                        break;
+                    }
+                }
+                break;
+            case 1: // Disenador
+                for (int i = 0; i < disenadoresSC.length; i++) {
+                    if (disenadoresSC[i]==null) {
+                        disenadoresSC[i-1].parar();
+                        disenadoresSC[i-1]=null;
+                        break;
+                    }
+                }
+                break;
+            case 2: // Animador
+                for (int i = 0; i < animadoresSC.length; i++) {
+                    if (animadoresSC[i]==null) {
+                        animadoresSC[i-1].parar();
+                        animadoresSC[i-1]=null;
+                        break;
+                    }
+                }
+                break;
+            case 3: // Actor
+                for (int i = 0; i < actoresSC.length; i++) {
+                    if (actoresSC[i]==null) {
+                        actoresSC[i-1].parar();
+                        actoresSC[i-1]=null;
+                        break;
+                    }
+                }
+                break;
+            case 4: // Guionista de Plot Twist
+                for (int i = 0; i < plottwistsSC.length; i++) {
+                    if (plottwistsSC[i]==null) {
+                        plottwistsSC[i-1].parar();
+                        plottwistsSC[i-1]=null;
+                        break;
+                    }
+                }
+                break;
+            case 5: // Ensamblador
+                for (int i = 0; i < ensambladoresSC.length; i++) {
+                    if (ensambladoresSC[i]==null) {
+                        ensambladoresSC[i-1].parar();
+                        ensambladoresSC[i-1]=null;
+                        break;
+                    }
+                }
                 break;
             default:
                 break;
@@ -1891,6 +2041,7 @@ public class VentanaSimulacion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void eliminarGuionistaCNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarGuionistaCNActionPerformed
+        eliminarTrabajadorCN(numGuionistasCN,0);
     }//GEN-LAST:event_eliminarGuionistaCNActionPerformed
 
     private void agregarGuionistaCNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarGuionistaCNActionPerformed
@@ -1898,6 +2049,7 @@ public class VentanaSimulacion extends javax.swing.JFrame {
     }//GEN-LAST:event_agregarGuionistaCNActionPerformed
 
     private void eliminarDisenadorCNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarDisenadorCNActionPerformed
+        eliminarTrabajadorCN(numDisenadoresCN,1);
     }//GEN-LAST:event_eliminarDisenadorCNActionPerformed
 
     private void agregarDisenadorCNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarDisenadorCNActionPerformed
@@ -1906,6 +2058,7 @@ public class VentanaSimulacion extends javax.swing.JFrame {
     }//GEN-LAST:event_agregarDisenadorCNActionPerformed
 
     private void eliminarAnimadorCNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarAnimadorCNActionPerformed
+        eliminarTrabajadorCN(numAnimadoresCN,2);
     }//GEN-LAST:event_eliminarAnimadorCNActionPerformed
 
     private void agregarAnimadorCNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarAnimadorCNActionPerformed
@@ -1913,6 +2066,7 @@ public class VentanaSimulacion extends javax.swing.JFrame {
     }//GEN-LAST:event_agregarAnimadorCNActionPerformed
 
     private void eliminarActorCNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActorCNActionPerformed
+        eliminarTrabajadorCN(numActoresCN,3);
     }//GEN-LAST:event_eliminarActorCNActionPerformed
 
     private void agregarActorCNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActorCNActionPerformed
@@ -1924,7 +2078,7 @@ public class VentanaSimulacion extends javax.swing.JFrame {
     }//GEN-LAST:event_agregarEnsambladorCNActionPerformed
 
     private void eliminarEnsambladorCNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarEnsambladorCNActionPerformed
-
+        eliminarTrabajadorCN(numEnsambladoresCN,5);
     }//GEN-LAST:event_eliminarEnsambladorCNActionPerformed
 
     private void iniciarEstudiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarEstudiosActionPerformed
@@ -2052,6 +2206,7 @@ public class VentanaSimulacion extends javax.swing.JFrame {
     }//GEN-LAST:event_agregarPlotTwistCNActionPerformed
 
     private void eliminarPlotTwistCNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarPlotTwistCNActionPerformed
+        eliminarTrabajadorCN(numPlotTwistsCN,4);
     }//GEN-LAST:event_eliminarPlotTwistCNActionPerformed
 
     private void irSimulacionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irSimulacionButtonActionPerformed
@@ -2084,11 +2239,11 @@ public class VentanaSimulacion extends javax.swing.JFrame {
     }//GEN-LAST:event_agregarGuionistaSCActionPerformed
 
     private void eliminarGuionistaSCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarGuionistaSCActionPerformed
-        // TODO add your handling code here:
+        eliminarTrabajadorSC(numGuionistasSC, 0);
     }//GEN-LAST:event_eliminarGuionistaSCActionPerformed
 
     private void eliminarDisenadorSCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarDisenadorSCActionPerformed
-        // TODO add your handling code here:
+        eliminarTrabajadorSC(numDisenadoresSC, 1);
     }//GEN-LAST:event_eliminarDisenadorSCActionPerformed
 
     private void agregarDisenadorSCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarDisenadorSCActionPerformed
@@ -2100,11 +2255,11 @@ public class VentanaSimulacion extends javax.swing.JFrame {
     }//GEN-LAST:event_agregarAnimadorSCActionPerformed
 
     private void eliminarAnimadorSCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarAnimadorSCActionPerformed
-        // TODO add your handling code here:
+        eliminarTrabajadorSC(numAnimadoresSC, 2);
     }//GEN-LAST:event_eliminarAnimadorSCActionPerformed
 
     private void eliminarActorSCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActorSCActionPerformed
-        // TODO add your handling code here:
+        eliminarTrabajadorSC(numActoresSC, 3);
     }//GEN-LAST:event_eliminarActorSCActionPerformed
 
     private void agregarActorSCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActorSCActionPerformed
@@ -2116,11 +2271,11 @@ public class VentanaSimulacion extends javax.swing.JFrame {
     }//GEN-LAST:event_agregarPlotTwistSCActionPerformed
 
     private void eliminarPlotTwistSCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarPlotTwistSCActionPerformed
-        // TODO add your handling code here:
+        eliminarTrabajadorSC(numPlotTwistsSC, 4);
     }//GEN-LAST:event_eliminarPlotTwistSCActionPerformed
 
     private void eliminarEnsambladorSCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarEnsambladorSCActionPerformed
-        // TODO add your handling code here:
+        eliminarTrabajadorSC(numEnsambladoresSC, 5);
     }//GEN-LAST:event_eliminarEnsambladorSCActionPerformed
 
     private void agregarEnsambladorSCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarEnsambladorSCActionPerformed

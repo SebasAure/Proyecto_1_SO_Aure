@@ -17,6 +17,7 @@ import javax.swing.JLabel;
  */
 public class PlotTwistCN extends Thread{
     
+    private volatile boolean activo;
     private int tipo;
     private int salarioTotal;
     private int duracionDia;
@@ -33,6 +34,7 @@ public class PlotTwistCN extends Thread{
     private JLabel salarioInterfaz;
     
     public PlotTwistCN(int tipo, int duracionDia, DriveCN drive, Semaphore mutex, Semaphore driveDisponible, Semaphore partesDisponibles, JLabel salarioInterfaz){
+        this.activo = true;
         this.tipo = tipo;
         this.salarioTotal = 0;
         this.duracionDia = duracionDia;
@@ -45,7 +47,7 @@ public class PlotTwistCN extends Thread{
     
     @Override
     public void run(){
-        while(true) {
+        while(this.activo) {
             
             try {
                 // Produce cada 2 dias
@@ -79,5 +81,9 @@ public class PlotTwistCN extends Thread{
         } catch (InterruptedException ex) {
             Logger.getLogger(PlotTwistCN.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public void parar(){
+        this.activo = false;
     }
 }

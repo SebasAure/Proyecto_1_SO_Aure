@@ -17,6 +17,7 @@ import javax.swing.JLabel;
  */
 public class AnimadorSC extends Thread{
     
+    private volatile boolean activo;
     private int tipo;
     private int salarioTotal;
     private int duracionDia;
@@ -33,6 +34,7 @@ public class AnimadorSC extends Thread{
     private JLabel salarioInterfaz;
     
     public AnimadorSC(int tipo, int duracionDia, DriveSC drive, Semaphore mutex, Semaphore driveDisponible, Semaphore partesDisponibles, JLabel salarioInterfaz){
+        this.activo = true;
         this.tipo = tipo;
         this.salarioTotal = 0;
         this.duracionDia = duracionDia;
@@ -45,7 +47,7 @@ public class AnimadorSC extends Thread{
     
     @Override
     public void run(){
-        while(true) {
+        while(this.activo) {
             
             try {
                 // Produce cada dia (pero como produce 2 al dia es lo mismo que produzca 1 parte cada medio dia)
@@ -79,5 +81,9 @@ public class AnimadorSC extends Thread{
         } catch (InterruptedException ex) {
             Logger.getLogger(AnimadorSC.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public void parar(){
+        this.activo = false;
     }
 }
